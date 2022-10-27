@@ -1,0 +1,55 @@
+.list-wrapper {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr repeat(2, min(20rem, 15%));
+  grid-template-areas:
+    '. . contribution total'
+    'projects projects projects projects';
+}
+
+.contribution-column {
+  grid-area: contribution;
+}
+.total-column {
+  grid-area: total;
+}
+
+.list-wrapper ul {
+  grid-area: projects;
+}
+
+.list-wrapper ul {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--gap);
+
+  padding-block: var(--padding-spacer-xs);
+}
+
+.project-wrapper {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr repeat(2, min(20rem, 15%));
+  border: 1px solid hsl(var(--clr-secondary--black) / 0.25);
+  min-height: 5rem;
+}
+
+.img-name-wrapper {
+  grid-column: span 2;
+}
+
+.img-name-wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.img-name-wrapper > img {
+  max-width: 5rem;
+  height: 100%;
+  object-fit: cover;
+}
+
+.name-wrapper {
+  flex-direction: column;
+}

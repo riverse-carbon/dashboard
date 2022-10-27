@@ -1,0 +1,89 @@
+/* TODO:
+1. clean up commented rules */
+
+.header {
+  position: relative;
+  z-index: 10;
+
+  background-color: hsl(var(--clr-main--300));
+}
+
+.logo-wrapper img {
+  max-height: 1.25rem;
+  width: max-content;
+}
+
+.logo-wrapper a {
+  display: block;
+  padding-block: var(--padding-spacer-xs);
+  padding-inline: var(--padding-spacer);
+}
+
+.nav {
+  position: sticky;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  padding-block: var(--padding-spacer);
+}
+
+.nav > ul {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.nav > ul > li:not(:first-of-type) + li {
+  margin-block-start: var(--block-spacer-xl);
+}
+
+li.active {
+  background-color: hsl(var(--clr-main--100));
+}
+
+.link-with-icon {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xs);
+}
+
+.nav li:not(.logo-wrapper) a {
+  padding: var(--padding-spacer);
+  text-decoration: none;
+}
+
+/* .nav li:not(.contact-button) > a {
+  color: inherit;
+  display: block;
+}
+
+.nav li:not(.contact-button) > a:hover {
+  color: hsl(var(--clr-secondary--yellow));
+} */
+
+/* li.active {
+  position: relative;
+}
+
+li.active::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: -0.6em;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  border-block-end: 0.1em solid;
+  border-block-start: 0.1em solid;
+  border-inline-start: 0.1em solid;
+  border-image-source: linear-gradient(
+    25deg,
+    hsl(var(--clr-secondary--yellow)),
+    hsl(var(--clr-secondary--yellow) / 0) 50%
+  );
+  border-image-slice: 1;
+} */

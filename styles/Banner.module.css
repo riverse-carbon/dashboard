@@ -1,0 +1,24 @@
+.banner {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  padding-inline: var(--padding-spacer);
+
+  background-color: hsl(var(--clr-main--300));
+
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xl);
+}
+
+.contact-button {
+  margin-inline-start: auto;
+}
+
+.photo {
+  height: 2.5rem;
+  width: auto;
+  margin-left: calc(-0.875 * var(--gap-xl));
+  border-radius: 100rem;
+}

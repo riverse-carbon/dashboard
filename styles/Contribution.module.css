@@ -1,0 +1,33 @@
+.charts-wrapper {
+  display: flex;
+  gap: 10rem;
+  align-items: center;
+}
+
+.pie-chart {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.filters-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.pie-chart canvas {
+  max-width: 300px;
+}
+
+.filter-label-wrapper {
+  position: relative;
+  max-width: max-content;
+}
+
+.filter-label-wrapper > input:checked + label {
+  background-color: hsl(var(--clr-secondary--yellow) / 0.25);
+}
+
+.filter-label-wrapper label {
+  cursor: pointer;
+}

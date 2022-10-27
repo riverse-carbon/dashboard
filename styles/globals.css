@@ -1,0 +1,433 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
+
+:root {
+  --ff-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+  /* mobile font-size  */
+  /* --fs-300: 0.875rem;
+  --fs-400: 1rem;
+  --fs-500: 1.25rem;
+  --fs-500--variable: 1.125em;
+  --fs-700: 1.75rem;
+  --fs-900: 3rem; */
+
+  /* TODO: define mobile f-size */
+  --fs-300: 0.75rem;
+  --fs-400: 1rem;
+  --fs-500: 1.25rem;
+  /* --fs-700: 2rem;
+  --fs-900: 3rem;
+  --fs-900: max(3rem, 4vw); */
+
+  --fw-normal: 400;
+  --fw-bold: 500;
+
+  /* default variables */
+  /* --clr-primary--blue: 224 43% 19%;
+  --clr-primary--white: 60 23% 94%;
+
+  --clr-secondary--green: 177 20% 58%;
+  --clr-secondary--yellow: 50 77% 59%;
+  --clr-secondary--red: 4 60% 48%;
+  --clr-secondary--black: 0 0% 0%;
+
+  --clr-alert--warning: 48 89% 50%;
+  --clr-alert--success: 145 63% 49%;
+  --clr-alert--failure: 6 78% 57%; */
+
+  /* new color palette */
+  --clr-main--100: 0 0% 100%;
+  --clr-main--300: 60 23% 94%;
+  --clr-main--700: 0 0% 29%;
+  --clr-main--900: 0 0% 0%;
+
+  --padding-spacer-xs: clamp(0.75rem, 2%, 1.5rem);
+  --padding-spacer: clamp(1.5rem, 4%, 3rem);
+  --padding-spacer-xl: clamp(3rem, 8%, 6rem);
+
+  --padding-spacer-xs: 0.625rem;
+  --padding-spacer: 1.25rem;
+  --padding-spacer-xl: 2.5rem;
+
+  --block-spacer-xs: min(0.5rem, 1vh);
+  --block-spacer: min(1.5rem, 3vh);
+  --block-spacer-xl: min(4rem, 9vh);
+
+  --block-spacer-xs: 0.625rem;
+  --block-spacer: 1.25rem;
+  --block-spacer-xl: 2.5rem;
+
+  --gap-xs: clamp(0.75rem, 2vmax, 1.5rem);
+  --gap: clamp(1.5rem, 4vmax, 3rem);
+  --gap-xl: clamp(3rem, 8vmax, 4rem);
+
+  --gap-xs: 0.625rem;
+  --gap: 1.25rem;
+  --gap-xl: 2.5rem;
+
+  --transition-duration: 1ms;
+  --transition-duration--quick: 1ms;
+  --transition-delay: 1ms;
+
+  --button-padding--block: 0.25em;
+  --button-padding--inline: 1.25em;
+
+  --button-padding--block: 0.625rem;
+  --button-padding--inline: 1.25rem;
+
+  --br: 12px;
+  --br-xs: 8px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    --transition-duration: 350ms;
+    --transition-duration--quick: 150ms;
+    --transition-delay: 50ms;
+  }
+}
+
+@media (min-width: 60em) {
+  :root {
+    /* --fs-300: 1rem;
+    --fs-400: 1.25rem;
+    --fs-500: 1.75rem;
+    --fs-700: 2rem;
+    --fs-900: 3rem;
+    --fs-900: max(3rem, 4vw); */
+  }
+}
+
+/* ANIMATIONS */
+
+/* RESET */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline-offset: 1px;
+  outline-width: 0.1em;
+  outline-color: currentColor;
+  outline-style: dashed;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+html,
+body {
+  margin: 0;
+}
+
+@media (min-width: 60em) {
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3,
+  .h3,
+  h4,
+  .h4 {
+    line-height: 1.4;
+  }
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+p,
+dl,
+dt,
+dd,
+figure {
+  margin: 0;
+}
+
+ul:where([class]),
+ol:where([class]) {
+  list-style: none;
+
+  padding: 0;
+  margin: 0;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+input {
+  /* background-color: hsl(var(--clr-primary--white)); */
+  background-color: hsl(var(--clr-main--100));
+}
+
+input:hover {
+  /* box-shadow: inset 0 0 0 1px hsl(var(--clr-secondary--yellow)); */
+  box-shadow: inset 0 0 0 1px hsl(var(--clr-main--900));
+}
+
+input:focus {
+  outline: none;
+  /* box-shadow: inset 0 0 0.1em 1px hsl(var(--clr-secondary--yellow)); */
+  box-shadow: inset 0 0 0.1em 1px hsl(var(--clr-main--900));
+}
+
+fieldset[class] {
+  padding: 0;
+  margin-inline: 0;
+
+  border: none;
+}
+
+::placeholder {
+  opacity: 0.75;
+}
+
+a {
+  /* text-decoration: none; */
+  text-decoration: underline;
+
+  z-index: 0;
+
+  /* color: hsl(var(--clr-secondary--red)); */
+  color: inherit;
+
+  transition: color var(--transition-duration--quick) linear;
+}
+/* TODO:
+1.aria-current=page styles + a11y in HTML */
+
+/* a[aria-current='page'] {
+  position: relative;
+}
+
+a[aria-current='page']::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: bottom;
+  background-size: 100% 0.2em;
+  background-repeat: no-repeat;
+} */
+
+a:hover {
+  /* color: hsl(var(--clr-secondary--yellow)); */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+iframe {
+  aspect-ratio: var(--ratio, 8 / 5);
+  width: 100%;
+  height: auto;
+}
+
+[hidden] {
+  display: none;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+/* TODO: implement skip to content link! */
+/* skip to content button */
+.skip-to-content {
+  color: black;
+  background-color: white;
+  padding: 1em;
+  font-size: var(--fs-700);
+  font-weight: 700;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -100%);
+  transition: transform var(--transition-duration) ease-out;
+  z-index: 1000;
+}
+
+.skip-to-content:focus {
+  transform: translate(-50%, 0%);
+}
+
+/* UTILITY CLASSES */
+
+button,
+.button-style,
+input {
+  border: none;
+  /* border-radius: 100em; */
+  border-radius: var(--br);
+
+  padding: var(--button-padding--block) var(--button-padding--inline);
+}
+
+button,
+.button-style {
+  /* color: hsl(var(--clr-primary--white)); */
+  color: hsl(var(--clr-main--100));
+  /* background-color: hsl(var(--clr-primary--blue)); */
+  background-color: hsl(var(--clr-main--900));
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition: background-color var(--transition-duration--quick) linear;
+}
+
+/* button:hover,
+.button-style:hover {
+  background-color: hsl(var(--clr-secondary--green));
+} */
+
+.flow-spacer > * + * {
+  --flow-spacer: var(--block-spacer, 1.25rem);
+  margin-top: var(--flow-spacer);
+}
+
+.flow-spacer > *[hidden] + * {
+  margin-top: 0;
+}
+
+.spacer-xs > * + * {
+  --flow-spacer: var(--block-spacer-xs, 0.5rem);
+}
+
+.spacer-xl > * + * {
+  --flow-spacer: var(--block-spacer-xl, 3rem);
+}
+
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.gap {
+  gap: var(--gap);
+}
+
+.gap-xs {
+  gap: var(--gap-xs);
+}
+
+.gap-xl {
+  gap: var(--gap-xl);
+}
+
+.flex-block-center {
+  align-items: center;
+}
+
+.link--block {
+  display: block;
+  max-width: max-content;
+}
+
+.text-color-inverse {
+  /* color: hsl(var(--clr-main--100)); */
+  color: hsl(var(--clr-main--900));
+}
+
+/* TYPOGRAPHY */
+
+body {
+  font-family: var(--ff-sans);
+  line-height: 1.25;
+  font-size: var(--fs-400);
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
+  /* font-family: var(--ff-serif); */
+  font-weight: var(--fw-bold);
+}
+
+.text-serif {
+  /* font-family: var(--ff-serif); */
+}
+
+.text-bold {
+  font-weight: var(--fw-bold);
+}
+
+.text-italic {
+  font-style: italic;
+}
+
+/* GENERAL */
+
+body {
+  /* background-color: hsl(var(--clr-primary--white)); */
+  background-color: hsl(var(--clr-main--100));
+}
+
+.container {
+  width: min((100vw - var(--padding-spacer)), 100rem);
+  margin-inline: auto;
+}
+
+.app {
+  position: relative;
+  display: grid;
+  grid-template-areas:
+    'header banner'
+    'header main';
+  grid-template-columns: fit-content(12rem) 1fr;
+  grid-template-rows: 5rem 1fr;
+}
+
+main {
+  grid-area: main;
+}
+.banner {
+  grid-area: banner;
+}
+header {
+  grid-area: header;
+}
+
+.main-container {
+  /* padding: var(--padding-spacer); */
+}
+
+a.disabled {
+  color: hsl(var(--clr-main--900) / 0.7) !important;
+}
