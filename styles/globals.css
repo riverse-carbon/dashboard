@@ -400,7 +400,8 @@ body {
 }
 
 .container {
-  width: min((100vw - var(--padding-spacer)), 100rem);
+  /* width: min((100vw - var(--padding-spacer)), 100rem); */
+  max-width: 100rem;
   margin-inline: auto;
 }
 
