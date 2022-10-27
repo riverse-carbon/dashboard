@@ -399,9 +399,8 @@ body {
   background-color: hsl(var(--clr-main--100));
 }
 
-.container {
-  /* width: min((100vw - var(--padding-spacer)), 100rem); */
-  max-width: 100rem;
+main {
+  width: min((100% - var(--padding-spacer)), 100rem);
   margin-inline: auto;
 }
 
