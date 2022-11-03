@@ -1,5 +1,9 @@
 import profile from './public/profilePlaceholder.min.png'
 import projectImgPlaceholder from './public/projectImgPlaceholder.jpg'
+import post1image from './public/documentation_posts/1.jpg'
+import post2image from './public/documentation_posts/2.jpg'
+import post3image from './public/documentation_posts/3.png'
+import post4image from './public/documentation_posts/4.jpeg'
 
 const data = {
   user: {
@@ -85,3 +89,45 @@ const data = {
 }
 
 export default data
+
+export const documentationPages = {
+  posts: [
+    {
+      title: 'What is a good carbon credit price ?',
+      previewText:
+        'Why a carbon credit price high enough is key to support decarbonization',
+      date: 'October 26, 2022',
+      author: 'Grégoire Guirauden',
+      link: 'https://www.riverse.io/blog/good-carbon-credit-price',
+      thumbnail: post1image
+    },
+    {
+      title:
+        'Science-Based Target Initiative and Riverse carbon credit eligibility',
+      previewText:
+        'What is SBTi Net Zero Protocol and how to use Riverse-certified carbon credits within it',
+      date: 'October 10, 2022',
+      author: 'Grégoire Guirauden',
+      link: 'https://www.riverse.io/blog/sbti-riverse-carbon-credit',
+      thumbnail: post2image
+    },
+    {
+      title: 'Carbon credit standards - Eligibility criteria comparison',
+      previewText:
+        'Comparison of main carbon credits standard eligibility criterias',
+      date: 'September 29, 2022',
+      author: 'Grégoire Guirauden',
+      link:
+        'https://www.riverse.io/blog/carbon-credit-standards-eligibility-criteria-comparison',
+      thumbnail: post3image
+    },
+    {
+      title: 'Methodology',
+      previewText: 'Introduction to the methodological framework',
+      date: 'September 26, 2022',
+      author: 'Grégoire Guirauden',
+      link: 'https://www.riverse.io/standard/lca-rules',
+      thumbnail: post4image
+    }
+  ]
+}

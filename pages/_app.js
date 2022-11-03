@@ -1,4 +1,7 @@
 import '../styles/globals.css'
+// import * as dotenv from 'dotenv'
+// import * as fs from 'fs'
+// dotenv.config({ debug: true })
 import Nav from '../components/Nav'
 import Banner from '../components/Banner'
 import { UserProvider } from '@auth0/nextjs-auth0'

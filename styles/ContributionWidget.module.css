@@ -1,0 +1,6 @@
+.body {
+  padding-block: var(--padding-spacer);
+  font-size: var(--fs-700);
+  text-align: center;
+  font-style: italic;
+}

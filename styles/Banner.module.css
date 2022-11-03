@@ -5,7 +5,8 @@
 
   padding-inline: var(--padding-spacer);
 
-  background-color: hsl(var(--clr-main--300));
+  color: hsl(var(--clr-main--900));
+  background-color: hsl(var(--clr-accent--700));
 
   display: flex;
   align-items: center;

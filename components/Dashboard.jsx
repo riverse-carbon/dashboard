@@ -1,17 +1,30 @@
 import styles from '../styles/Dashboard.module.css'
+import widgetStyles from '../styles/WidgetStyles.module.css'
 import Contribution from './Contribution'
+import ContributionWidget from './ContributionWidget'
+import Documentation from './Documentation'
 import Projects from './Projects'
-
-import data from '../db'
+import TotalCreditsWidget from './TotalCredits.widget'
+import WidgetWrapper from './WidgetWrapper'
 
 // TODO:
 // 1.Delete dashboard.module (a whole css file for 1 rule, what a shame)
 
 function DashBoard ({}) {
   return (
-    <div className={styles.container}>
-      <Contribution projects={data.projects} sdgs={data.sdgs} />
-      <Projects projects={data.projects} />
+    <div className={widgetStyles['widgets-wrapper']}>
+      <WidgetWrapper columns={1}>
+        <ContributionWidget />
+      </WidgetWrapper>
+      <WidgetWrapper columns={1}>
+        <TotalCreditsWidget />
+      </WidgetWrapper>
+      <WidgetWrapper columns={2}>
+        <Projects />
+      </WidgetWrapper>
+      <WidgetWrapper columns={2}>
+        <Documentation />
+      </WidgetWrapper>
     </div>
   )
 }

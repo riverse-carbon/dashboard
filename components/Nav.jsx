@@ -2,9 +2,14 @@ import Image from 'next/future/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styles from '../styles/Nav.module.css'
-import logo from '../public/icons/logo.svg'
-import dashboardImage from '../public/icons/dashboard.svg'
-import ordersImage from '../public/icons/orders.svg'
+import LogoSVG from '../public/icons/LogoSVG'
+import DashboardSVG from '../public/icons/DashboardSVG'
+import ProjectsSVG from '../public/icons/ProjectsSVG'
+import ContributionSVG from '../public/icons/ContributionSVG'
+import CarbonCreditsSVG from '../public/icons/CarbonCreditsSVG'
+import BillingSVG from '../public/icons/BillingSVG'
+import DocumentationSVG from '../public/icons/DocumentationSVG'
+import MembersSVG from '../public/icons/MembersSVG'
 
 // TODO:
 // 1. change disabled links
@@ -19,34 +24,48 @@ function Nav () {
         <ul role='list' className='list'>
           <li className={styles['logo-wrapper']}>
             <a href='https://riverse.io'>
-              <Image src={logo} alt='riverse logo' />
+              <LogoSVG clrMonochrome={false} />
             </a>
           </li>
           <li className={styles['nav-list-nested']}>
             <ul role='list' className='list flow-spacer spacer-xs'>
               <li className={currentPath === '/' ? styles.active : ''}>
                 <Link href='/'>
-                  <a className={styles['link-with-icon']}>
-                    <Image src={dashboardImage} alt='' />
+                  <a className={'link-with-icon'}>
+                    <DashboardSVG />
                     Dashboard
                   </a>
                 </Link>
               </li>{' '}
-              <li className={currentPath === '/orders' ? styles.active : ''}>
-                <Link href='/orders'>
-                  <a className={styles['link-with-icon']}>
-                    <Image src={ordersImage} alt='' />
-                    Orders
+              <li className={currentPath === '/projects' ? styles.active : ''}>
+                <Link href='/projects'>
+                  <a className={'link-with-icon'}>
+                    <ProjectsSVG />
+                    Projects
                   </a>
                 </Link>
               </li>
-              <li className={currentPath === '/checkout' ? styles.active : ''}>
-                {/* <Link href='/checkout'> */}
-                <a className={styles['link-with-icon'] + ' disabled'}>
-                  <Image src={dashboardImage} alt='' />
-                  Check out
-                </a>
-                {/* </Link> */}
+              <li
+                className={currentPath === '/contribution' ? styles.active : ''}
+              >
+                <Link href='/contribution'>
+                  <a className={'link-with-icon'}>
+                    <ContributionSVG />
+                    Contribution
+                  </a>
+                </Link>
+              </li>
+              <li
+                className={
+                  currentPath === '/carbon-credits' ? styles.active : ''
+                }
+              >
+                <Link href='/carbon-credits'>
+                  <a className={'link-with-icon'}>
+                    <CarbonCreditsSVG />
+                    Carbon credits
+                  </a>
+                </Link>
               </li>
             </ul>
           </li>
@@ -63,16 +82,16 @@ function Nav () {
                 >
                   API
                 </a> */}
-                <a className={styles['link-with-icon'] + ' disabled'}>
-                  <Image src={dashboardImage} alt='' />
-                  API
+                <a className={'link-with-icon' + ' disabled'}>
+                  <BillingSVG />
+                  Billing
                 </a>
                 {/* </Link> */}
               </li>
               <li>
                 {/* <Link href='#'> */}
-                <a className={styles['link-with-icon'] + ' disabled'}>
-                  <Image src={dashboardImage} alt='' />
+                <a className={'link-with-icon' + ' disabled'}>
+                  <DocumentationSVG />
                   Documentation
                 </a>
                 {/* <a
@@ -85,42 +104,17 @@ function Nav () {
                   Documentation
                 </a> */}
                 {/* </Link> */}
+                <a className={'link-with-icon' + ' disabled'}>
+                  <MembersSVG />
+                  Members
+                </a>
               </li>
             </ul>
           </li>
-          <li className={styles['nav-list-nested']}>
-            <ul role='list' className='list flow-spacer spacer-xs'>
-              <li>
-                {/* <Link href='/billing'> */}
-                <a className={styles['link-with-icon'] + ' disabled'}>
-                  <Image src={dashboardImage} alt='' />
-                  Billing
-                </a>
-                {/* <a
-                  className={
-                    currentPath === '/billing' ? styles.active : 'disabled'
-                  }
-                >
-                  Billing
-                </a> */}
-                {/* </Link> */}
-              </li>
-              <li>
-                {/* <Link href='/members'> */}
-                <a className={styles['link-with-icon'] + ' disabled'}>
-                  <Image src={dashboardImage} alt='' />
-                  Members
-                </a>
-                {/* <a
-                  className={
-                    currentPath === '/members' ? styles.active : 'disabled'
-                  }
-                >
-                  Members
-                </a> */}
-                {/* </Link> */}
-              </li>
-            </ul>
+          <li className={styles['contact-button-wrapper']}>
+            <Link href='#'>
+              <a className='button-style link--block'>Need help?</a>
+            </Link>
           </li>
         </ul>
       </nav>

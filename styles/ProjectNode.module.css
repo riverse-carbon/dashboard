@@ -1,0 +1,63 @@
+.project-wrapper {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: minmax(7rem, 1fr) 4fr;
+  gap: var(--gap-xs);
+  min-height: 7rem;
+
+  font-size: var(--fs-300);
+}
+
+.image-wrapper {
+  position: relative;
+  background-color: hsl(var(--clr-main--900));
+  border-radius: var(--br);
+}
+
+.image-wrapper > img {
+  object-fit: cover;
+  border-radius: var(--br);
+}
+
+.info-wrapper {
+  display: grid;
+  grid-template-columns: auto max-content;
+  gap: var(--gap-xs);
+
+  padding: var(--padding-spacer-xs) var(--padding-spacer);
+
+  color: hsl(var(--clr-accent--700));
+  background-color: hsl(var(--clr-main--900));
+}
+
+.name-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.name-wrapper > h4 {
+  text-transform: uppercase;
+}
+
+.contribution-total-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--gap-xs);
+}
+
+:is(.contribution, .total) > .value {
+  padding: var(--button-padding--block) var(--button-padding--inline);
+}
+
+.contribution > .value {
+  background-color: hsl(var(--clr-accent--100));
+  border: 1px solid hsl(var(--clr-accent--300));
+}
+
+.total > .value {
+  color: hsl(var(--clr-main--900));
+  background-color: hsl(var(--clr-accent--400));
+}
