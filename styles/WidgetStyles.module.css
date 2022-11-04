@@ -1,0 +1,53 @@
+.widgets-wrapper {
+  /**
+     * User input values.
+     */
+  --grid-layout-gap: var(--gap);
+  --grid-column-count: 4;
+  --grid-item--min-width: 14rem;
+
+  /**
+     * Calculated values.
+     */
+  --gap-count: calc(var(--grid-column-count) - 1);
+  --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+  --grid-item--max-width: calc(
+    (100% - var(--total-gap-width)) / var(--grid-column-count)
+  );
+
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr)
+  );
+  grid-gap: var(--grid-layout-gap);
+  align-items: start;
+}
+
+.column-span--1 {
+  --columns: 1;
+}
+.column-span--2 {
+  --columns: 2;
+}
+.column-span--3 {
+  --columns: 3;
+}
+.column-span--4 {
+  --columns: 4;
+}
+
+.widget-card {
+  grid-column: span var(--columns, 1);
+
+  padding: var(--padding-spacer);
+  border-radius: var(--br);
+
+  color: hsl(var(--clr-main--900));
+  background-color: hsl(var(--clr-accent--700));
+}
+
+.widget-card > *:first-child {
+  font-size: var(--fs-500);
+  padding-block-end: var(--block-spacer);
+}

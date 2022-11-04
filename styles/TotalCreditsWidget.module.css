@@ -1,0 +1,51 @@
+.body {
+  text-align: center;
+}
+
+.body > * + * {
+  margin-block-start: var(--block-spacer);
+}
+
+.body > *:last-child {
+  margin-block-start: var(--block-spacer-xl);
+}
+
+.total,
+.credit-value {
+  font-style: italic;
+}
+
+.total {
+  font-size: var(--fs-700);
+  padding-block: var(--padding-spacer);
+}
+
+.total svg {
+  margin-inline-start: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.credits-links-wrapper > * + * {
+  margin-block-start: var(--block-spacer-xs);
+}
+
+.credits-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.credit > * {
+  display: block;
+}
+
+.credit-name svg {
+  margin-inline-start: 0.1em;
+}
+.credit-name circle {
+  fill: hsl(var(--clr-accent--700));
+}
+
+.credit-value {
+  font-size: var(--fs-500);
+}

@@ -2,6 +2,7 @@ import Image from 'next/future/image'
 import { useUser } from '@auth0/nextjs-auth0'
 import styles from '../styles/Banner.module.css'
 import photoPlaceholder from '../public/photo-placeholder.svg'
+import CardSVG from '../public/icons/CardSVG'
 
 // TODO:
 // 1. DRY returned HTML
@@ -18,9 +19,10 @@ function Banner () {
         {/* <div className={styles['email-photo-wrapper']}> */}
         <a
           href='/api/auth/logout'
-          className={`${styles['contact-button']} button-style`}
+          className={`${styles['contact-button']} button-style link-with-icon`}
         >
-          Need help?
+          <CardSVG />
+          Buy carbon credits
         </a>
         <div className={styles.email}>{user.email}</div>
         <Image className={styles.photo} src={photoPlaceholder} alt='' />
@@ -30,8 +32,12 @@ function Banner () {
   return (
     <div className={`${styles.banner} banner`}>
       <p className={styles.greeting}>Welcome</p>
-      <a href='#' className={`${styles['contact-button']} button-style`}>
-        Need help?
+      <a
+        href='#'
+        className={`${styles['contact-button']} button-style link-with-icon`}
+      >
+        <CardSVG />
+        Buy carbon credits
       </a>
       <a href='/api/auth/login' className='button-style'>
         Login
