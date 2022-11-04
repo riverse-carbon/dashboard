@@ -5,24 +5,22 @@ import { useState, useEffect } from 'react'
 
 // TODO: maxRecords?
 
-function Projects ({ limit = '' }) {
+function Projects ({ limit = 100 }) {
   const fetcher = url => fetch(url).then(res => res.json())
   const API =
-    process.env.AUTH0_BASE_URL ||
-    process.env.NEXT_PUBLIC_AUTH0_BASE_URL +
-      '/api/protected/projects?' +
-      (limit ? 'limit=' + limit : '')
+    (process.env.AUTH0_BASE_URL || process.env.NEXT_PUBLIC_AUTH0_BASE_URL) +
+    '/api/protected/projects'
   const { data, error } = useSWR(API, fetcher)
   const [projects, setProjects] = useState([])
 
   useEffect(() => {
-    if (data && !data.error && data.data) {
-      const projectsList = data.data.map(project => (
-        <ProjectNode key={project.id} data={project.fields} />
-      ))
+    if (data && !data.error) {
+      const projectsList = data.data
+        .slice(0, limit)
+        .map(project => <ProjectNode key={project.id} data={project.fields} />)
       setProjects(projectsList)
     }
-  }, [data])
+  }, [data, limit])
 
   if (data && data.error)
     return `${data.error}. Contact us if the problem persists`

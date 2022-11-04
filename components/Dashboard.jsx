@@ -14,7 +14,7 @@ function DashBoard ({}) {
   return (
     <div className={widgetStyles['widgets-wrapper']}>
       <WidgetWrapper columns={2}>
-        <Projects limit='4' />
+        <Projects limit={4} />
       </WidgetWrapper>
       <WidgetWrapper columns={1}>
         <ContributionWidget />
