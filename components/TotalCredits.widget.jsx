@@ -4,7 +4,7 @@ import CarbonCreditsSVG from '../public/icons/CarbonCreditsSVG'
 import CardSVG from '../public/icons/CardSVG'
 import TransferSVG from '../public/icons/TransferSVG'
 import Link from 'next/link'
-import InformationSVG from '../public/icons/informationSVG'
+import InformationSVG from '../public/icons/InformationSVG'
 import StatsSVG from '../public/icons/StatsSVG'
 
 // TODO:
