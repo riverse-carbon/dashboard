@@ -7,9 +7,7 @@ import { useState, useEffect } from 'react'
 
 function Projects ({ limit = 100 }) {
   const fetcher = url => fetch(url).then(res => res.json())
-  const API =
-    (process.env.AUTH0_BASE_URL || process.env.NEXT_PUBLIC_AUTH0_BASE_URL) +
-    '/api/protected/projects'
+  const API = '/api/protected/projects'
   const { data, error } = useSWR(API, fetcher)
   const [projects, setProjects] = useState([])
 
