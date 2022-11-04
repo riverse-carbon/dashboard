@@ -3,17 +3,19 @@ import ProjectNode from './ProjectNode'
 import useSWR from 'swr'
 import { useState, useEffect } from 'react'
 
-const fetcher = url => fetch(url).then(res => res.json())
-const API = process.env.NEXT_PUBLIC_AUTH0_BASE_URL + '/api/protected/projects'
+// TODO: maxRecords?
 
-// TODO:
-
-function Projects () {
+function Projects ({ limit = '' }) {
+  const fetcher = url => fetch(url).then(res => res.json())
+  const API =
+    process.env.NEXT_PUBLIC_AUTH0_BASE_URL +
+    '/api/protected/projects?' +
+    (limit ? 'limit=' + limit : '')
   const { data, error } = useSWR(API, fetcher)
   const [projects, setProjects] = useState([])
 
   useEffect(() => {
-    if (data && !data.error) {
+    if (data && !data.error && data.data) {
       const projectsList = data.data.map(project => (
         <ProjectNode key={project.id} data={project.fields} />
       ))

@@ -4,7 +4,7 @@ import styles from '../styles/Documentation.module.css'
 const PostPreviewCard = ({ data }) => {
   return (
     <li className={styles.post}>
-      <Image src={data.thumbnail} alt='' />
+      <Image src={data.thumbnail} alt='' sizes='20rem' />
       <h4 className={styles.title}>{data.title}</h4>
       <a href={data.link} className={`${styles['more-link']} button-style`}>
         Read more

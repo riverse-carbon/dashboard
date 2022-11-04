@@ -1,11 +1,15 @@
 import { useUser } from '@auth0/nextjs-auth0'
 
+// TODO: check for not logged user
+
 function GuestUserScreen ({ children }) {
   const { user, error, isLoading } = useUser()
 
   if (isLoading) return <div>Loading info...</div>
   if (error) return <div>{error.message}</div>
-  if (user) return children
+  if (user) {
+  }
+  return children
 
   return (
     <main className='main-container'>

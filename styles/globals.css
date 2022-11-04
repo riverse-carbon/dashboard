@@ -13,6 +13,7 @@
   --fs-900: 3rem; */
 
   /* TODO: define mobile f-size */
+  --fs-200: 0.625rem;
   --fs-300: 0.75rem;
   --fs-400: 1rem;
   --fs-500: 1.25rem;
@@ -116,7 +117,7 @@
 }
 
 *:focus {
-  outline-offset: 1px;
+  outline-offset: 0.1em;
   outline-width: 0.1em;
   outline-color: currentColor;
   outline-style: dashed;
@@ -290,6 +291,8 @@ iframe {
 button,
 .button-style,
 input {
+  font-size: var(--fs-400);
+
   border: 0.2em solid hsl(var(--clr-accent--200));
   /* border-radius: 100em; */
   border-radius: var(--br);
@@ -371,6 +374,10 @@ button,
   gap: var(--gap-xs);
 }
 
+.link-with-icon--centered {
+  justify-content: center;
+}
+
 .text-color-inverse {
   /* color: hsl(var(--clr-main--900)); */
   color: hsl(var(--clr-main--900));
@@ -389,7 +396,7 @@ button,
 body {
   font-family: var(--ff-sans);
   line-height: 1.25;
-  font-size: var(--fs-400);
+  font-size: var(--fs-300);
 }
 
 h1,

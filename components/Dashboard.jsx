@@ -13,14 +13,14 @@ import WidgetWrapper from './WidgetWrapper'
 function DashBoard ({}) {
   return (
     <div className={widgetStyles['widgets-wrapper']}>
+      <WidgetWrapper columns={2}>
+        <Projects limit='4' />
+      </WidgetWrapper>
       <WidgetWrapper columns={1}>
         <ContributionWidget />
       </WidgetWrapper>
       <WidgetWrapper columns={1}>
         <TotalCreditsWidget />
-      </WidgetWrapper>
-      <WidgetWrapper columns={2}>
-        <Projects />
       </WidgetWrapper>
       <WidgetWrapper columns={2}>
         <Documentation />

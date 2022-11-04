@@ -26,7 +26,7 @@ function ProjectNode ({ data }) {
   return (
     <li className={styles['project-wrapper']}>
       <div className={styles['image-wrapper']}>
-        <Image src={img} alt='' fill={true} />
+        <Image src={img} alt='' fill={true} sizes='10rem' />
       </div>
       <div className={`${styles['info-wrapper']} border-radius`}>
         <div className={styles['name-wrapper']}>

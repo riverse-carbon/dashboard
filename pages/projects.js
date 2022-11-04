@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import widgetStyles from '../styles/WidgetStyles.module.css'
 import Projects from '../components/Projects'
+import WidgetWrapper from '../components/WidgetWrapper'
+import TotalCreditsWidget from '../components/TotalCredits.widget'
 
 // TODO:
 
@@ -13,7 +15,12 @@ export default function Home () {
         <link rel='icon' href='/favicon.png' />
       </Head>
       <main className={`${widgetStyles['widgets-wrapper']} main-container`}>
-        <Projects columns={3} />
+        <WidgetWrapper columns={3}>
+          <Projects />
+        </WidgetWrapper>
+        <WidgetWrapper columns={1}>
+          <TotalCreditsWidget />
+        </WidgetWrapper>
       </main>
     </>
   )

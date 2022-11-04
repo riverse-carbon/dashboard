@@ -1,11 +1,11 @@
 .project-wrapper {
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: minmax(7rem, 1fr) 4fr;
+  grid-template-columns: 5.75rem 4fr;
   gap: var(--gap-xs);
-  min-height: 7rem;
+  min-height: 5.75rem;
 
-  font-size: var(--fs-300);
+  font-size: var(--fs-200);
 }
 
 .image-wrapper {
@@ -37,12 +37,13 @@
 }
 
 .name-wrapper > h4 {
+  font-size: var(--fs-300);
   text-transform: uppercase;
 }
 
 .contribution-total-wrapper {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: space-between;
   align-items: center;
   gap: var(--gap-xs);

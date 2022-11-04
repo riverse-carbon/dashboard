@@ -1,6 +1,15 @@
 import styles from '../styles/TotalCreditsWidget.module.css'
 
 import CarbonCreditsSVG from '../public/icons/CarbonCreditsSVG'
+import CardSVG from '../public/icons/CardSVG'
+import TransferSVG from '../public/icons/TransferSVG'
+import Link from 'next/link'
+import InformationSVG from '../public/icons/informationSVG'
+import StatsSVG from '../public/icons/StatsSVG'
+
+// TODO:
+// 1. replace fake data
+// 2. get description to credits
 
 const fakeData = {
   credits: [
@@ -8,6 +17,33 @@ const fakeData = {
     { name: 'Ex-post', amount: 6 },
     { name: 'Retired', amount: 10 }
   ]
+}
+
+const getCreditTypeDescription = creditName => {
+  switch (creditName) {
+    case 'Ex-ante':
+      return 'before the event'
+    case 'Ex-post':
+      return 'to customize'
+    case 'Retired':
+      return 'before the event'
+  }
+}
+
+const CreditsDetailed = ({ data }) => {
+  const credits = data.map(credit => (
+    <p key={credit.name} className={styles['credit']}>
+      <span
+        className={styles['credit-name']}
+        title={getCreditTypeDescription(credit.name)}
+      >
+        {credit.name}
+        <InformationSVG />
+      </span>
+      <span className={styles['credit-value']}>{credit.amount}</span>
+    </p>
+  ))
+  return <div className={styles['credits-wrapper']}>{credits}</div>
 }
 
 const TotalCreditsWidget = ({}) => {
@@ -23,6 +59,27 @@ const TotalCreditsWidget = ({}) => {
 
           <CarbonCreditsSVG />
         </p>
+        <div className={styles['credits-links-wrapper']}>
+          <Link href='#'>
+            <a className='button-style link-with-icon link-with-icon--centered'>
+              <CardSVG />
+              Buy credits
+            </a>
+          </Link>
+          <Link href='#'>
+            <a className='button-style link-with-icon link-with-icon--centered'>
+              <TransferSVG />
+              Transfer credits
+            </a>
+          </Link>
+        </div>
+        <CreditsDetailed data={fakeData.credits} />
+        <Link href='#'>
+          <a className='button-style link-with-icon link-with-icon--centered'>
+            <StatsSVG />
+            Manage credits
+          </a>
+        </Link>
       </div>
     </>
   )

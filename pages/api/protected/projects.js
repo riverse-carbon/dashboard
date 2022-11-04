@@ -1,8 +1,14 @@
 import Airtable from 'airtable'
 
+// TODO: no maxRecords!!
+
 export default async function getProjects (req, res) {
   try {
     const data = []
+    const queryParams = {}
+    if (req.query.limit) {
+      queryParams.maxRecords = +req.query.limit
+    }
 
     // Connect to db
     const base = new Airtable({ apiKey: process.env.API_KEY }).base(
@@ -11,7 +17,8 @@ export default async function getProjects (req, res) {
     // get records
     base('tblRCb5aZpcAw36Wa')
       .select({
-        view: 'Dashboard projects'
+        view: 'Dashboard projects',
+        ...queryParams
       })
       .eachPage(
         function page (records, fetchNextPage) {

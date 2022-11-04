@@ -6,6 +6,7 @@
 
 .post {
   min-height: 15rem;
+  min-height: 12rem;
 
   display: flex;
   flex-direction: column;
@@ -14,6 +15,7 @@
 
 .title {
   line-height: 1.2;
+  font-weight: var(--fw-normal);
 }
 
 .post > img {
