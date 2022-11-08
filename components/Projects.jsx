@@ -3,7 +3,7 @@ import ProjectNode from './ProjectNode'
 import useSWR from 'swr'
 import { useState, useEffect } from 'react'
 
-// TODO: maxRecords?
+// TODO: maxRecords 100 is enough?
 
 function Projects ({ limit = 100 }) {
   const fetcher = url => fetch(url).then(res => res.json())

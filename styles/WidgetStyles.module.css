@@ -23,7 +23,7 @@
   grid-gap: var(--grid-layout-gap);
   align-items: start;
 }
-
+/* 
 .column-span--1 {
   --columns: 1;
 }
@@ -36,9 +36,46 @@
 .column-span--4 {
   --columns: 4;
 }
+.row-span--1 {
+  --rows: 1;
+}
+.row-span--2 {
+  --rows: 2;
+}
+.row-span--3 {
+  --rows: 3;
+}
+.row-span--4 {
+  --rows: 4;
+} */
+
+.widgets-wrapper {
+  grid-template-areas:
+    'projects projects contribution docs'
+    'projects projects credits docs';
+  grid-template-rows: min-content 1fr;
+}
+
+.widgets-wrapper > * {
+  grid-area: var(--area-name);
+}
+
+/* .projects {
+  grid-area: projects;
+}
+.contribution {
+  grid-area: contribution;
+}
+.credits {
+  grid-area: credits;
+}
+.docs {
+  grid-area: docs;
+} */
 
 .widget-card {
-  grid-column: span var(--columns, 1);
+  /* grid-column: span var(--columns, 1);
+  grid-row: span var(--rows, 1); */
 
   padding: var(--padding-spacer);
   border-radius: var(--br);
@@ -47,7 +84,10 @@
   background-color: hsl(var(--clr-accent--700));
 }
 
-.widget-card > *:first-child {
+.widget-card > :is(h3, h4, h5) {
   font-size: var(--fs-500);
-  padding-block-end: var(--block-spacer);
+}
+
+.widget-card > * + * {
+  padding-block-start: var(--block-spacer);
 }

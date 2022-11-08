@@ -1,0 +1,8 @@
+.project-page {
+  --project-fs-200: var(--fs-400);
+  --project-fs-300: var(--fs-400);
+}
+
+.project-page {
+  grid-template-areas: 'projects projects projects credits' !important;
+}

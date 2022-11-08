@@ -7,7 +7,7 @@
 }
 
 .body > *:last-child {
-  margin-block-start: var(--block-spacer-xl);
+  /* margin-block-start: var(--block-spacer-xl); */
 }
 
 .total,
@@ -17,7 +17,7 @@
 
 .total {
   font-size: var(--fs-700);
-  padding-block: var(--padding-spacer);
+  padding-block-start: var(--padding-spacer);
 }
 
 .total svg {

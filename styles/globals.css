@@ -45,7 +45,8 @@
   --clr-accent--100: 224 43% 92%;
   --clr-accent--200: 224 43% 84%;
   --clr-accent--300: 224 43% 76%;
-  --clr-accent--400: 224 43% 44%;
+  --clr-accent--400: 224 43% 68%;
+  --clr-accent--500: 224 43% 44%;
   --clr-accent--700: 224 43% 19%;
   --clr-accent--900: 0 0% 0%;
 
@@ -197,7 +198,7 @@ input:focus {
   box-shadow: inset 0 0 0.1em 1px hsl(var(--clr-main--900));
 }
 
-fieldset[class] {
+fieldset:where([class]) {
   padding: 0;
   margin-inline: 0;
 

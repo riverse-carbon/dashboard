@@ -5,7 +5,7 @@
   gap: var(--gap-xs);
   min-height: 5.75rem;
 
-  font-size: var(--fs-200);
+  font-size: var(--project-fs-200, var(--fs-200));
 }
 
 .image-wrapper {
@@ -31,19 +31,22 @@
 }
 
 .name-wrapper {
+  max-width: 35ch;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .name-wrapper > h4 {
-  font-size: var(--fs-300);
+  font-size: var(--project-fs-300, var(--fs-300));
+
   text-transform: uppercase;
 }
 
 .contribution-total-wrapper {
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   gap: var(--gap-xs);
@@ -60,5 +63,5 @@
 
 .total > .value {
   color: hsl(var(--clr-main--900));
-  background-color: hsl(var(--clr-accent--400));
+  background-color: hsl(var(--clr-accent--500));
 }

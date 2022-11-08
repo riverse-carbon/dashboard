@@ -1,12 +1,11 @@
 .list-wrapper ul {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr; */
   gap: var(--gap-xl);
 }
 
 .post {
-  min-height: 15rem;
-  min-height: 12rem;
+  /* min-height: 12rem; */
 
   display: flex;
   flex-direction: column;
