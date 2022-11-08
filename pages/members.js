@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import widgetStyles from '../styles/WidgetStyles.module.css'
-import Projects from '../components/Projects'
+import WidgetWrapper from '../components/WidgetWrapper'
 
 // TODO: parse
 
@@ -13,7 +13,7 @@ export default function Home () {
         <link rel='icon' href='/favicon.png' />
       </Head>
       <main className={`${widgetStyles['widgets-wrapper']} main-container`}>
-        <Projects columns={3} />
+        <WidgetWrapper columns={3} areaName='projects'></WidgetWrapper>
       </main>
     </>
   )

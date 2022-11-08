@@ -10,6 +10,8 @@ import WidgetWrapper from '../components/WidgetWrapper'
 import TotalCreditsWidget from '../components/TotalCredits.widget'
 
 // TODO:
+// 1. get filters!!!
+
 export const FiltersData = createContext([])
 
 export default function Home ({ filtersData }) {
@@ -91,15 +93,12 @@ export async function getStaticProps () {
               filter.name.charAt(0).toUpperCase() + filter.name.slice(1)
             data.push(filter)
           })
-          console.log(data)
         }
       )
     return data
   }
-  console.log('bef')
 
   getFilters()
-  // console.log(data)
 
   return {
     props: {

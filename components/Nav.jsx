@@ -104,10 +104,14 @@ function Nav () {
                   Documentation
                 </a> */}
                 {/* </Link> */}
-                <a className={'link-with-icon' + ' disabled'}>
-                  <MembersSVG />
-                  Members
-                </a>
+              </li>
+              <li className={currentPath === '/members' ? styles.active : ''}>
+                <Link href='/members'>
+                  <a className={'link-with-icon'}>
+                    <MembersSVG />
+                    Members
+                  </a>
+                </Link>
               </li>
             </ul>
           </li>
