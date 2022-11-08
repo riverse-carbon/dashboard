@@ -1,4 +1,7 @@
 import Head from 'next/head'
+
+import Airtable from 'airtable'
+
 import { createContext } from 'react'
 import styles from '../styles/Projects.page.module.css'
 import widgetStyles from '../styles/WidgetStyles.module.css'
@@ -9,7 +12,7 @@ import TotalCreditsWidget from '../components/TotalCredits.widget'
 // TODO:
 export const FiltersData = createContext([])
 
-export default function Home ({ filtersData, test }) {
+export default function Home ({ filtersData }) {
   return (
     <>
       <Head>
@@ -35,23 +38,65 @@ export default function Home ({ filtersData, test }) {
 
 export async function getStaticProps () {
   const filtersArray = ['sectors', 'mechanism', 'country']
-  const URL =
-    (process.env.AUTH0_BASE_URL || process.env.NEXT_PUBLIC_AUTH0_BASE_URL) +
-    '/api/protected/getAllFilters'
-  const res = await fetch(URL, {
-    method: 'POST',
-    body: JSON.stringify({ filters: filtersArray })
-  })
-  const test = await res.json()
 
-  const filtersData = test.data.map(filter => {
-    filter.label = filter.name.charAt(0).toUpperCase() + filter.name.slice(1)
-    return filter
+  const dataSets = {}
+  filtersArray.forEach(filter => {
+    dataSets[filter] = new Set()
   })
+
+  var data = []
+
+  // Connect to db
+  const base = new Airtable({ apiKey: process.env.API_KEY }).base(
+    'apptpGktGToVH41dj'
+  )
+  // get records
+  base('tblRCb5aZpcAw36Wa')
+    .select({
+      view: 'Dashboard projects'
+    })
+    .eachPage(
+      function page (records, fetchNextPage) {
+        records.forEach(record => {
+          const { fields } = record
+          filtersArray.forEach(filter => {
+            var value = fields[filter]
+            if (Array.isArray(value)) {
+              value.forEach(val => {
+                dataSets[filter].add(val)
+              })
+            } else {
+              dataSets[filter].add(value)
+            }
+          })
+        })
+        fetchNextPage()
+      },
+      function done (err) {
+        if (err) {
+          throw err
+        }
+        if (dataSets.length === 0) return null
+        const filtersData = Object.entries(dataSets).map(entry => {
+          const key = entry[0]
+          const values = []
+          entry[1].forEach(val => {
+            values.push(val)
+          })
+          return { name: key, values }
+        })
+        const dataWithLabels = filtersData.map(filter => {
+          filter.label =
+            filter.name.charAt(0).toUpperCase() + filter.name.slice(1)
+          return filter
+        })
+        data.push([...dataWithLabels])
+      }
+    )
 
   return {
     props: {
-      filtersData
+      filtersData: data
     }
   }
 }
