@@ -1,9 +1,9 @@
 .project-wrapper {
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 8rem 4fr;
+  grid-template-columns: var(--project-image-size, 5.75rem) 4fr;
   gap: var(--gap-xs);
-  min-height: 8rem;
+  min-height: var(--project-image-size, 5.75rem);
 
   font-size: var(--project-fs-200, var(--fs-200));
 }
