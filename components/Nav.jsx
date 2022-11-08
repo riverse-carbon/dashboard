@@ -1,4 +1,3 @@
-import Image from 'next/future/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styles from '../styles/Nav.module.css'

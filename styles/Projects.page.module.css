@@ -1,10 +1,10 @@
-.project-page {
+.page {
   --project-fs-200: var(--fs-400);
   --project-fs-300: var(--fs-400);
 
   --project-image-size: 8rem;
 }
 
-.project-page {
+.page {
   grid-template-areas: 'projects projects projects credits' !important;
 }

@@ -23,7 +23,7 @@ export default function Home ({ filtersData }) {
         <link rel='icon' href='/favicon.png' />
       </Head>
       <main
-        className={`${widgetStyles['widgets-wrapper']} main-container ${styles['project-page']}`}
+        className={`${widgetStyles['widgets-wrapper']} main-container ${styles.page}`}
       >
         <FiltersData.Provider value={filtersData}>
           <WidgetWrapper columns={3} areaName='projects'>
