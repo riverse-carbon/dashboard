@@ -458,6 +458,8 @@ header {
 
 .main-container {
   padding: var(--padding-spacer);
+  overflow: auto;
+  max-height: calc(100vh - 5rem);
 }
 
 a.disabled {
