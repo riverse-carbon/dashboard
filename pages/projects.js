@@ -44,59 +44,89 @@ export async function getStaticProps () {
     dataSets[filter] = new Set()
   })
 
-  var data = []
-
-  // Connect to db
-  const base = new Airtable({ apiKey: process.env.API_KEY }).base(
-    'apptpGktGToVH41dj'
-  )
-  // get records
-  base('tblRCb5aZpcAw36Wa')
-    .select({
-      view: 'Dashboard projects'
-    })
-    .eachPage(
-      function page (records, fetchNextPage) {
-        records.forEach(record => {
-          const { fields } = record
-          filtersArray.forEach(filter => {
-            var value = fields[filter]
-            if (Array.isArray(value)) {
-              value.forEach(val => {
-                dataSets[filter].add(val)
-              })
-            } else {
-              dataSets[filter].add(value)
-            }
-          })
-        })
-        fetchNextPage()
-      },
-      function done (err) {
-        if (err) {
-          throw err
-        }
-        if (dataSets.length === 0) return null
-        const filtersData = Object.entries(dataSets).map(entry => {
-          const key = entry[0]
-          const values = []
-          entry[1].forEach(val => {
-            values.push(val)
-          })
-          return { name: key, values }
-        })
-        const dataWithLabels = filtersData.map(filter => {
-          filter.label =
-            filter.name.charAt(0).toUpperCase() + filter.name.slice(1)
-          return filter
-        })
-        data.push([...dataWithLabels])
-      }
+  const getFilters = () => {
+    const data = []
+    // Connect to db
+    const base = new Airtable({ apiKey: process.env.API_KEY }).base(
+      'apptpGktGToVH41dj'
     )
+    // get records
+
+    base('tblRCb5aZpcAw36Wa')
+      .select({
+        view: 'Dashboard projects'
+      })
+      .eachPage(
+        function page (records, fetchNextPage) {
+          records.forEach(record => {
+            const { fields } = record
+            filtersArray.forEach(filter => {
+              var value = fields[filter]
+              if (Array.isArray(value)) {
+                value.forEach(val => {
+                  dataSets[filter].add(val)
+                })
+              } else {
+                dataSets[filter].add(value)
+              }
+            })
+          })
+          fetchNextPage()
+        },
+        function done (err) {
+          if (err) {
+            throw err
+          }
+          if (dataSets.length === 0) return null
+          const filtersData = Object.entries(dataSets).map(entry => {
+            const key = entry[0]
+            const values = []
+            entry[1].forEach(val => {
+              values.push(val)
+            })
+            return { name: key, values }
+          })
+          filtersData.forEach(filter => {
+            filter.label =
+              filter.name.charAt(0).toUpperCase() + filter.name.slice(1)
+            data.push(filter)
+          })
+          console.log(data)
+        }
+      )
+    return data
+  }
+  console.log('bef')
+
+  getFilters()
+  // console.log(data)
 
   return {
     props: {
-      filtersData: data
+      filtersData: [
+        {
+          name: 'sectors',
+          values: [
+            'Waste',
+            'Agriculture',
+            'Mobility & transport',
+            'Construction & housing',
+            'Industry',
+            'Energy'
+          ],
+          label: 'Sectors'
+        },
+        {
+          name: 'mechanism',
+          values: ['Avoidance', 'Reduction', 'Removal'],
+          label: 'Mechanism'
+        },
+        {
+          name: 'country',
+          values: ['France', 'Belgium', 'United Kingdom'],
+          label: 'Country'
+        }
+      ]
     }
   }
 }

@@ -10,16 +10,14 @@ function GuestUserScreen ({ children }) {
   if (user) return children
 
   return (
-    <main className='main-container'>
-      <h2>Welcome, traveler!</h2>
+    <main className='main-container '>
+      <h2>Welcome!</h2>
       <p>You have to login to see information</p>
       <div>
-        <h3>Login buttons and other stuff</h3>
         <a className='link--block button-style' href='/api/auth/login'>
           Login
         </a>
       </div>
-      <div>SOme information about how to use our application</div>
     </main>
   )
 }
