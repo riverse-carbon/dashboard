@@ -40,14 +40,15 @@ export default async function getAllFilters (req, res) {
           if (err) {
             throw err
           }
-          if (dataSets.length === 0) throw 'No available data'
           const data = Object.entries(dataSets).map(entry => {
-            const key = entry[0]
+            const name = entry[0]
             const values = []
             entry[1].forEach(val => {
               values.push(val)
             })
-            return { name: key, values }
+            const label = name.charAt(0).toUpperCase() + name.slice(1)
+
+            return { name, values, label }
           })
           res.status(200).json({ data })
         }

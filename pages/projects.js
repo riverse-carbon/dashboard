@@ -46,15 +46,14 @@ export async function getStaticProps () {
     dataSets[filter] = new Set()
   })
 
-  const getFilters = () => {
-    const data = []
+  const getFilters = async () => {
     // Connect to db
     const base = new Airtable({ apiKey: process.env.API_KEY }).base(
       'apptpGktGToVH41dj'
     )
-    // get records
 
-    base('tblRCb5aZpcAw36Wa')
+    // get records
+    await base('tblRCb5aZpcAw36Wa')
       .select({
         view: 'Dashboard projects'
       })
@@ -74,58 +73,69 @@ export async function getStaticProps () {
             })
           })
           fetchNextPage()
-        },
-        function done (err) {
-          if (err) {
-            throw err
-          }
-          if (dataSets.length === 0) return null
-          const filtersData = Object.entries(dataSets).map(entry => {
-            const key = entry[0]
-            const values = []
-            entry[1].forEach(val => {
-              values.push(val)
-            })
-            return { name: key, values }
-          })
-          filtersData.forEach(filter => {
-            filter.label =
-              filter.name.charAt(0).toUpperCase() + filter.name.slice(1)
-            data.push(filter)
-          })
         }
+        // function done (err) {
+        //   if (err) {
+        //     throw err
+        //   }
+
+        //   console.log(2)
+        //   return data
+        // }
       )
-    return data
+      .then(res => console.log('done'))
+      .catch(err => {
+        throw err
+      })
+
+    const filtersData = Object.entries(dataSets).map(entry => {
+      const name = entry[0]
+      const values = []
+      entry[1].forEach(val => {
+        values.push(val)
+      })
+      const label = name.charAt(0).toUpperCase() + name.slice(1)
+
+      return { name, values, label }
+    })
+    // filtersData.forEach(filter => {
+    //   filter.label = filter.name.charAt(0).toUpperCase() + filter.name.slice(1)
+    //   data.push(filter)
+    // })
+    // return data
+    return filtersData
   }
 
-  getFilters()
+  const data = await getFilters()
 
   return {
     props: {
-      filtersData: [
-        {
-          name: 'sectors',
-          values: [
-            'Waste',
-            'Agriculture',
-            'Mobility & transport',
-            'Construction & housing',
-            'Industry',
-            'Energy'
-          ],
-          label: 'Sectors'
-        },
-        {
-          name: 'mechanism',
-          values: ['Avoidance', 'Reduction', 'Removal'],
-          label: 'Mechanism'
-        },
-        {
-          name: 'country',
-          values: ['France', 'Belgium', 'United Kingdom'],
-          label: 'Country'
-        }
-      ]
+      filtersData: data
     }
   }
+
+  // [
+  //   {
+  //     name: 'sectors',
+  //     values: [
+  //       'Waste',
+  //       'Agriculture',
+  //       'Mobility & transport',
+  //       'Construction & housing',
+  //       'Industry',
+  //       'Energy'
+  //     ],
+  //     label: 'Sectors'
+  //   },
+  //   {
+  //     name: 'mechanism',
+  //     values: ['Avoidance', 'Reduction', 'Removal'],
+  //     label: 'Mechanism'
+  //   },
+  //   {
+  //     name: 'country',
+  //     values: ['France', 'Belgium', 'United Kingdom'],
+  //     label: 'Country'
+  //   }
+  // ]
 }

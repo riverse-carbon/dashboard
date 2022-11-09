@@ -3,7 +3,21 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['dl.airtable.com', 'lh3.googleusercontent.com']
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.airtableusercontent.com'
+      },
+      {
+        protocol: 'https',
+        hostname: '**.airtable.com'
+      },
+      {
+        protocol: 'https',
+        hostname: '**.googleusercontent.com'
+      }
+    ]
+    // domains: ['dl.airtable.com', 'lh3.googleusercontent.com']
   }
 }
 
