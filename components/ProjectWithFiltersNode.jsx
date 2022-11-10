@@ -1,5 +1,6 @@
 import Image from 'next/future/image'
 import Link from 'next/link'
+import Project from '../pages/projects/[uid]'
 import styles from '../styles/ProjectNode.module.css'
 
 // TODO:
@@ -16,7 +17,7 @@ const fakeData = {
 }
 
 function ProjectNode ({ data }) {
-  const { name, sectors, sdgs, 'project-desc': desc, uid } = data
+  const { name, sectors, sdgs, tagline, 'project-desc': desc, uid } = data
   const ccAvailable = (+data['CCC - Total'] || 0) + (+data['RCC - Total'] || 0)
   // img or logo if img doesn't exist (file type is not an image)
   const img = data?.cover.length !== 0 ? data.cover[0].url : data.logo[0].url
@@ -30,8 +31,8 @@ function ProjectNode ({ data }) {
         </div>
         <div className={`${styles['info-wrapper']} border-radius`}>
           <div className={styles['name-wrapper']}>
-            <h4>{name}</h4>
-            <p className={styles['visible-on-hover']}>{desc}</p>
+            <h4>{tagline}</h4>
+            {/* <h4>{name}</h4> */}
             <p>Sectors: {sectors.join(', ')}</p>
           </div>
           <div className={styles['contribution-total-wrapper']}>

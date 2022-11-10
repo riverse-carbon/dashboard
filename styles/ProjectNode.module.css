@@ -5,7 +5,7 @@
   gap: var(--gap-xs);
   min-height: var(--project-image-size, 5.75rem);
 
-  font-size: var(--project-fs-200, var(--fs-200));
+  font-size: var(--project-fs-300, var(--fs-300));
 }
 
 .image-wrapper {
@@ -39,8 +39,7 @@
 }
 
 .name-wrapper > h4 {
-  font-size: var(--project-fs-300, var(--fs-300));
-
+  font-weight: var(--fw-bold);
   text-transform: uppercase;
 }
 

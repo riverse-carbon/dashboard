@@ -5,6 +5,13 @@ import styles from '../styles/SeparateProject.widget.module.css'
 
 // TODO:
 // 1. check sizes on image attribute
+// 2. boost font sizes on big screens
+// 3. limit text height + readmore button on solution
+// 4. sticky on credits
+// 5. change photos
+// 6. unicity should be first
+// 8. main max-width ?
+// 7. add tagline instead of name
 
 const SeparateProject = ({ project }) => {
   // console.log(project)
@@ -57,7 +64,7 @@ const SeparateProject = ({ project }) => {
         </div>
         <section className={`${styles.title}`}>
           {/* add tagline? */}
-          <h1>{project.name}</h1>
+          <h1>{project.tagline}</h1>
           <p>Sector: {project.sectors.join(', ')}</p>
         </section>
         <section className={`${styles.solution} ${styles['two-cols']}`}>
@@ -70,7 +77,7 @@ const SeparateProject = ({ project }) => {
           </div>
         </section>
         <section className={styles.impact}>
-          <h2>Key impact</h2>
+          <h2>Key impacts</h2>
           <ul role='list' className='list'>
             {keyImpact}
           </ul>

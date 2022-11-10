@@ -50,8 +50,10 @@
   align-items: baseline;
 }
 
-.users-head > h4 {
+.users-head {
   font-size: var(--fs-400);
+}
+.users-head > * {
   line-height: 1;
 }
 

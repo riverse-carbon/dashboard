@@ -18,7 +18,7 @@ const fakeData = {
 
 function ProjectNode ({ data }) {
   // try {
-  const { name, sectors, sdgs, uid, cover } = data
+  const { name, sectors, tagline, sdgs, uid, cover } = data
   // img or logo if img doesn't exist (file type is not an image)
   const img = data?.cover.length !== 0 ? data.cover[0].url : data.logo[0].url
   const { total, contribution } = fakeData
@@ -31,7 +31,8 @@ function ProjectNode ({ data }) {
         </div>
         <div className={`${styles['info-wrapper']} border-radius`}>
           <div className={styles['name-wrapper']}>
-            <h4>{name}</h4>
+            {/* <h4>{name}</h4> */}
+            <h4>{tagline}</h4>
             <p>Sectors: {sectors.join(', ')}</p>
           </div>
           <div className={styles['contribution-total-wrapper']}>

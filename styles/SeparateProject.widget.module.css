@@ -43,12 +43,13 @@
   background-color: transparent;
   color: hsl(var(--clr-main--900));
 
-  padding: 0;
+  padding-block: 0;
 }
 
 .slider {
   min-height: max(10rem, 25vh);
   position: relative;
+  overflow: hidden;
 }
 
 .body h2 + * {

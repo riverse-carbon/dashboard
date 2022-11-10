@@ -13,7 +13,7 @@
   --fs-900: 3rem; */
 
   /* TODO: define mobile f-size */
-  --fs-200: 0.625rem;
+  /* --fs-2100: 0.625rem; */
   --fs-300: 0.75rem;
   --fs-400: 1rem;
   --fs-500: 1.25rem;
@@ -140,6 +140,7 @@ html {
 html,
 body {
   margin: 0;
+  overflow-y: hidden;
 }
 
 @media (min-width: 60em) {
@@ -436,7 +437,8 @@ body {
 }
 
 main {
-  width: min(100%, 100rem);
+  /* width: min(100%, 100rem); */
+  width: 100%;
   margin-inline: auto;
 }
 

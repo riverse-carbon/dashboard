@@ -62,13 +62,19 @@ const TotalCreditsWidget = ({}) => {
         <CreditsDetailed data={fakeData.credits} />
 
         <div className={styles['credits-links-wrapper']}>
-          <Link href='#'>
+          <Link href='/projects'>
+            <a className='button-style link-with-icon link-with-icon--centered'>
+              <CardSVG />
+              Buy credits
+            </a>
+          </Link>
+          <Link href='/projects'>
             <a className='button-style link-with-icon link-with-icon--centered'>
               <TransferSVG />
               Transfer credits
             </a>
           </Link>
-          <Link href='#'>
+          <Link href='/projects'>
             <a className='button-style link-with-icon link-with-icon--centered'>
               <StatsSVG />
               Manage credits
