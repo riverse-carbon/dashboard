@@ -4,13 +4,13 @@ import getProjectByUid from '../../components/db/getProjectByUid'
 import SeparateProject from '../../components/SeparateProject.widget'
 import TotalCredits from '../../components/TotalCredits.SeparateProject.widget'
 import WidgetWrapper from '../../components/WidgetWrapper'
-import styles from '../../styles/SeparateProject.page.module.css'
 import widgetStyles from '../../styles/WidgetStyles.module.css'
+import pageStyles from '../../styles/Pages.module.css'
 
-export default function Project ({ project }) {
+export default function ProjectPage ({ project }) {
   if (!project)
     return (
-      <main className={`main-container ${styles.page}`}>
+      <main className={`main-container`}>
         <h1>Loading...</h1>
       </main>
     )
@@ -21,15 +21,15 @@ export default function Project ({ project }) {
         <meta name='description' content='' />
         <link rel='icon' href='/favicon.png' />
       </Head>
-      <main
-        className={`${widgetStyles['widgets-wrapper']} main-container ${styles.page}`}
-      >
-        <WidgetWrapper columns={3} areaName='project'>
-          <SeparateProject project={project.fields} />
-        </WidgetWrapper>
-        <WidgetWrapper columns={1} areaName='credits'>
-          <TotalCredits />
-        </WidgetWrapper>
+      <main className={`main-container ${pageStyles['project-page']}`}>
+        <div className={widgetStyles['widgets-wrapper']}>
+          <WidgetWrapper columns={3} areaName='project'>
+            <SeparateProject project={project.fields} />
+          </WidgetWrapper>
+          <WidgetWrapper columns={1} areaName='credits' position='sticky'>
+            <TotalCredits />
+          </WidgetWrapper>
+        </div>
       </main>
     </>
   )
@@ -62,8 +62,7 @@ export async function getStaticProps ({ params }) {
     'sdgs-icons': icons,
     impactDesc,
     impactFigures,
-    impactIcons,
-    images
+    impactIcons
   } = project.fields
 
   project.fields.sdgsArray = descriptions.map((desc, i) => {
@@ -78,19 +77,15 @@ export async function getStaticProps ({ params }) {
     icon: impactIcons[i]
   }))
 
-  project.fields.carouselImg = images.filter(img =>
-    img.type.startsWith('image')
-  )
-
   project.fields.cccp = [
+    { name: 'Unicity', value: project.fields['cccp-unicity'] },
+    { name: 'Permanence', value: project.fields['cccp-permanence'] },
     {
       name: 'Measurability & reality',
       value: project.fields['cccp-measurability']
     },
     { name: 'Additionality', value: project.fields['cccp-additionality'] },
-    { name: 'Permanence', value: project.fields['cccp-permanence'] },
-    { name: 'Rebound effects', value: project.fields['cccp-rebound-effects'] },
-    { name: 'Unicity', value: project.fields['cccp-unicity'] }
+    { name: 'Rebound effects', value: project.fields['cccp-rebound-effects'] }
   ]
 
   return {

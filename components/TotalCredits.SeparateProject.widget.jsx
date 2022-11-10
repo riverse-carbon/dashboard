@@ -52,7 +52,7 @@ const TotalCreditsWidget = ({}) => {
   }, 0)
   return (
     <>
-      <h3 className={styles.title}>Credits</h3>
+      <h3 className={`${styles.title}`}>Credits</h3>
       <div className={styles.body}>
         <p className={styles.total}>
           <span>{totalCredits}</span>

@@ -5,17 +5,15 @@ import styles from '../styles/SeparateProject.widget.module.css'
 
 // TODO:
 // 1. check sizes on image attribute
-// 2. boost font sizes on big screens
 // 3. limit text height + readmore button on solution
-// 4. sticky on credits
-// 5. change photos
-// 6. unicity should be first
 // 8. main max-width ?
 // 7. add tagline instead of name
+// 9. rich text (markdown) processing
 
 const SeparateProject = ({ project }) => {
   // console.log(project)
   const cover = project.cover[0]
+  const { images } = project
   const sdgs =
     project.sdgsArray &&
     project.sdgsArray.map((sdg, i) => {
@@ -41,7 +39,7 @@ const SeparateProject = ({ project }) => {
   ))
 
   // const carousel = project.carouselImg.map(img =>)
-  const carousel = project.carouselImg[0]
+  const carousel = project.images[2]
 
   const keyImpact = project.keyImpact.map((impact, i) => (
     <li className={styles['impact-item']} key={i}>
@@ -62,9 +60,9 @@ const SeparateProject = ({ project }) => {
         <div className={styles.hero}>
           <Image src={cover.url} alt='' fill={true} sizes='70vw' priority />
         </div>
-        <section className={`${styles.title}`}>
-          {/* add tagline? */}
+        <section className={`${styles.title} flow-spacer spacer-xs`}>
           <h1>{project.tagline}</h1>
+          <p>Developer: {project.name}</p>
           <p>Sector: {project.sectors.join(', ')}</p>
         </section>
         <section className={`${styles.solution} ${styles['two-cols']}`}>
@@ -73,7 +71,7 @@ const SeparateProject = ({ project }) => {
             <p>{project.solution}</p>
           </div>
           <div className={styles['image-wrapper']}>
-            <Image src={cover.url} alt='' width='250' height='250' />
+            <Image src={images[0].url} alt='' width='250' height='250' />
           </div>
         </section>
         <section className={styles.impact}>
@@ -91,7 +89,7 @@ const SeparateProject = ({ project }) => {
             <p>{project.issue}</p>
           </div>
           <div className={styles['image-wrapper']}>
-            <Image src={cover.url} alt='' width='250' height='250' />
+            <Image src={images[1].url} alt='' width='250' height='250' />
           </div>
         </section>
         <section className={styles.sdgs}>

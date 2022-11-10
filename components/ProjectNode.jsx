@@ -28,6 +28,14 @@ function ProjectNode ({ data }) {
       <li className={styles['project-wrapper']}>
         <div className={styles['image-wrapper']}>
           <Image src={img} alt='' fill={true} sizes='10rem' />
+          <Link href={`/projects/${uid}`}>
+            <a className={styles['details-link']}>
+              <span>
+                Details<span aria-hidden='true'> &gt;</span>
+              </span>
+              <span className='visually-hidden'> on {name} project</span>
+            </a>
+          </Link>
         </div>
         <div className={`${styles['info-wrapper']} border-radius`}>
           <div className={styles['name-wrapper']}>

@@ -1,11 +1,44 @@
 .project-wrapper {
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: var(--project-image-size, 5.75rem) 4fr;
+  grid-template-columns: var(--project-image-size, 7.75rem) 4fr;
   gap: var(--gap-xs);
-  min-height: var(--project-image-size, 5.75rem);
+  min-height: var(--project-image-size, 7.75rem);
 
   font-size: var(--project-fs-300, var(--fs-300));
+  background-color: transparent;
+
+  cursor: pointer;
+}
+
+.details-link {
+  position: absolute;
+  inset: 0;
+
+  display: grid;
+  place-items: center;
+  z-index: 1;
+
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+
+  color: hsl(var(--clr-accent--700));
+  background-color: hsl(var(--clr-main--900));
+  border-radius: var(--br);
+
+  text-decoration: none;
+
+  opacity: 0;
+
+  transition: opacity var(--transition-duration) linear;
+}
+
+.details-link:focus {
+  opacity: 1;
+}
+
+.project-wrapper:hover .details-link {
+  opacity: 1;
 }
 
 .image-wrapper {
@@ -63,12 +96,4 @@
 .total > .value {
   color: hsl(var(--clr-main--900));
   background-color: hsl(var(--clr-accent--500));
-}
-
-/* TODO: TO DELETE  */
-.visible-on-hover {
-  display: none;
-}
-.project-wrapper:hover .visible-on-hover {
-  display: block;
 }

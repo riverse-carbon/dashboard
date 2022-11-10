@@ -1,9 +1,0 @@
-.page {
-  --project-fs-300: var(--fs-400);
-
-  --project-image-size: 8rem;
-}
-
-.page {
-  grid-template-areas: 'projects projects projects credits' !important;
-}

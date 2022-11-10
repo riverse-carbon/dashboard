@@ -1,7 +1,0 @@
-.page {
-  /* grid-template-areas:
-    'organization organization organization docs'
-    'billing billing billing .' !important; */
-
-  grid-template-areas: 'organization organization organization billing' !important;
-}
