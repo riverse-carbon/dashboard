@@ -7,21 +7,20 @@ import styles from '../styles/ProjectNode.module.css'
 // 2. images? Weturn has no image(pdf only), can we leave logo instead
 // or add an image to airtable?
 // 3. contribution-total-wrapper: place items vertically or horizontally?
-// 4. delete try/catch logic
 // 5. contribution => available credits
-// 6. total => price
+// 6. price => price
 
 const fakeData = {
-  total: 432,
+  price: 50,
   contribution: 345.3
 }
 
 function ProjectNode ({ data }) {
-  // try {
-  const { name, sectors, sdgs, uid, cover } = data
+  const { name, sectors, sdgs, 'project-desc': desc, uid } = data
+  const ccAvailable = (+data['CCC - Total'] || 0) + (+data['RCC - Total'] || 0)
   // img or logo if img doesn't exist (file type is not an image)
   const img = data?.cover.length !== 0 ? data.cover[0].url : data.logo[0].url
-  const { total, contribution } = fakeData
+  const { price, contribution } = fakeData
 
   return (
     <Link href={`/projects/${uid}`}>
@@ -32,33 +31,31 @@ function ProjectNode ({ data }) {
         <div className={`${styles['info-wrapper']} border-radius`}>
           <div className={styles['name-wrapper']}>
             <h4>{name}</h4>
+            <p className={styles['visible-on-hover']}>{desc}</p>
             <p>Sectors: {sectors.join(', ')}</p>
           </div>
           <div className={styles['contribution-total-wrapper']}>
             <p
               className={`${styles['contribution']} flex flex-column flex-block-center`}
             >
-              <span>CO2 Contribution</span>
+              <span>Available credits</span>
               <span
                 className={styles['value'] + ' border-radius--small'}
-              >{`${contribution} tCO2`}</span>
+              >{`${ccAvailable} tCO2`}</span>
             </p>
             <p
               className={`${styles['total']} flex flex-column flex-block-center`}
             >
-              <span>Total</span>
+              <span>Price</span>
               <span
                 className={styles['value'] + ' border-radius--small'}
-              >{`${total} €`}</span>
+              >{`${price} €`}</span>
             </p>
           </div>
         </div>
       </li>
     </Link>
   )
-  // } catch (e) {
-  //   console.error('missing info in one of the projects', e)
-  // }
 }
 
 export default ProjectNode

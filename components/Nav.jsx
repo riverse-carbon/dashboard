@@ -36,7 +36,11 @@ function Nav () {
                   </a>
                 </Link>
               </li>{' '}
-              <li className={currentPath === '/projects' ? styles.active : ''}>
+              <li
+                className={
+                  currentPath.startsWith('/projects') ? styles.active : ''
+                }
+              >
                 <Link href='/projects'>
                   <a className={'link-with-icon'}>
                     <ProjectsSVG />
@@ -116,7 +120,7 @@ function Nav () {
           </li>
           <li className={styles['contact-button-wrapper']}>
             <Link href='#'>
-              <a className='button-style link--block'>Need help?</a>
+              <a className='button-style link-block'>Need help?</a>
             </Link>
           </li>
         </ul>

@@ -13,18 +13,18 @@ const BillingInformation = () => {
       <h3 className={styles.title}>Billing information</h3>
       <div>
         <div className={`${styles.body} flow-spacer`}>
-          <p>
+          <section>
             <h4>Name</h4>
             <span>{name}</span>
-          </p>
-          <p>
+          </section>
+          <section>
             <h4>Bank</h4>
             <span>{benef}</span>
-          </p>
-          <p>
+          </section>
+          <section>
             <h4>Billing address</h4>
             <span>{address}</span>
-          </p>
+          </section>
         </div>
       </div>
     </>

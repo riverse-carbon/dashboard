@@ -14,7 +14,7 @@ function GuestUserScreen ({ children }) {
       <h2>Welcome!</h2>
       <p>You have to login to see information</p>
       <div>
-        <a className='link--block button-style' href='/api/auth/login'>
+        <a className='link-block button-style' href='/api/auth/login'>
           Login
         </a>
       </div>

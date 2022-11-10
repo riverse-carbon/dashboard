@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import Airtable from 'airtable'
+import getFilters from '../components/db/getFilters'
 
 import { createContext } from 'react'
 import styles from '../styles/Projects.page.module.css'
@@ -41,72 +41,63 @@ export default function Home ({ filtersData }) {
 export async function getStaticProps () {
   const filtersArray = ['sectors', 'mechanism', 'country']
 
-  const dataSets = {}
-  filtersArray.forEach(filter => {
-    dataSets[filter] = new Set()
-  })
+  // const dataSets = {}
+  // filtersArray.forEach(filter => {
+  //   dataSets[filter] = new Set()
+  // })
 
-  const getFilters = async () => {
-    // Connect to db
-    const base = new Airtable({ apiKey: process.env.API_KEY }).base(
-      'apptpGktGToVH41dj'
-    )
+  // const getFilters = async () => {
+  //   // Connect to db
+  //   const base = new Airtable({ apiKey: process.env.API_KEY }).base(
+  //     'apptpGktGToVH41dj'
+  //   )
 
-    // get records
-    await base('tblRCb5aZpcAw36Wa')
-      .select({
-        view: 'Dashboard projects'
-      })
-      .eachPage(
-        function page (records, fetchNextPage) {
-          records.forEach(record => {
-            const { fields } = record
-            filtersArray.forEach(filter => {
-              var value = fields[filter]
-              if (Array.isArray(value)) {
-                value.forEach(val => {
-                  dataSets[filter].add(val)
-                })
-              } else {
-                dataSets[filter].add(value)
-              }
-            })
-          })
-          fetchNextPage()
-        }
-        // function done (err) {
-        //   if (err) {
-        //     throw err
-        //   }
+  //   // get records
+  //   await base('tblRCb5aZpcAw36Wa')
+  //     .select({
+  //       view: 'Dashboard projects'
+  //     })
+  //     .eachPage(
+  //       function page (records, fetchNextPage) {
+  //         records.forEach(record => {
+  //           const { fields } = record
+  //           filtersArray.forEach(filter => {
+  //             var value = fields[filter]
+  //             if (Array.isArray(value)) {
+  //               value.forEach(val => {
+  //                 dataSets[filter].add(val)
+  //               })
+  //             } else {
+  //               dataSets[filter].add(value)
+  //             }
+  //           })
+  //         })
+  //         fetchNextPage()
+  //       }
+  //     )
+  //     .then(res => console.log('done'))
+  //     .catch(err => {
+  //       throw err
+  //     })
 
-        //   console.log(2)
-        //   return data
-        // }
-      )
-      .then(res => console.log('done'))
-      .catch(err => {
-        throw err
-      })
+  //   const filtersData = Object.entries(dataSets).map(entry => {
+  //     const name = entry[0]
+  //     const values = []
+  //     entry[1].forEach(val => {
+  //       values.push(val)
+  //     })
+  //     const label = name.charAt(0).toUpperCase() + name.slice(1)
 
-    const filtersData = Object.entries(dataSets).map(entry => {
-      const name = entry[0]
-      const values = []
-      entry[1].forEach(val => {
-        values.push(val)
-      })
-      const label = name.charAt(0).toUpperCase() + name.slice(1)
-
-      return { name, values, label }
-    })
-    // filtersData.forEach(filter => {
-    //   filter.label = filter.name.charAt(0).toUpperCase() + filter.name.slice(1)
-    //   data.push(filter)
-    // })
-    // return data
-    return filtersData
-  }
-
-  const data = await getFilters()
+  //     return { name, values, label }
+  //   })
+  //   return filtersData
+  // }
+  // apiKey, view, filters
+  const data = await getFilters(
+    process.env.API_KEY,
+    process.env.DB_VIEW,
+    filtersArray
+  )
 
   return {
     props: {

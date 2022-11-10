@@ -65,3 +65,11 @@
   color: hsl(var(--clr-main--900));
   background-color: hsl(var(--clr-accent--500));
 }
+
+/* TODO: TO DELETE  */
+.visible-on-hover {
+  display: none;
+}
+.project-wrapper:hover .visible-on-hover {
+  display: block;
+}

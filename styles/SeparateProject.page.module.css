@@ -1,0 +1,3 @@
+.page {
+  grid-template-areas: 'project project project credits' !important;
+}

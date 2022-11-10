@@ -1,5 +1,5 @@
 import styles from '../styles/Projects.module.css'
-import ProjectNode from './ProjectNode'
+import ProjectNode from './ProjectWithFiltersNode'
 import useSWR from 'swr'
 import { useState, useEffect, useMemo } from 'react'
 import Filters from './Filters'
