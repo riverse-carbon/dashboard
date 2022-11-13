@@ -102,7 +102,8 @@ export async function getStaticProps () {
   return {
     props: {
       filtersData: data
-    }
+    },
+    revalidate: 86000
   }
 
   // [
