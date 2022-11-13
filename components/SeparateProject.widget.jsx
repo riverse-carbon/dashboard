@@ -58,7 +58,13 @@ const SeparateProject = ({ project }) => {
     <>
       <div className={`${styles.body} flow-spacer`}>
         <div className={styles.hero}>
-          <Image src={cover.url} alt='' fill={true} sizes='70vw' priority />
+          <Image
+            src={cover.url}
+            alt=''
+            fill={true}
+            sizes='70vw'
+            priority={true}
+          />
         </div>
         <section className={`${styles.title} flow-spacer spacer-xs`}>
           <h1>{project.tagline}</h1>
