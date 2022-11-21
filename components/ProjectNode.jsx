@@ -40,8 +40,8 @@ function ProjectNode ({ data }) {
         <div className={`${styles['info-wrapper']} border-radius`}>
           <div className={styles['name-wrapper']}>
             {/* <h4>{name}</h4> */}
-            <h4>{tagline}</h4>
-            <p>Sectors: {sectors.join(', ')}</p>
+            <h4 className={styles['tagline']}>{tagline}</h4>
+            <p className={styles['sectors']}>Sectors: {sectors.join(', ')}</p>
           </div>
           <div className={styles['contribution-total-wrapper']}>
             <p

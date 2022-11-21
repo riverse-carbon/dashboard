@@ -9,6 +9,9 @@
   gap: 0.3em;
   /* margin-inline-start: auto; */
 }
+.toggle-button svg {
+  pointer-events: none;
+}
 
 .toggle-button > span {
   pointer-events: none;
@@ -27,11 +30,12 @@
 }
 
 .filters-body {
-  margin-block-start: var(--block-spacer);
-  gap: var(--gap-xs);
+  grid-template-columns: 1fr 1fr;
+  /* gap: var(--gap-xs); */
 
   padding: var(--padding-spacer);
-  margin-block-end: var(--block-spacer);
+
+  margin-block: var(--block-spacer);
 
   border-radius: var(--br);
 
@@ -39,11 +43,11 @@
   color: hsl(var(--clr-accent--900));
 }
 
-.filters-body > *:nth-child(2n + 1) {
+.filters-body > div > *:nth-child(2n + 1) {
   --label-clr: var(--clr-accent--900);
   --label-bg: var(--clr-accent--300);
 }
-.filters-body > *:nth-child(2n) {
+.filters-body > div > *:nth-child(2n) {
   --label-clr: var(--clr-main--900);
   --label-bg: var(--clr-accent--500);
 }
@@ -58,14 +62,20 @@
 
 .values-wrapper {
   display: flex;
-  gap: var(--gap-xs);
   flex-wrap: wrap;
   align-items: flex-start;
+  gap: var(--gap-xs);
+
+  font-size: var(--fs-300);
+  font-weight: var(--fw-bold);
 }
 
 .checkbox-wrapper > input:checked + label {
-  background-color: hsl(var(--clr-accent--900));
-  color: hsl(var(--clr-main--900));
+  --label-clr: var(--clr-main--300);
+  --label-bg: var(--clr-main--800);
+  /* background-color: hsl(var(--clr-accent--900));
+  background-color: hsl(0, 0%, 59%);
+  color: hsl(var(--clr-main--900)); */
 }
 
 .checkbox-wrapper > label {
@@ -77,4 +87,39 @@
 
   color: hsl(var(--label-clr));
   background-color: hsl(var(--label-bg));
+}
+
+.checkbox-wrapper:hover > label {
+  background-color: hsl(var(--clr-accent--700));
+  color: hsl(var(--clr-main--900));
+}
+
+/* with range inputs */
+
+.filters-body > div:first-child {
+  padding-inline-end: var(--padding-spacer);
+  border-inline-end: 1px solid hsl(var(--clr-accent--900));
+}
+.filters-body > div:last-child {
+  padding-inline-start: var(--padding-spacer);
+  border-inline-start: 1px solid hsl(var(--clr-accent--900));
+}
+
+.fieldset--range .values-wrapper {
+  gap: var(--gap-xs);
+}
+
+.fieldset--range .values-wrapper > * {
+  width: 100%;
+}
+
+.fieldset--range .labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-400);
+  font-weight: var(--fw-normal);
+}
+
+.fieldset--range .labels > span {
+  display: block;
 }

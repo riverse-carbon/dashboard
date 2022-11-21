@@ -10,6 +10,8 @@
 
   --project-image-size: 10rem;
 
+  --contribution-total-direction: row;
+
   /* grid-template-areas: 'projects projects projects credits' !important; */
 }
 

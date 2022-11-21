@@ -80,5 +80,5 @@
 }
 
 .widget-card > * + * {
-  padding-block-start: var(--block-spacer);
+  margin-block-start: var(--block-spacer);
 }

@@ -27,7 +27,7 @@ function Nav () {
             </a>
           </li>
           <li className={styles['nav-list-nested']}>
-            <ul role='list' className='list flow-spacer spacer-xs'>
+            <ul role='list' className='list'>
               <li className={currentPath === '/' ? styles.active : ''}>
                 <Link href='/'>
                   <a className={'link-with-icon'}>

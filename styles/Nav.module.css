@@ -24,10 +24,6 @@
 
 .nav > ul {
   height: 100%;
-
-  display: grid;
-  grid-auto-flow: row;
-  grid-template-rows: 5rem repeat(3, max-content);
   display: flex;
   flex-direction: column;
 }
@@ -35,6 +31,15 @@
 li.active {
   color: hsl(var(--clr-accent--700));
   background-color: hsl(var(--clr-main--400));
+}
+
+.nav-list-nested li {
+  transition: background-color var(--transition-duration) linear;
+}
+
+.nav-list-nested li:hover {
+  color: hsl(var(--clr-main--900));
+  background-color: hsl(var(--clr-accent--500));
 }
 
 .nav > ul > li:not(:first-of-type) + li:not(.contact-button-wrapper) {
