@@ -291,7 +291,7 @@ const ConfirmationWidget = ({ transactionInfo, totalPrice, cancelPurchase }) => 
   <p className={styles['confirmation--total']}>Total<span className={styles['confirmation--price-with-icon']} title='Riverse service fee: 10% of the carbon credit price is collected by Riverse to continue its work on eco-sustainability projects.'>{totalPrice} €<InformationSVG /></span></p>
   <div className={styles['confirmation--buttons-wrapper']}>
     <button className={styles['confirmation--submit']} >Start transaction</button>
-    <button className={styles['confirmation--cancel']} onClick={cancelPurchase}>Cancel transaction</button>
+    <button className={styles['confirmation--cancel']} onClick={cancelPurchase}><span>Cancel transaction</span></button>
   </div>
     </div>
   )
