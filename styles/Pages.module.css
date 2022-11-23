@@ -16,7 +16,8 @@
 }
 
 .project-page {
-  --grid-areas: 'project project project credits';
+  --grid-areas: 'project project project credits'
+    'project project project buy-credits';
 }
 
 .members {

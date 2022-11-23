@@ -1,0 +1,241 @@
+.widget-wrapper {
+  /* TODO: create utility classes inside widgets!!!*/
+  position: relative;
+  z-index: 0;
+
+  background-color: hsl(var(--clr-accent--500));
+  border-radius: var(--br);
+}
+.body,
+.title {
+  border-radius: var(--br);
+}
+
+/* colors + typography */
+
+.title {
+  color: hsl(var(--clr-main--900));
+  background-color: hsl(var(--clr-accent--500));
+}
+
+.body {
+  color: hsl(var(--clr-accent--700));
+  background-color: hsl(var(--clr-main--900));
+}
+
+.title h3 {
+  font-size: var(--fs-500);
+}
+
+.text-bold {
+  font-weight: var(--fw-bold);
+}
+
+.text-normal {
+  font-weight: var(--fw-normal);
+}
+
+/* title */
+.title {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: var(--gap);
+  align-items: center;
+
+  margin-block-end: var(--block-spacer);
+  padding: var(--padding-spacer);
+}
+
+.title > *:first-child {
+  width: 2rem;
+  height: 2rem;
+}
+
+.subtitle,
+.subtitle > span:not(:first-child) {
+  margin-block-start: 3px;
+}
+
+/* body */
+.tabs-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: hsl(var(--clr-accent--500));
+}
+
+.radio-label-wrapper {
+  text-align: center;
+}
+
+.radio-label-wrapper > label {
+  display: block;
+
+  padding-block: var(--padding-spacer-xs);
+
+  color: hsl(var(--clr-main--900));
+  background-color: hsl(var(--clr-accent--300));
+
+  border-top-left-radius: var(--br);
+  border-top-right-radius: var(--br);
+
+  cursor: pointer;
+
+  transition: background-color var(--transition-duration--quick) linear;
+}
+
+.radio-label-wrapper > input:checked + label {
+  color: hsl(var(--clr-accent--600));
+  background-color: hsl(var(--clr-main--900));
+}
+
+.tab-content-wrapper {
+  padding: var(--padding-spacer);
+}
+
+.tab-content-wrapper > *:not(.submit) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.purchase-total-wrapper svg {
+  margin-inline-start: 3px;
+  overflow: visible;
+}
+
+.body button * {
+  pointer-events: none;
+}
+.body :is(button:not(.submit), input, select) {
+  border: 1px solid hsl(var(--clr-accent--700));
+}
+
+.body :is(button, input, select):hover {
+  border-color: hsl(var(--clr-accent--700));
+}
+
+.cc-input::-webkit-outer-spin-button,
+.cc-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cc-input {
+  -moz-appearance: textfield;
+}
+
+.body :is(input, select) {
+  padding-block: var(--button-padding--block);
+  padding-inline: 1ch;
+  border-radius: var(--br-xs);
+}
+
+.submit {
+  width: 100%;
+
+  color: hsl(var(--clr-main--900));
+  background-color: hsl(var(--clr-accent--500));
+}
+
+.add-input-wrapper {
+  padding-block-start: var(--padding-spacer-xs);
+  border-top: 1px solid hsl(var(--clr-accent--500));
+}
+
+.controls-wrapper {
+  display: grid;
+  grid-template-areas:
+    'plus-button input'
+    'minus-button input';
+  gap: 3px;
+  place-items: center;
+}
+
+.plus-button {
+  grid-area: plus-button;
+}
+.minus-button {
+  grid-area: minus-button;
+}
+.cc-input {
+  grid-area: input;
+}
+
+.plus-button,
+.minus-button {
+  padding: 0;
+
+  line-height: 1;
+
+  border-radius: 4px;
+
+  display: grid;
+  place-items: center;
+}
+:is(.plus-button, .minus-button) > span {
+  width: 1rem;
+  height: 1rem;
+}
+
+.cc-input {
+  width: 6ch;
+  text-align: end;
+}
+
+/* confirmation widget */
+.confirmation-widget {
+
+  color: hsl(var(--clr-main--900));
+
+  padding: var(--padding-spacer);
+}
+
+.confirmation-widget  h3 {
+  font-size: var(--fs-500);
+}
+
+.confirmation-widget > * {
+  display: flex;
+  justify-content:space-between;
+  gap: var(--gap-xs);
+}
+
+.confirmation--total {
+  font-size: var(--fs-500);
+  
+  padding-block-start: var(--padding-spacer);
+
+  border-top: 1px solid currentColor;
+}
+
+.confirmation--price-with-icon {
+  --svg-clr-outside: hsl(var(--clr-main--900));
+  --svg-clr-inside: hsl(var(--clr-accent--500));
+  display: flex;
+  align-items: flex-start;
+  gap: .1em;
+}
+.confirmation--price-with-icon > svg {
+  width: .7em;
+  height: .7em;
+}
+
+.confirmation--buttons-wrapper {
+
+}
+
+.confirmation--submit {
+  flex: 60%;
+}
+.confirmation--cancel {
+  font-size: var(--fs-300);
+  border: none;
+  background: transparent;
+  color: currentColor;
+  flex: 30%;
+}
+
+.confirmation--cancel:hover {
+  border: none;
+  background: transparent;
+  color: currentColor;
+}

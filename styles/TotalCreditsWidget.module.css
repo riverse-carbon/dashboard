@@ -34,6 +34,10 @@
   margin-block-start: var(--block-spacer-xs);
 }
 
+.credits-links-wrapper > * {
+  width: 100%;
+}
+
 .credits-wrapper {
   display: flex;
   justify-content: center;
@@ -45,12 +49,11 @@
 }
 
 .credit-name svg {
-  margin-inline-start: 2px;
-  color: hsl(var(--clr-accent--700));
-}
+  --svg-clr-outside: hsl(var(--clr-main--900));
+  --svg-clr-inside: hsl(var(--clr-accent--700));
 
-.credit-name circle {
-  fill: hsl(var(--clr-main--900));
+  margin-inline-start: 3px;
+  overflow: visible;
 }
 
 .credit-value {

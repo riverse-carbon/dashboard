@@ -79,7 +79,7 @@
   text-align: center;
 }
 
-.cta a {
+.cta button {
   max-width: max-content;
   margin-inline: auto;
 }

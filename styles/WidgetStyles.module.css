@@ -75,7 +75,7 @@
   background-color: hsl(var(--clr-accent--700));
 }
 
-.widget-card > h3 {
+.widget-card h3 {
   font-size: var(--widget-title, var(--fs-500));
 }
 

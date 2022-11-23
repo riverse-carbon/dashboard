@@ -6,8 +6,11 @@ import TotalCredits from '../../components/TotalCredits.SeparateProject.widget'
 import WidgetWrapper from '../../components/WidgetWrapper'
 import widgetStyles from '../../styles/WidgetStyles.module.css'
 import pageStyles from '../../styles/Pages.module.css'
+import ModalDialog, { ModalId } from '../../components/ModalDialog'
+import BuyCreditsWidget from '../../components/BuyCredits.widget'
 
 export default function ProjectPage ({ project }) {
+  const modalId = 'buy-credits-modal'
   if (!project)
     return (
       <main className={`main-container`}>
@@ -19,18 +22,22 @@ export default function ProjectPage ({ project }) {
       <Head>
         <title>{project.fields.name} project</title>
         <meta name='description' content='' />
-        <link rel='icon' href='/favicon.png' />
       </Head>
-      <main className={`main-container ${pageStyles['project-page']}`}>
-        <div className={widgetStyles['widgets-wrapper']}>
-          <WidgetWrapper columns={3} areaName='project'>
-            <SeparateProject project={project.fields} />
-          </WidgetWrapper>
-          <WidgetWrapper columns={1} areaName='credits' position='sticky'>
-            <TotalCredits />
-          </WidgetWrapper>
-        </div>
-      </main>
+      <ModalId.Provider value={modalId}>
+        <main className={`main-container ${pageStyles['project-page']}`}>
+          <div className={widgetStyles['widgets-wrapper']}>
+            <WidgetWrapper columns={3} areaName='project'>
+              <SeparateProject project={project.fields} />
+            </WidgetWrapper>
+            <WidgetWrapper columns={1} areaName='credits' position='sticky'>
+              <TotalCredits />
+            </WidgetWrapper>
+          </div>
+        </main>
+      </ModalId.Provider>
+      <ModalDialog modalId={modalId}>
+        <BuyCreditsWidget project={project.fields} />
+      </ModalDialog>
     </>
   )
 }

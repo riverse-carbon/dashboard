@@ -13,12 +13,18 @@
   pointer-events: none;
 }
 
-.toggle-button > span {
-  pointer-events: none;
+.toggle-button::after {
+  content: '';
+  width: 0.9em;
+  height: 0.9em;
+  background-color: hsl(var(--clr-accent--900));
+  background-color: currentColor;
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  clip-path: polygon(12% 25%, 50% 63%, 88% 25%, 100% 25%, 50% 75%, 0 25%);
   transition: transform var(--transition-duration--quick) ease;
 }
 
-.toggle-button[aria-expanded='false'] > span {
+.toggle-button[aria-expanded='false']::after {
   transform: rotate(90deg);
 }
 

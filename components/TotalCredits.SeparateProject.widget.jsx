@@ -6,6 +6,8 @@ import TransferSVG from '../public/icons/TransferSVG'
 import Link from 'next/link'
 import InformationSVG from '../public/icons/InformationSVG'
 import StatsSVG from '../public/icons/StatsSVG'
+import { handleModalOpen, ModalId } from './ModalDialog'
+import { useContext } from 'react'
 
 // TODO:
 // 1. replace fake data
@@ -47,6 +49,10 @@ const CreditsDetailed = ({ data }) => {
 }
 
 const TotalCreditsWidget = ({}) => {
+  const modalId = useContext(ModalId)
+  const handleBuyCredit = () => {
+    handleModalOpen(modalId)
+  }
   const totalCredits = fakeData.credits.reduce((prev, next) => {
     return (prev += next.amount)
   }, 0)
@@ -62,12 +68,13 @@ const TotalCreditsWidget = ({}) => {
         <CreditsDetailed data={fakeData.credits} />
 
         <div className={styles['credits-links-wrapper']}>
-          <Link href='/projects'>
-            <a className='button-style link-with-icon link-with-icon--centered'>
-              <CardSVG />
-              Buy credits
-            </a>
-          </Link>
+          <button
+            onClick={handleBuyCredit}
+            className='link-with-icon link-with-icon--centered'
+          >
+            <CardSVG />
+            Buy credits
+          </button>
           <Link href='/projects'>
             <a className='button-style link-with-icon link-with-icon--centered'>
               <TransferSVG />

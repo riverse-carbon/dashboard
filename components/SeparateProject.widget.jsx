@@ -2,6 +2,8 @@ import Image from 'next/future/image'
 import Link from 'next/link'
 import CardSVG from '../public/icons/CardSVG'
 import styles from '../styles/SeparateProject.widget.module.css'
+import { handleModalOpen, ModalId } from './ModalDialog'
+import { useContext } from 'react'
 
 // TODO:
 // 1. check sizes on image attribute
@@ -11,7 +13,7 @@ import styles from '../styles/SeparateProject.widget.module.css'
 // 9. rich text (markdown) processing
 
 const SeparateProject = ({ project }) => {
-  // console.log(project)
+  const modalId = useContext(ModalId)
   const cover = project.cover[0]
   const { images } = project
   const sdgs =
@@ -53,6 +55,10 @@ const SeparateProject = ({ project }) => {
       <span className={styles.desc}>{impact.desc}</span>
     </li>
   ))
+
+  const handleBuyCredits = () => {
+    handleModalOpen(modalId)
+  }
 
   return (
     <>
@@ -111,13 +117,14 @@ const SeparateProject = ({ project }) => {
           </ul>
         </section>
         <section className={styles.cta}>
-          <h2>CTA - to replace</h2>
-          <Link href='/projects'>
-            <a className='button-style link-with-icon '>
-              <CardSVG />
-              Buy carbon credits
-            </a>
-          </Link>
+          <h2>CTA</h2>
+          <button
+            onClick={handleBuyCredits}
+            className={`link-with-icon link-with-icon--centered`}
+          >
+            <CardSVG />
+            Buy carbon credits
+          </button>
         </section>
       </div>
     </>

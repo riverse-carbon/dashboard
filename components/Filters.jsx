@@ -153,7 +153,6 @@ const Filters = ({ setFilters, appliedFilters }) => {
       >
         <FilterSVG />
         Project Filters
-        <span aria-hidden={true}>&#9660;</span>
       </button>
       <div className={styles['filters-body']}>
         <div className='flow-spacer'>
