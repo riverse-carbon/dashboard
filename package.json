@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.9.2",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.10.15",
     "airtable": "^0.11.5",
     "axios": "^1.1.3",
     "chart.js": "^3.9.1",

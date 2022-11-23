@@ -2,7 +2,8 @@ import styles from '../styles/BuyCreditsWidget.module.css'
 import CarbonCreditsSVG from '../public/icons/CarbonCreditsSVG'
 import Link from 'next/link'
 import InformationSVG from '../public/icons/InformationSVG'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { DialogCallback } from './ModalDialog'
 
 // TODO:
 // 1. replace fake data
@@ -40,7 +41,6 @@ const VintageYearSelect = ({ years, updateInput }) => {
   
   const handleChange = (e) => {
     updateInput('vintageYear', e.target.value)
-    console.log('h1');
   }
   return <select className={styles['vintage-year-select']} onChange={handleChange}>{options}</select>
 }
@@ -118,7 +118,14 @@ const BuyCreditsWidget = ({ project }) => {
   
   const updateFormInput = (inputName, inputValue) => {
     setFormInputs({...formInputs, [inputName]: inputValue})
+
   }  
+
+  const resetState = () => {
+    setShowConfirmationWidget(false)
+    setFormInputs({tagline: tagline || '', name: name || '', creditType: 'sequestration', creditsPurchased: 0, price: price, vintageYear: 0})
+  }
+    
 
   const handleCCNumberChange = e => {
     var newValue = e.target.valueAsNumber
@@ -159,7 +166,7 @@ const BuyCreditsWidget = ({ project }) => {
 
   return (
     <div className={`${styles['widget-wrapper']} ${styles['text-bold']}`}>
-      {showConfirmationWidget? <ConfirmationWidget transactionInfo={formInputs} totalPrice={totalPrice} cancelPurchase={() => setShowConfirmationWidget(false)} /> :
+      {showConfirmationWidget? <ConfirmationWidget transactionInfo={formInputs} totalPrice={totalPrice} cancelPurchase={() => setShowConfirmationWidget(false)} resetInputs={resetState} /> :
       <>
       <div className={`${styles.title}`}>
         <CarbonCreditsSVG />
@@ -186,8 +193,6 @@ const BuyCreditsWidget = ({ project }) => {
           // TOCHECK: leave onSubmit only or can we mix both approaches
           // (noJS action/method and withJS onSubmit)?
           id='buy-credits-form'
-          action='/api/protected/buy-credits'
-          method='POST'
           onSubmit={handleFormSubmit}
         ></form>
         <RadioFieldSet
@@ -277,10 +282,37 @@ const BuyCreditsWidget = ({ project }) => {
   )
 }
 
-const ConfirmationWidget = ({ transactionInfo, totalPrice, cancelPurchase }) => {
+const ConfirmationWidget = ({ transactionInfo, totalPrice, cancelPurchase, resetInputs }) => {
   const { tagline, name, creditType, creditsPurchased, price, vintageYear} = transactionInfo
+  
+  
+  const [ transaction, setTransaction ] = useState(null)
+  
+  const resetState = () => {
+    resetInputs()
+    setTransaction(null)
+  }
+  const handleCreditPurchase = async () => {
+    const data = { projectName: name, creditType, creditsPurchased, vintageYear}
+    const JSONdata = JSON.stringify(data)
+    const apiUrl = '/api/protected/buy-credits'
+    const options = {
+      method:'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSONdata
+    }
+
+    const response = await fetch(apiUrl, options)
+    const result = await response.json()
+    setTransaction(result)
+  }
+
   return (
     <div className={`${styles['text-bold']} flow-spacer ${styles['confirmation-widget']}`}>
+      {transaction ? <TransactionResult  success={transaction.success} resetInputs={resetState} /> 
+      : <>
   <h3>Your order</h3>
   <p>Project:<span className={styles['text-normal']}>{tagline}</span></p>
   <p>Developer:<span>{name}</span></p>
@@ -290,10 +322,28 @@ const ConfirmationWidget = ({ transactionInfo, totalPrice, cancelPurchase }) => 
   <p>Vintage year:<span>{vintageYear}</span></p>
   <p className={styles['confirmation--total']}>Total<span className={styles['confirmation--price-with-icon']} title='Riverse service fee: 10% of the carbon credit price is collected by Riverse to continue its work on eco-sustainability projects.'>{totalPrice} €<InformationSVG /></span></p>
   <div className={styles['confirmation--buttons-wrapper']}>
-    <button className={styles['confirmation--submit']} >Start transaction</button>
-    <button className={styles['confirmation--cancel']} onClick={cancelPurchase}><span>Cancel transaction</span></button>
+    <button className={styles['confirmation--submit']} onClick={handleCreditPurchase} >Start transaction</button>
+    <button className={styles['confirmation--cancel']} onClick={cancelPurchase}>Cancel transaction</button>
   </div>
+  </>  }
+
     </div>
+  )
+}
+
+// display correct error message?
+const TransactionResult = ({success, error, resetInputs }) => {
+  const dialogCloseCallback = useContext(DialogCallback)
+  const handleButtonClick = () => {
+    dialogCloseCallback(() => {
+      resetInputs()
+    })
+  }
+  return (
+  <>
+  <h3 className='text-center'>{success ? 'Successful transaction' : 'Something went wrong, please contact us if the problem persists'}</h3>
+    <button onClick={handleButtonClick} className={styles['transaction--button']}>Ok</button>
+  </>
   )
 }
 

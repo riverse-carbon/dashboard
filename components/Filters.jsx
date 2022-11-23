@@ -1,8 +1,12 @@
 import { HtmlContext } from 'next/dist/shared/lib/html-context'
-import { useContext, useMemo, useState, useEffect } from 'react'
+import { useContext, useId, useState, useEffect } from 'react'
 import { FiltersData } from '../pages/projects'
 import styles from '../styles/Filters.module.css'
 import FilterSVG from '../public/icons/FilterSVG'
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
+
 
 // TODO:
 // 1. Check a11y and add aria-expanded
@@ -11,7 +15,7 @@ const addedFilters = [
   {
     style: 'range',
     name: 'price',
-    label: 'Price range',
+    label: 'Price',
     values: [30, 120],
     valuesSign: '€',
     step: 1
@@ -19,11 +23,56 @@ const addedFilters = [
   {
     style: 'range',
     name: 'year',
-    label: 'Started in',
+    label: 'Vintage year',
     values: [2021, 2025],
     step: 1
   }
 ]
+
+
+const RangeSlider = ({ filterObject }) => {
+  const { label, name, values } = filterObject
+  const valuesSign = filterObject.valuesSign || ''
+
+  const labelId = useId()
+  const [value, setValue] = React.useState([values[0], values[1]]);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box component='fieldset'
+    className={`${styles['filter-fieldset']} ${styles['fieldset--range']}`}
+    sx={{ width: 300 }}>
+      <legend id={labelId}>{label}:</legend>
+      <div className={styles['values-wrapper']}>
+      <div className={styles.labels}>
+
+          <span>
+            {values[0]}
+            {valuesSign}
+          </span>
+          <span>
+            {values[1]}
+            {valuesSign}
+          </span>
+        </div>
+      <Slider
+      className={styles.slider}
+        aria-labelledby={labelId}
+        min={values[0]}
+        max={values[1]}
+        valueLabelDisplay='auto'
+        value={value}
+        onChange={handleChange}
+        aria-valuetext={value}
+        // getAriaValueText={valuetext}
+      />
+      </div>
+    </Box>
+  );
+}
 
 const RangeFilter = ({ filterObject }) => {
   const { label, name, values } = filterObject
@@ -157,7 +206,8 @@ const Filters = ({ setFilters, appliedFilters }) => {
       <div className={styles['filters-body']}>
         <div className='flow-spacer'>
           {addedFilters.map(filter => (
-            <RangeFilter key={filter.name} filterObject={filter} />
+            <RangeSlider key={filter.name} filterObject={filter} />
+            // <RangeFilter key={filter.name} filterObject={filter} />
           ))}
         </div>
         <div className='flow-spacer'>{filtersComponents}</div>

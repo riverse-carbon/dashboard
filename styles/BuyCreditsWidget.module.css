@@ -6,6 +6,7 @@
   background-color: hsl(var(--clr-accent--500));
   border-radius: var(--br);
 }
+
 .body,
 .title {
   border-radius: var(--br);
@@ -46,13 +47,13 @@
   padding: var(--padding-spacer);
 }
 
-.title > *:first-child {
+.title>*:first-child {
   width: 2rem;
   height: 2rem;
 }
 
 .subtitle,
-.subtitle > span:not(:first-child) {
+.subtitle>span:not(:first-child) {
   margin-block-start: 3px;
 }
 
@@ -67,7 +68,7 @@
   text-align: center;
 }
 
-.radio-label-wrapper > label {
+.radio-label-wrapper>label {
   display: block;
 
   padding-block: var(--padding-spacer-xs);
@@ -83,7 +84,7 @@
   transition: background-color var(--transition-duration--quick) linear;
 }
 
-.radio-label-wrapper > input:checked + label {
+.radio-label-wrapper>input:checked+label {
   color: hsl(var(--clr-accent--600));
   background-color: hsl(var(--clr-main--900));
 }
@@ -92,7 +93,7 @@
   padding: var(--padding-spacer);
 }
 
-.tab-content-wrapper > *:not(.submit) {
+.tab-content-wrapper>*:not(.submit) {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -106,6 +107,7 @@
 .body button * {
   pointer-events: none;
 }
+
 .body :is(button:not(.submit), input, select) {
   border: 1px solid hsl(var(--clr-accent--700));
 }
@@ -119,6 +121,7 @@
   -webkit-appearance: none;
   margin: 0;
 }
+
 .cc-input {
   -moz-appearance: textfield;
 }
@@ -153,9 +156,11 @@
 .plus-button {
   grid-area: plus-button;
 }
+
 .minus-button {
   grid-area: minus-button;
 }
+
 .cc-input {
   grid-area: input;
 }
@@ -171,7 +176,8 @@
   display: grid;
   place-items: center;
 }
-:is(.plus-button, .minus-button) > span {
+
+:is(.plus-button, .minus-button)>span {
   width: 1rem;
   height: 1rem;
 }
@@ -189,19 +195,19 @@
   padding: var(--padding-spacer);
 }
 
-.confirmation-widget  h3 {
+.confirmation-widget h3 {
   font-size: var(--fs-500);
 }
 
-.confirmation-widget > * {
+.confirmation-widget>* {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   gap: var(--gap-xs);
 }
 
 .confirmation--total {
   font-size: var(--fs-500);
-  
+
   padding-block-start: var(--padding-spacer);
 
   border-top: 1px solid currentColor;
@@ -214,28 +220,24 @@
   align-items: flex-start;
   gap: .1em;
 }
-.confirmation--price-with-icon > svg {
+
+.confirmation--price-with-icon>svg {
   width: .7em;
   height: .7em;
 }
 
-.confirmation--buttons-wrapper {
-
-}
-
 .confirmation--submit {
-  flex: 60%;
+  flex: 70%;
 }
+
 .confirmation--cancel {
   font-size: var(--fs-300);
-  border: none;
+  border: 1px solid hsl(var(--clr-main--900));
   background: transparent;
   color: currentColor;
   flex: 30%;
 }
 
-.confirmation--cancel:hover {
-  border: none;
-  background: transparent;
-  color: currentColor;
+.transaction--button {
+  margin-inline: auto;
 }
