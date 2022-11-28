@@ -4,7 +4,7 @@
   gap: var(--gap);
 }
 
-.body > * {
+.body>* {
   color: hsl(var(--clr-accent--900));
   background-color: hsl(var(--clr-main--900));
 
@@ -13,24 +13,20 @@
   border-radius: var(--br);
 }
 
-.image-wrapper {
-  padding-block: var(--padding-spacer-xl);
+.about>.name {
+  font-size: var(--fs-500);
 }
 
-.org-summary > * {
-  display: block;
-  font-size: var(--fs-400);
-}
-
-.org-summary > * + * {
+.about .stats {
+  width: max-content;
   margin-block-start: var(--block-spacer-xs);
+  padding-block: var(--button-padding--block);
+  padding-inline: 1ch;
+  border-radius: var(--br);
+  background-color: hsl(var(--clr-accent--100));
 }
 
-.org-summary > *:first-child {
-  font-weight: var(--fw-bold);
-}
-
-.users-wrapper > ul {
+.users-wrapper>ul {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
@@ -42,8 +38,13 @@
   grid-template-columns: 4fr 1fr 1fr;
   gap: var(--gap-xs);
 }
+
 .user {
   align-items: center;
+}
+
+.user.current {
+  font-weight: var(--fw-bold);
 }
 
 .users-head {
@@ -53,25 +54,33 @@
 .users-head {
   font-size: var(--fs-400);
 }
-.users-head > * {
+
+.users-head>* {
   line-height: 1;
 }
 
-.user-photo-wrapper > img {
+/* 
+.user-photo-wrapper>img {
   border-radius: 50%;
   max-width: 3rem;
-}
-
+} */
+/* 
 .user-info-wrapper {
   display: flex;
   gap: 1ch;
   align-items: center;
-}
+} */
 
-.user-info > * {
+.user-info>* {
   display: block;
 }
 
 .email {
   opacity: 0.7;
+}
+
+.user--active svg {
+  fill: hsl(var(--clr-green--700));
+  width: 3rem;
+  height: auto;
 }

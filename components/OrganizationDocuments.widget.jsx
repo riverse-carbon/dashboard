@@ -1,7 +1,7 @@
 const OrganizationDocuments = () => {
   return (
     <>
-      <h3>Documents</h3>
+      <h2>Documents</h2>
     </>
   )
 }

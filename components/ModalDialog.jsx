@@ -2,7 +2,7 @@ import { useRef, createContext } from 'react'
 
 export const ModalId = createContext('')
 
-export const DialogCallback = createContext(null)
+export const DialogCallback = createContext({ dialog: null, dialogCallbackOnClose: () => {}})
 
 export const handleModalOpen = modalId => {
   const modal = document.querySelector(`#${modalId}`)
@@ -15,13 +15,12 @@ const ModalDialog = ({ modalId, children }) => {
 
   const closeDialogWithCallback = (toExecute) => {
     dialogRef.current.close()
-    if (toExecute) {
+    if (typeof toExecute === 'function') {
       toExecute()}
   }
 
   const handleClick = e => {
     if (containerRef.current && !containerRef.current.contains(e.target)) {
-      // dialogRef.current.close()
       closeDialogWithCallback()
     }
   }
@@ -32,7 +31,7 @@ const ModalDialog = ({ modalId, children }) => {
     id={modalId}
     onClick={handleClick}
     >
-      <DialogCallback.Provider value={closeDialogWithCallback}>
+      <DialogCallback.Provider value={{dialog: dialogRef, dialogCallbackOnClose: closeDialogWithCallback}}>
       <div ref={containerRef}
       className='modal'
       >

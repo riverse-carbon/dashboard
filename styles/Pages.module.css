@@ -21,5 +21,6 @@
 }
 
 .members {
-  --grid-areas: 'organization organization organization billing';
+  --grid-areas: 'organization organization organization newUser'
+    'billing billing billing newUser';
 }

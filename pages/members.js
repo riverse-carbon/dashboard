@@ -5,10 +5,34 @@ import Organization from '../components/Organization.widget'
 import BillingInformation from '../components/BillingInformation.widget'
 import OrganizationDocuments from '../components/OrganizationDocuments.widget'
 import pageStyles from '../styles/Pages.module.css'
+import useSWR from 'swr'
+import { AddNewUsersForm } from '../components/forms/forms'
+import { useUser } from '@auth0/nextjs-auth0'
 
 // TODO: parse
 
+const fetcher = url => fetch(url).then(res => res.json())
+const url = 'api/protected/get-organization'
+
+const getOrg = 'api/protected/get-organization'
+
 export default function Home () {
+  const {user} = useUser()
+  const {email} = user
+  const { data, error} = useSWR(getOrg, fetcher)
+  if (error) {
+    return (<>
+      <main className={`main-container ${pageStyles.members}`}>
+        <p className='fetch-error'>Error encountered while getting information.
+         Try to refresh the page and contact our team in the problem persists.</p>
+      </main>
+    </>)
+  }
+  // const handleCreateNewUsers = async () => {
+  // const usersArray = [{email: 'test@org.io', type: 'buyer'}]
+  //   const res = await fetch(url, {method: "POST", body: JSON.stringify(usersArray)}).then(res => res.json())
+  //   console.log(res);
+  // }
   return (
     <>
       <Head>
@@ -17,15 +41,23 @@ export default function Home () {
         <link rel='icon' href='/favicon.png' />
       </Head>
       <main className={`main-container ${pageStyles.members}`}>
+        {/* orgId, rolesList, styles */}
+        <AddNewUsersForm  />
         <div className={widgetStyles['widgets-wrapper']}>
           <WidgetWrapper columns={3} areaName='organization'>
-            <Organization />
+            {data 
+            ? <Organization data={data.organization.organization} />
+            : <h2>Loading...</h2>
+            }
           </WidgetWrapper>
           {/* <WidgetWrapper columns={1} areaName='docs'>
           <OrganizationDocuments />
         </WidgetWrapper> */}
-          <WidgetWrapper columns={3} areaName='billing'>
-            <BillingInformation />
+          <WidgetWrapper columns={3} areaName='billing' >
+          {data 
+            ? <BillingInformation data={data.organization.billingInfo} />
+            : <h2>Loading...</h2>
+            }
           </WidgetWrapper>
         </div>
       </main>

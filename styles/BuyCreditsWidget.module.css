@@ -24,7 +24,7 @@
   background-color: hsl(var(--clr-main--900));
 }
 
-.title h3 {
+.title h2 {
   font-size: var(--fs-500);
 }
 
@@ -195,7 +195,7 @@
   padding: var(--padding-spacer);
 }
 
-.confirmation-widget h3 {
+.confirmation-widget h2 {
   font-size: var(--fs-500);
 }
 

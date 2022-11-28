@@ -1,29 +1,23 @@
 import styles from '../styles/BillingInformation.widget.module.css'
 
-const fakeData = {
-  address: '1, place Bellecours, 69001 Lyon',
-  benef: 'IBAN 120938 880312880  128...',
-  name: 'Riverse SAS'
-}
-
-const BillingInformation = () => {
-  const { address, benef, name } = fakeData
+const BillingInformation = ({data}) => {
+  const { address, siren, vatNumber, country } = data
   return (
     <>
-      <h3 className={styles.title}>Billing information</h3>
+      <h2 className={styles.title}>Billing information</h2>
       <div>
-        <div className={`${styles.body} flow-spacer`}>
+        <div className={`${styles.body}`}>
           <section>
-            <h4>Name</h4>
-            <span>{name}</span>
+            <h3>SIREN</h3>
+            <span>{siren}</span>
           </section>
           <section>
-            <h4>Bank</h4>
-            <span>{benef}</span>
+            <h3>VAT number</h3>
+            <span>{vatNumber}</span>
           </section>
           <section>
-            <h4>Billing address</h4>
-            <span>{address}</span>
+            <h3>Billing address</h3>
+            <span>{address}, {country}</span>
           </section>
         </div>
       </div>

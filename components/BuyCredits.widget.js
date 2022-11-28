@@ -13,79 +13,12 @@ import { DialogCallback } from './ModalDialog'
 // 5.change total cost title
 // 6. control input data (integers only, >=0 && <= maxCredits). useRef to control both input and buttons!
 
-const CreditsDetailed = ({ data }) => {
-  const credits = data.map(credit => (
-    <p key={credit.name} className={styles['credit']}>
-      <span
-        className={styles['credit-name']}
-        title={getCreditTypeDescription(credit.name)}
-      >
-        {credit.name}
-        <InformationSVG />
-      </span>
-      <span className={styles['credit-value']}>{credit.amount}</span>
-    </p>
-  ))
-  return <div className={styles['credits-wrapper']}>{credits}</div>
-}
-
-const VintageYearSelect = ({ years, updateInput }) => {
-  const options = years.map(year => (
-    <option key={year} value={year}>
-      {year}
-    </option>
-  ))
-  useEffect(() => {
-    updateInput('vintageYear', years[0])
-  }, [])
-  
-  const handleChange = (e) => {
-    updateInput('vintageYear', e.target.value)
-  }
-  return <select className={styles['vintage-year-select']} onChange={handleChange}>{options}</select>
-}
-
-const RadioFieldSet = ({ updateInput, sequestration, avoidance }) => {
-  const handleChange = e => {
-    updateInput('creditType', e.target.value)
-  }
-
-  return (
-    <fieldset name='credit-type' className={styles['tabs-wrapper']}>
-      <legend className='visually-hidden'>CO2 credit type</legend>
-      <div className={styles['radio-label-wrapper']}>
-        <input
-          className='visually-hidden'
-          type='radio'
-          id={sequestration.name}
-          value={sequestration.name}
-          name='credit-type'
-          onChange={handleChange}
-          defaultChecked={sequestration.totalCO}
-          disabled={!sequestration.totalCO}
-        />
-        <label htmlFor={sequestration.name}>{sequestration.nameLabel}</label>
-      </div>
-      <div className={styles['radio-label-wrapper']}>
-        <input
-          className='visually-hidden'
-          type='radio'
-          id={avoidance.name}
-          value={avoidance.name}
-          name='credit-type'
-          onChange={handleChange}
-          defaultChecked={!sequestration.totalCO}
-          disabled={!avoidance.totalCO}
-        />
-        <label htmlFor={avoidance.name}>{avoidance.nameLabel}</label>
-      </div>
-    </fieldset>
-  )
-}
 // TODO: callbackOnClose (don't show confirmation window next time)
 const BuyCreditsWidget = ({ project }) => {
   const { tagline, name, 'CCC - Total': ccc, 'RCC - Total': rcc } = project
   const price = project.price || 50
+
+  // const dialogObject = useContext(DialogCallback)
 
   const buyCreditInfoByType = {
     sequestration: {
@@ -171,7 +104,7 @@ const BuyCreditsWidget = ({ project }) => {
       <div className={`${styles.title}`}>
         <CarbonCreditsSVG />
         <div>
-          <h3>Buy carbon credits</h3>
+          <h2>Buy carbon credits</h2>
           <p className={styles.subtitle}>
             <span className='block'>
               <span>
@@ -282,6 +215,77 @@ const BuyCreditsWidget = ({ project }) => {
   )
 }
 
+const CreditsDetailed = ({ data }) => {
+  const credits = data.map(credit => (
+    <p key={credit.name} className={styles['credit']}>
+      <span
+        className={styles['credit-name']}
+        title={getCreditTypeDescription(credit.name)}
+      >
+        {credit.name}
+        <InformationSVG />
+      </span>
+      <span className={styles['credit-value']}>{credit.amount}</span>
+    </p>
+  ))
+  return <div className={styles['credits-wrapper']}>{credits}</div>
+}
+
+const VintageYearSelect = ({ years, updateInput }) => {
+  const options = years.map(year => (
+    <option key={year} value={year}>
+      {year}
+    </option>
+  ))
+  useEffect(() => {
+    updateInput('vintageYear', years[0])
+  }, [])
+  
+  const handleChange = (e) => {
+    updateInput('vintageYear', e.target.value)
+  }
+  return <select className={styles['vintage-year-select']} onChange={handleChange}>{options}</select>
+}
+
+const RadioFieldSet = ({ updateInput, sequestration, avoidance }) => {
+  const handleChange = e => {
+    updateInput('creditType', e.target.value)
+  }
+
+  return (
+    <fieldset name='credit-type' className={styles['tabs-wrapper']}>
+      <legend className='visually-hidden'>CO2 credit type</legend>
+      <div className={styles['radio-label-wrapper']}>
+        <input
+          className='visually-hidden'
+          type='radio'
+          id={sequestration.name}
+          value={sequestration.name}
+          name='credit-type'
+          onChange={handleChange}
+          defaultChecked={sequestration.totalCO}
+          disabled={!sequestration.totalCO}
+        />
+        <label htmlFor={sequestration.name}>{sequestration.nameLabel}</label>
+      </div>
+      <div className={styles['radio-label-wrapper']}>
+        <input
+          className='visually-hidden'
+          type='radio'
+          id={avoidance.name}
+          value={avoidance.name}
+          name='credit-type'
+          onChange={handleChange}
+          defaultChecked={!sequestration.totalCO}
+          disabled={!avoidance.totalCO}
+        />
+        <label htmlFor={avoidance.name}>{avoidance.nameLabel}</label>
+      </div>
+    </fieldset>
+  )
+}
+
+
 const ConfirmationWidget = ({ transactionInfo, totalPrice, cancelPurchase, resetInputs }) => {
   const { tagline, name, creditType, creditsPurchased, price, vintageYear} = transactionInfo
   
@@ -313,7 +317,7 @@ const ConfirmationWidget = ({ transactionInfo, totalPrice, cancelPurchase, reset
     <div className={`${styles['text-bold']} flow-spacer ${styles['confirmation-widget']}`}>
       {transaction ? <TransactionResult  success={transaction.success} resetInputs={resetState} /> 
       : <>
-  <h3>Your order</h3>
+  <h2>Your order</h2>
   <p>Project:<span className={styles['text-normal']}>{tagline}</span></p>
   <p>Developer:<span>{name}</span></p>
   <p>CO2 type:<span>{creditType}</span></p>
@@ -333,7 +337,7 @@ const ConfirmationWidget = ({ transactionInfo, totalPrice, cancelPurchase, reset
 
 // display correct error message?
 const TransactionResult = ({success, error, resetInputs }) => {
-  const dialogCloseCallback = useContext(DialogCallback)
+  const dialogCloseCallback = useContext(DialogCallback).dialogCallbackOnClose
   const handleButtonClick = () => {
     dialogCloseCallback(() => {
       resetInputs()
@@ -341,7 +345,7 @@ const TransactionResult = ({success, error, resetInputs }) => {
   }
   return (
   <>
-  <h3 className='text-center'>{success ? 'Successful transaction' : 'Something went wrong, please contact us if the problem persists'}</h3>
+  <h2 className='text-center'>{success ? 'Successful transaction' : 'Something went wrong, please contact us if the problem persists'}</h2>
     <button onClick={handleButtonClick} className={styles['transaction--button']}>Ok</button>
   </>
   )

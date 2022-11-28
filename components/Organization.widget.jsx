@@ -1,80 +1,44 @@
-import Logo from '../public/icons/LogoSVG'
-import Image from 'next/future/image'
 import styles from '../styles/Organization.module.css'
 import profile1 from '../public/profile1.png'
 import profile2 from '../public/profile2.png'
 import profile3 from '../public/profilePlaceholder.min.png'
+import ActiveUserSVG from '../public/icons/activeUserSVG'
+import { useUser } from '@auth0/nextjs-auth0'
 
 // TODO:
-// 1. replace fake data
 
-const fakeData = {
-  name: 'Riverse',
-  summary:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-  logo: <Logo />,
-  users: [
-    {
-      firstName: 'Clement',
-      lastName: 'Georget',
-      email: 'clement@riverse.io',
-      status: 'admin',
-      settings: '',
-      photo: profile1
-    },
-    {
-      firstName: 'Anton',
-      lastName: 'Begunenko',
-      email: 'anton@riverse.io',
-      status: 'member',
-      settings: '',
-      photo: profile3
-    },
-    {
-      firstName: 'Gregoire',
-      lastName: 'Guirauden',
-      email: 'gregoire@riverse.io',
-      status: 'member',
-      settings: '',
-      photo: profile2
-    }
-  ]
-}
-
-const Organization = () => {
-  const { name, summary, logo, users } = fakeData
+const Organization = ({data}) => {
+  const { user } = useUser()
+  const currentUserEmail = user.email || ''
+  const { name, contribution, cccTotal, users } = data
   const usersHTML = users.map(user => (
-    <li key={user.firstName + '-' + user.lastName} className={styles.user}>
-      <div className={styles['user-info-wrapper']}>
-        <div className={styles['user-photo-wrapper']}>
-          <Image src={user.photo} alt='' />
-        </div>
+    <li key={user.firstName + '-' + user.lastName} className={`${styles.user} ${user.email === currentUserEmail? styles.current : ''}`}>
         <div className={styles['user-info']}>
           <span className={styles.name}>
-            {`${user.firstName} ${user.lastName}`}
+            {`${user.firstName} ${user.lastName} ${user.email === currentUserEmail? '(You)': ''}`}
           </span>
           <span className={styles.email}>{user.email}</span>
         </div>
-      </div>
-      <p>{user.status}</p>
+      <p>{user.role}</p>
+      <p className={styles['user--active']}>{user.active ? <ActiveUserSVG /> : ''}</p>
     </li>
   ))
   return (
     <>
-      <h3 className={styles.title}>{name}</h3>
+      <h2 className={styles.title}>Organization</h2>
       <div className={styles.body}>
-        <div className={`${styles['about']} flow-spacer`}>
-          <div className={styles['image-wrapper']}>{logo}</div>
-          <p className={styles['org-summary']}>
-            <span>Summary</span>
-            <span>{summary}</span>
+        <div className={`${styles['about']} flow-spacer text-bold`}>
+          <h3 className={styles.name}>{name}</h3>
+          <p className='flow-spacer'>
+            <span className='block'>Total credits: <span className={'text-normal block ' + styles['stats']}>{cccTotal} tCO2</span></span>
+            <span className='block'>Total contribution: <span className={'text-normal block ' + styles['stats']}>{contribution}€</span></span>
           </p>
         </div>
         <div className={`${styles['users-wrapper']} flow-spacer `}>
           <div className={styles['users-head']}>
-            <h4>Users</h4>
+            <h3>Users</h3>
             <p>Status</p>
-            <p>Settings</p>
+            <p>Verified</p>
           </div>
           <ul role='list' className='list'>
             {usersHTML}

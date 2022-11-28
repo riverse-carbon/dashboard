@@ -4,6 +4,7 @@ import { useUser } from '@auth0/nextjs-auth0'
 import styles from '../styles/Banner.module.css'
 import photoPlaceholder from '../public/photo-placeholder.svg'
 import CardSVG from '../public/icons/CardSVG'
+import { useRouter } from 'next/router'
 
 // TODO:
 // 1. DRY returned HTML
@@ -12,6 +13,8 @@ import CardSVG from '../public/icons/CardSVG'
 
 function Banner () {
   const { user, error, isLoading } = useUser()
+
+  const currentPath = useRouter().asPath
 
   if (user)
     return (
@@ -39,7 +42,7 @@ function Banner () {
       <p className={styles.greeting}>Welcome</p>
 
       <a
-        href='/api/auth/login'
+        href={`/api/auth/login?returnTo=${currentPath}`}
         className={`${styles['contact-button']} button-style`}
       >
         Login

@@ -12,6 +12,7 @@ import MembersSVG from '../public/icons/MembersSVG'
 
 // TODO:
 // 1. change disabled links
+// 2. add aria-current=page!!!
 
 function Nav () {
   const currentPath = useRouter().asPath

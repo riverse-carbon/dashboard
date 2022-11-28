@@ -48,14 +48,14 @@ function ProjectsWithFilters ({ limit = 100 }) {
   if (error) return 'An error has occurred. Contact us if the problem persists'
   if (!data)
     return (
-      <h3>
+      <h2>
         Loading <span className='visually-hidden'>all projects</span>...
-      </h3>
+      </h2>
     )
 
   return (
     <>
-      <h3 className='visually-hidden'>All projects</h3>
+      <h2 className='visually-hidden'>All projects</h2>
       <Filters setFilters={setAppliedFilters} appliedFilters={appliedFilters} />
       <div className={styles['list-wrapper']}>
         <ul role='list' className='list'>

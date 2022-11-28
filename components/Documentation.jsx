@@ -17,7 +17,7 @@ function Documentation () {
 
   return (
     <>
-      <h3>Documentation</h3>
+      <h2>Documentation</h2>
       <div className={styles['list-wrapper']}>
         <ul role='list' className='list'>
           {posts}
