@@ -2,7 +2,7 @@ import styles from '../styles/Organization.module.css'
 import profile1 from '../public/profile1.png'
 import profile2 from '../public/profile2.png'
 import profile3 from '../public/profilePlaceholder.min.png'
-import ActiveUserSVG from '../public/icons/activeUserSVG'
+import ActiveUserSVG from '../public/icons/ActiveUserSVG'
 import { useUser } from '@auth0/nextjs-auth0'
 
 // TODO:
