@@ -47,9 +47,6 @@
 } */
 
 .widgets-wrapper {
-  /* grid-template-areas:
-    'projects projects contribution docs'
-    'projects projects credits docs'; */
   grid-template-areas: var(--grid-areas);
   grid-template-rows: min-content 1fr;
 }
@@ -68,8 +65,12 @@
   padding: var(--padding-spacer);
   border-radius: var(--br);
 
-  color: hsl(var(--clr-main--900));
-  background-color: hsl(var(--clr-accent--700));
+  color: hsl(var(--widget-card-clr, var(--clr-main--700)));
+  background-color: hsl(var(--widget-card-bg, var(--clr-main--100)));
+}
+
+.bg-transparent {
+  background-color: transparent;
 }
 
 .widget-card h2 {

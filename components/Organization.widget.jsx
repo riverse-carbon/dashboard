@@ -4,10 +4,11 @@ import profile2 from '../public/profile2.png'
 import profile3 from '../public/profilePlaceholder.min.png'
 import ActiveUserSVG from '../public/icons/ActiveUserSVG'
 import { useUser } from '@auth0/nextjs-auth0'
+import { AddNewUsersForm } from './forms/forms'
 
 // TODO:
 
-const Organization = ({data}) => {
+const Organization = ({data, children}) => {
   const { user } = useUser()
   const currentUserEmail = user.email || ''
   const { name, contribution, cccTotal, users } = data
@@ -43,6 +44,8 @@ const Organization = ({data}) => {
           <ul role='list' className='list'>
             {usersHTML}
           </ul>
+          {children}
+
         </div>
       </div>
     </>

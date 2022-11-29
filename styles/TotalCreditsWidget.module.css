@@ -6,7 +6,7 @@
   text-align: center;
 }
 
-.body > * + * {
+.body>*+* {
   margin-block-start: var(--block-spacer);
 }
 
@@ -30,11 +30,11 @@
   height: var(--total-fs);
 }
 
-.credits-links-wrapper > * + * {
+.credits-links-wrapper>*+* {
   margin-block-start: var(--block-spacer-xs);
 }
 
-.credits-links-wrapper > * {
+.credits-links-wrapper>* {
   width: 100%;
 }
 
@@ -44,13 +44,13 @@
   gap: var(--gap-xs);
 }
 
-.credit > * {
+.credit>* {
   display: block;
 }
 
 .credit-name svg {
   --svg-clr-outside: hsl(var(--clr-main--900));
-  --svg-clr-inside: hsl(var(--clr-accent--700));
+  --svg-clr-inside: hsl(var(--clr-main--100));
 
   margin-inline-start: 3px;
   overflow: visible;

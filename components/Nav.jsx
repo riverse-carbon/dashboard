@@ -19,7 +19,7 @@ function Nav () {
 
   return (
     /* eslint-disable */
-    <header className={styles.header}>
+    <header className={styles.header + ' shadow-elevation-xl'}>
       <nav aria-label='main' className={styles.nav}>
         <ul role='list' className='list'>
           <li className={styles['logo-wrapper']}>

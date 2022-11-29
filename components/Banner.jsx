@@ -18,7 +18,7 @@ function Banner () {
 
   if (user)
     return (
-      <div className={`${styles.banner} banner`}>
+      <div className={`${styles.banner} banner shadow-elevation-xl`}>
         <p className={styles.greeting}>Welcome</p>
         {/* <div className={styles['email-photo-wrapper']}> */}
         <Link href='/projects'>

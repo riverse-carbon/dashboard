@@ -1,10 +1,8 @@
 .body {
+  --widget-card-bg: 200 100% 40%;
   padding: var(--padding-spacer);
 
   border-radius: var(--br);
-
-  background-color: hsl(var(--clr-main--900));
-  color: hsl(var(--clr-accent--900));
 
   font-size: var(--fs-400);
 }

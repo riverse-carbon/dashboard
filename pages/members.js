@@ -5,21 +5,20 @@ import Organization from '../components/Organization.widget'
 import BillingInformation from '../components/BillingInformation.widget'
 import OrganizationDocuments from '../components/OrganizationDocuments.widget'
 import pageStyles from '../styles/Pages.module.css'
-import useSWR from 'swr'
-import { AddNewUsersForm } from '../components/forms/forms'
+import useSWR, {mutate} from 'swr'
 import { useUser } from '@auth0/nextjs-auth0'
+import { AddNewUsersForm } from '../components/forms/forms'
 
 // TODO: parse
 
 const fetcher = url => fetch(url).then(res => res.json())
-const url = 'api/protected/get-organization'
 
-const getOrg = 'api/protected/get-organization'
+const getOrgURL = 'api/protected/get-organization'
 
 export default function Home () {
   const {user} = useUser()
   const {email} = user
-  const { data, error} = useSWR(getOrg, fetcher)
+  const { data, error} = useSWR(getOrgURL, fetcher)
   if (error) {
     return (<>
       <main className={`main-container ${pageStyles.members}`}>
@@ -42,11 +41,12 @@ export default function Home () {
       </Head>
       <main className={`main-container ${pageStyles.members}`}>
         {/* orgId, rolesList, styles */}
-        <AddNewUsersForm  />
         <div className={widgetStyles['widgets-wrapper']}>
           <WidgetWrapper columns={3} areaName='organization'>
             {data 
-            ? <Organization data={data.organization.organization} />
+            ? <Organization data={data.organization.organization}>
+                <AddNewUsersForm revalidate={() => mutate(getOrgURL)} />
+              </Organization>
             : <h2>Loading...</h2>
             }
           </WidgetWrapper>
