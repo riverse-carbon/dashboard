@@ -9,7 +9,7 @@ const fakeData = {
 const ContributionWidget = ({}) => {
   return (
     <>
-      <h3 className={styles.title}>Contributed in total</h3>
+      <h2 className={styles.title}>Contributed in total</h2>
       <div className={styles.body}>{fakeData.total} €</div>
     </>
   )

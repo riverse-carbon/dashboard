@@ -11,7 +11,7 @@ import PieChartWithFiltersWrapper from './PieChartWithFiltersWrapper'
 function Contribution ({ projects, sdgs }) {
   return (
     <div className={styles.container}>
-      <h3>Contribution summary</h3>
+      <h2>Contribution summary</h2>
       <div className={styles['charts-wrapper']}>
         <div className={styles['pie-chart']}>
           <PieChartWithFiltersWrapper data={projects} />

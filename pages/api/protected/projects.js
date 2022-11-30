@@ -13,7 +13,7 @@ export default async function getProjects (req, res) {
     // get records
     base('tblRCb5aZpcAw36Wa')
       .select({
-        view: 'Dashboard projects'
+        view: process.env.DB_VIEW
       })
       .eachPage(
         function page (records, fetchNextPage) {

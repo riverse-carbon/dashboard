@@ -24,9 +24,9 @@ const getCreditTypeDescription = creditName => {
     case 'Ex-ante':
       return 'before the event'
     case 'Ex-post':
-      return 'to customize'
+      return 'after the event'
     case 'Retired':
-      return 'before the event'
+      return 'already used'
   }
 }
 
@@ -52,15 +52,17 @@ const TotalCreditsWidget = ({}) => {
   }, 0)
   return (
     <>
-      <h3 className={styles.title}> Total credits purchased</h3>
+      <h2 className={styles.title}> Total credits purchased</h2>
       <div className={styles.body}>
         <p className={styles.total}>
           <span>{totalCredits}</span>
 
           <CarbonCreditsSVG />
         </p>
+        <CreditsDetailed data={fakeData.credits} />
+
         <div className={styles['credits-links-wrapper']}>
-          <Link href='#'>
+          <Link href='/projects'>
             <a className='button-style link-with-icon link-with-icon--centered'>
               <CardSVG />
               Buy credits
@@ -72,14 +74,13 @@ const TotalCreditsWidget = ({}) => {
               Transfer credits
             </a>
           </Link>
+          <Link href='#'>
+            <a className='button-style link-with-icon link-with-icon--centered'>
+              <StatsSVG />
+              Manage credits
+            </a>
+          </Link>
         </div>
-        <CreditsDetailed data={fakeData.credits} />
-        <Link href='#'>
-          <a className='button-style link-with-icon link-with-icon--centered'>
-            <StatsSVG />
-            Manage credits
-          </a>
-        </Link>
       </div>
     </>
   )

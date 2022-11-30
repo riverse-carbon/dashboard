@@ -1,0 +1,103 @@
+/* 
+.toggle-button {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+} */
+/* 
+.toggle-button svg {
+  pointer-events: none;
+}
+
+.toggle-button::after {
+  content: '';
+  width: 0.9em;
+  height: 0.9em;
+  background-color: hsl(var(--clr-main--700));
+  background-color: currentColor;
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  clip-path: polygon(12% 25%, 50% 63%, 88% 25%, 100% 25%, 50% 75%, 0 25%);
+  transition: transform var(--transition-duration--quick) ease;
+}
+
+.toggle-button[aria-expanded='false']::after {
+  transform: rotate(90deg);
+}
+
+.toggle-button[aria-expanded='false']+* {
+  display: none;
+}
+
+.toggle-button[aria-expanded='true']+* {
+  display: grid;
+} */
+
+.filter-fieldset {
+  padding-block: var(--padding-spacer-xs);
+}
+
+.filter-fieldset>legend {
+  font-size: var(--fs-400);
+}
+
+
+/* TODO: DELETE? */
+/* .checkbox-wrapper>input:checked+label {
+  --label-clr: var(--clr-main--300);
+  --label-bg: var(--clr-main--700);
+} */
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-wrapper>label {
+  cursor: pointer;
+  padding: .2em;
+}
+
+.checkbox-wrapper>input[type='checkbox'] {
+  appearance: none;
+  height: 1.5em;
+  width: 1.5em;
+  display: inline-block;
+  vertical-align: text-bottom;
+  position: relative;
+  border-radius: 10%;
+  border-width: .125em;
+}
+
+.checkbox-wrapper>input[type='checkbox']:disabled {
+  opacity: .4;
+}
+
+.checkbox-wrapper>input[type='checkbox']::before {
+  content: '';
+  position: absolute;
+  margin: auto;
+  inset: 0;
+  overflow: hidden;
+}
+
+.checkbox-wrapper>input[type='checkbox']:checked::before {
+  border-right: 3px solid hsl(var(--clr-main--900));
+  border-bottom: 3px solid hsl(var(--clr-main--900));
+  height: 50%;
+  width: 30%;
+  transform: rotate(45deg) translateY(-20%) translateX(-10%);
+}
+
+.fieldset--range .labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-400);
+  font-weight: var(--fw-normal);
+}
+
+.fieldset--range .labels>span {
+  display: block;
+}
+
+.fieldset--range .slider {
+  color: hsl(var(--clr-main--900));
+}

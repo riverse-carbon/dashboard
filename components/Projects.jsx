@@ -3,7 +3,7 @@ import ProjectNode from './ProjectNode'
 import useSWR from 'swr'
 import { useState, useEffect } from 'react'
 
-// TODO: maxRecords?
+// TODO: maxRecords 100 is enough?
 
 function Projects ({ limit = 100 }) {
   const fetcher = url => fetch(url).then(res => res.json())
@@ -25,16 +25,16 @@ function Projects ({ limit = 100 }) {
   if (error) return 'An error has occurred. Contact us if the problem persists'
   if (!data)
     return (
-      <h3>
+      <h2>
         Contributed projects
         <br />
         Loading...
-      </h3>
+      </h2>
     )
 
   return (
     <>
-      <h3>Contributed projects</h3>
+      <h2>Contributed projects</h2>
       <div className={styles['list-wrapper']}>
         <ul role='list' className='list'>
           {projects}

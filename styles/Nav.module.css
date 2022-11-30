@@ -7,8 +7,7 @@
 
   font-size: var(--fs-400);
 
-  color: hsl(var(--clr-main--900));
-  background-color: hsl(var(--clr-accent--700));
+  background-color: hsl(var(--clr-main--100));
 }
 
 .nav {
@@ -22,22 +21,25 @@
   padding-block-end: var(--padding-spacer);
 }
 
-.nav > ul {
+.nav>ul {
   height: 100%;
-
-  display: grid;
-  grid-auto-flow: row;
-  grid-template-rows: 5rem repeat(3, max-content);
   display: flex;
   flex-direction: column;
 }
 
 li.active {
-  color: hsl(var(--clr-accent--700));
-  background-color: hsl(var(--clr-main--400));
+  background-color: hsl(var(--clr-main--200));
 }
 
-.nav > ul > li:not(:first-of-type) + li:not(.contact-button-wrapper) {
+.nav-list-nested li {
+  transition: background-color var(--transition-duration) linear;
+}
+
+.nav-list-nested li:hover {
+  background-color: hsl(var(--clr-main--300));
+}
+
+.nav>ul>li:not(:first-of-type)+li:not(.contact-button-wrapper) {
   margin-block-start: var(--block-spacer);
 }
 

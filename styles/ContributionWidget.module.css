@@ -1,6 +1,11 @@
+.title {
+  --widget-title: var(--fs-300);
+}
+
 .body {
-  padding-block: var(--padding-spacer);
-  font-size: var(--fs-700);
+  margin-block: var(--padding-spacer-l);
+  font-size: var(--fs-600);
+  font-size: 44px;
   text-align: center;
   font-style: italic;
 }
