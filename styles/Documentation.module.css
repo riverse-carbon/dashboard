@@ -1,9 +1,9 @@
 .list-wrapper ul {
   display: grid;
-  grid-auto-flow: column;
+  /* grid-auto-flow: column; */
   /* grid-template-columns: 1fr 1fr; */
-  gap: var(--gap-xl);
-  overflow-x: auto;
+  gap: var(--gap);
+  /* overflow-x: auto; */
 }
 
 
@@ -14,9 +14,9 @@
   display: flex;
   flex-direction: column;
 
-  display: grid;
+  /* display: grid;
   grid-template-rows: 2fr 3fr 2fr 1fr;
-  grid-template-columns: 15rem;
+  grid-template-columns: 15rem; */
 
   gap: var(--gap-xs);
   gap: 6px;

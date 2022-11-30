@@ -133,7 +133,6 @@ const MultiselectFilter = ({
   const buttons = values.map(value => (
     <div key={value} className={styles['checkbox-wrapper']}>
       <input
-        className='visually-hidden'
         type='checkbox'
         name={name}
         value={value}
