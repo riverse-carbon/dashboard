@@ -6,11 +6,16 @@
 }
 
 .body>* {
-  background-color: hsl(var(--clr-main--200));
 
   padding: var(--padding-spacer);
 
   border-radius: var(--br);
+}
+
+.about {
+  background-color: hsl(var(--clr-main--200));
+  text-align: center;
+
 }
 
 .about>.name {
@@ -20,6 +25,7 @@
 .about .stats {
   width: max-content;
 
+  margin-inline: auto;
   margin-block-start: var(--block-spacer-xs);
   padding-block: var(--button-padding--block);
   padding-inline: 1ch;

@@ -1,15 +1,10 @@
-.filters-wrapper {
-  font-size: var(--fs-400);
-  padding-block-start: 0;
-}
-
+/* 
 .toggle-button {
   display: flex;
   align-items: center;
   gap: 0.3em;
-  /* margin-inline-start: auto; */
-}
-
+} */
+/* 
 .toggle-button svg {
   pointer-events: none;
 }
@@ -35,72 +30,25 @@
 
 .toggle-button[aria-expanded='true']+* {
   display: grid;
-}
-
-.filters-body {
-  grid-template-columns: 1fr 1fr;
-  /* gap: var(--gap-xs); */
-
-  padding: var(--padding-spacer);
-
-  margin-block: var(--block-spacer);
-
-  border-radius: var(--br);
-}
+} */
 
 .filter-fieldset {
   padding-block: var(--padding-spacer-xs);
 }
 
 .filter-fieldset>legend {
-  font-weight: var(--fw-bold);
+  font-size: var(--fs-400);
 }
 
-.values-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: var(--gap-xs);
-
-  font-size: var(--fs-300);
-  font-weight: var(--fw-bold);
-}
 
 /* TODO: DELETE? */
-.checkbox-wrapper>input:checked+label {
+/* .checkbox-wrapper>input:checked+label {
   --label-clr: var(--clr-main--300);
   --label-bg: var(--clr-main--700);
-}
+} */
 
 .checkbox-wrapper>label {
-  display: inline-block;
   cursor: pointer;
-
-  padding: var(--button-padding--block) var(--button-padding--inline);
-  border-radius: var(--br-xs);
-
-  color: hsl(var(--label-clr));
-  background-color: hsl(var(--label-bg));
-}
-
-/* with range inputs */
-
-.filters-body>div:first-child {
-  padding-inline-end: var(--padding-spacer);
-  border-inline-end: 1px solid hsl(var(--clr-main--900));
-}
-
-.filters-body>div:last-child {
-  padding-inline-start: var(--padding-spacer);
-  border-inline-start: 1px solid hsl(var(--clr-main--900));
-}
-
-.fieldset--range .values-wrapper {
-  gap: var(--gap-xs);
-}
-
-.fieldset--range .values-wrapper>* {
-  width: 100%;
 }
 
 .fieldset--range .labels {
@@ -116,5 +64,4 @@
 
 .fieldset--range .slider {
   color: hsl(var(--clr-main--900));
-  margin-inline: 1ch;
 }

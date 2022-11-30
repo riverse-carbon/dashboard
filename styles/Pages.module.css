@@ -1,10 +1,12 @@
 .dashboard {
-  --grid-areas: 'projects projects contribution docs'
-    'projects projects credits docs';
+  --grid-areas: 'projects  projects projects contribution'
+    'projects projects projects credits'
+    'docs docs docs .'
+  ;
 }
 
 .projects {
-  --grid-areas: 'projects projects projects credits';
+  --grid-areas: 'projects projects projects filters';
 
   --project-fs-300: var(--fs-400);
 
@@ -12,7 +14,6 @@
 
   --contribution-total-direction: row;
 
-  /* grid-template-areas: 'projects projects projects credits' !important; */
 }
 
 .project-page {

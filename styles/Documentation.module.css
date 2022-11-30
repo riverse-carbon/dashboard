@@ -1,14 +1,23 @@
 .list-wrapper ul {
   display: grid;
+  grid-auto-flow: column;
   /* grid-template-columns: 1fr 1fr; */
-  gap: var(--gap);
+  gap: var(--gap-xl);
+  overflow-x: auto;
 }
+
+
 
 .post {
   /* min-height: 12rem; */
 
   display: flex;
   flex-direction: column;
+
+  display: grid;
+  grid-template-rows: 2fr 3fr 2fr 1fr;
+  grid-template-columns: 15rem;
+
   gap: var(--gap-xs);
   gap: 6px;
 }
@@ -19,7 +28,7 @@
   font-size: var(--fs-400);
 }
 
-.post > img {
+.post>img {
   width: 100%;
   aspect-ratio: 5 / 2;
   object-fit: cover;

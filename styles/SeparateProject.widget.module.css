@@ -42,8 +42,6 @@
 .title {
   background-color: transparent;
   color: hsl(var(--clr-main--900));
-
-  padding-block: 0;
 }
 
 .slider {

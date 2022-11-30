@@ -18,16 +18,16 @@ function Page () {
       </Head>
       <main className={`main-container ${pageStyles.dashboard}`}>
         <div className={widgetStyles['widgets-wrapper']}>
-          <WidgetWrapper columns={2} rows={2} areaName='projects'>
+          <WidgetWrapper areaName='projects'>
             <Projects limit={4} />
           </WidgetWrapper>
-          <WidgetWrapper columns={1} rows={1} areaName='contribution'>
+          <WidgetWrapper areaName='contribution'>
             <ContributionWidget />
           </WidgetWrapper>
-          <WidgetWrapper columns={1} rows={1} areaName='credits'>
+          <WidgetWrapper areaName='credits'>
             <TotalCreditsWidget />
           </WidgetWrapper>
-          <WidgetWrapper columns={2} rows={2} areaName='docs'>
+          <WidgetWrapper areaName='docs'>
             <Documentation />
           </WidgetWrapper>
         </div>{' '}

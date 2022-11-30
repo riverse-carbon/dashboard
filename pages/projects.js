@@ -2,19 +2,21 @@ import Head from 'next/head'
 
 import getFilters from '../components/db/getFilters'
 
-import { createContext } from 'react'
+import { useState } from 'react'
 import widgetStyles from '../styles/WidgetStyles.module.css'
 import ProjectsWithFilters from '../components/ProjectsWithFilters'
 import WidgetWrapper from '../components/WidgetWrapper'
-import TotalCreditsWidget from '../components/TotalCredits.widget'
 import pageStyles from '../styles/Pages.module.css'
+import Filters from '../components/Filters.widget'
 
 // TODO:
 // 1. get filters!!!
 
-export const FiltersData = createContext([])
 
 export default function Home ({ filtersData }) {
+  const [appliedFilters, setAppliedFilters] = useState({})
+
+
   return (
     <>
       <Head>
@@ -24,13 +26,11 @@ export default function Home ({ filtersData }) {
       </Head>
       <main className={`main-container ${pageStyles.projects}`}>
         <div className={widgetStyles['widgets-wrapper']}>
-          <FiltersData.Provider value={filtersData}>
             <WidgetWrapper columns={3} areaName='projects'>
-              <ProjectsWithFilters />
+              <ProjectsWithFilters appliedFilters={appliedFilters} />
             </WidgetWrapper>
-          </FiltersData.Provider>
-          <WidgetWrapper columns={1} areaName='credits' position='sticky'>
-            <TotalCreditsWidget />
+          <WidgetWrapper columns={1} areaName='filters'>
+            <Filters data={filtersData} setFilters={setAppliedFilters} appliedFilters={appliedFilters} />
           </WidgetWrapper>
         </div>
       </main>
@@ -41,58 +41,6 @@ export default function Home ({ filtersData }) {
 export async function getStaticProps () {
   const filtersArray = ['sectors', 'mechanism', 'country']
 
-  // const dataSets = {}
-  // filtersArray.forEach(filter => {
-  //   dataSets[filter] = new Set()
-  // })
-
-  // const getFilters = async () => {
-  //   // Connect to db
-  //   const base = new Airtable({ apiKey: process.env.API_KEY }).base(
-  //     'apptpGktGToVH41dj'
-  //   )
-
-  //   // get records
-  //   await base('tblRCb5aZpcAw36Wa')
-  //     .select({
-  //       view: 'Dashboard projects'
-  //     })
-  //     .eachPage(
-  //       function page (records, fetchNextPage) {
-  //         records.forEach(record => {
-  //           const { fields } = record
-  //           filtersArray.forEach(filter => {
-  //             var value = fields[filter]
-  //             if (Array.isArray(value)) {
-  //               value.forEach(val => {
-  //                 dataSets[filter].add(val)
-  //               })
-  //             } else {
-  //               dataSets[filter].add(value)
-  //             }
-  //           })
-  //         })
-  //         fetchNextPage()
-  //       }
-  //     )
-  //     .then(res => console.log('done'))
-  //     .catch(err => {
-  //       throw err
-  //     })
-
-  //   const filtersData = Object.entries(dataSets).map(entry => {
-  //     const name = entry[0]
-  //     const values = []
-  //     entry[1].forEach(val => {
-  //       values.push(val)
-  //     })
-  //     const label = name.charAt(0).toUpperCase() + name.slice(1)
-
-  //     return { name, values, label }
-  //   })
-  //   return filtersData
-  // }
-  // apiKey, view, filters
   const data = await getFilters(
     process.env.API_KEY,
     process.env.DB_VIEW,
@@ -103,7 +51,7 @@ export async function getStaticProps () {
     props: {
       filtersData: data
     },
-    revalidate: 86000
+    revalidate: 860
   }
 
   // [

@@ -2,19 +2,17 @@ import styles from '../styles/Projects.module.css'
 import ProjectNode from './ProjectWithFiltersNode'
 import useSWR from 'swr'
 import { useState, useEffect, useMemo } from 'react'
-import Filters from './Filters'
 
 // TODO:
 // 1. maxRecords 100 is enough?
 // 2. check if strict comparison is better ?
 
-function ProjectsWithFilters ({ limit = 100 }) {
+function ProjectsWithFilters ({ limit = 100, appliedFilters }) {
   const fetcher = url => fetch(url).then(res => res.json())
   const API = '/api/protected/projects'
   const { data, error } = useSWR(API, fetcher)
   const [projects, setProjects] = useState([])
   const [projectsFiltered, setProjectsFiltered] = useState([])
-  const [appliedFilters, setAppliedFilters] = useState({})
 
   useMemo(() => {
     if (data && !data.error) {
@@ -55,8 +53,7 @@ function ProjectsWithFilters ({ limit = 100 }) {
 
   return (
     <>
-      <h2 className='visually-hidden'>All projects</h2>
-      <Filters setFilters={setAppliedFilters} appliedFilters={appliedFilters} />
+      <h2 >Contribution projects</h2>
       <div className={styles['list-wrapper']}>
         <ul role='list' className='list'>
           {projectsFiltered.length !== 0 ? (

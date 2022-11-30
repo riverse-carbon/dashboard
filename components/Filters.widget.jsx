@@ -1,9 +1,5 @@
-import { HtmlContext } from 'next/dist/shared/lib/html-context'
-import { useContext, useId, useState, useEffect } from 'react'
-import { FiltersData } from '../pages/projects'
+import { useId, useState, useEffect } from 'react'
 import styles from '../styles/Filters.module.css'
-import FilterSVG from '../public/icons/FilterSVG'
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 
@@ -21,21 +17,21 @@ const addedFilters = [
     step: 1
   },
   {
-    style: 'range',
+    style: 'multiselect',
     name: 'year',
     label: 'Vintage year',
-    values: [2021, 2025],
-    step: 1
+    values: [2021, 2022, 2023, 2024, 2025],
   }
 ]
 
 
-const RangeSlider = ({ filterObject }) => {
+const RangeSlider = ({ filterObject, setFilterValues,
+  appliedFilters = [] }) => {
   const { label, name, values } = filterObject
   const valuesSign = filterObject.valuesSign || ''
 
   const labelId = useId()
-  const [value, setValue] = React.useState([values[0], values[1]]);
+  const [value, setValue] = useState([values[0], values[1]]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -44,8 +40,8 @@ const RangeSlider = ({ filterObject }) => {
   return (
     <Box component='fieldset'
     className={`${styles['filter-fieldset']} ${styles['fieldset--range']}`}
-    sx={{ width: 300 }}>
-      <legend id={labelId}>{label}:</legend>
+    sx={{ width: '100%' }}>
+      <legend id={labelId} className='text-bold'>{label}:</legend>
       <div className={styles['values-wrapper']}>
       <div className={styles.labels}>
           <span>
@@ -149,25 +145,25 @@ const MultiselectFilter = ({
   ))
   return (
     <fieldset tabIndex={0} name={name} className={styles['filter-fieldset']}>
-      <legend>{label}:</legend>
+      <legend className='text-bold'>{label}:</legend>
       <div className={styles['values-wrapper']}>{buttons}</div>
     </fieldset>
   )
 }
 
-const Filters = ({ setFilters, appliedFilters }) => {
-  const filters = useContext(FiltersData)
+const Filters = ({ setFilters, appliedFilters, data }) => {
+  const filters = data
 
   const [filtersComponents, setFiltersComponents] = useState([])
 
-  const handleFiltersToggle = e => {
-    const expanded = e.target.getAttribute('aria-expanded')
-    if (expanded === 'true') {
-      e.target.setAttribute('aria-expanded', 'false')
-    } else {
-      e.target.setAttribute('aria-expanded', 'true')
-    }
-  }
+  // const handleFiltersToggle = e => {
+  //   const expanded = e.target.getAttribute('aria-expanded')
+  //   if (expanded === 'true') {
+  //     e.target.setAttribute('aria-expanded', 'false')
+  //   } else {
+  //     e.target.setAttribute('aria-expanded', 'true')
+  //   }
+  // }
 
   useEffect(() => {
     const handleFilterChange = (filter, values) => {
@@ -184,7 +180,20 @@ const Filters = ({ setFilters, appliedFilters }) => {
           />
         )
       })
-      setFiltersComponents(filtersComponentsArray)
+      const fakeFilters = addedFilters.map(filter => {
+        return (filter.style === 'range' 
+        ? <RangeSlider key={filter.name} filterObject={filter} appliedFilters={appliedFilters[filter.name]}
+        setFilterValues={handleFilterChange} />
+        : <MultiselectFilter
+        key={filter.name}
+        filterObject={filter}
+        appliedFilters={appliedFilters[filter.name]}
+        setFilterValues={handleFilterChange}
+      />
+        )
+      }
+        )
+      setFiltersComponents([...fakeFilters, ...filtersComponentsArray])
     }
   }, [filters, appliedFilters, setFilters])
 
@@ -192,25 +201,12 @@ const Filters = ({ setFilters, appliedFilters }) => {
     return <></>
   }
   return (
-    <div className={styles['filters-wrapper']}>
-      <button
-        className={styles['toggle-button']}
-        onClick={handleFiltersToggle}
-        aria-expanded={false}
-      >
-        <FilterSVG />
-        Project Filters
-      </button>
-      <div className={styles['filters-body']}>
-        <div className='flow-spacer'>
-          {addedFilters.map(filter => (
-            <RangeSlider key={filter.name} filterObject={filter} />
-            // <RangeFilter key={filter.name} filterObject={filter} />
-          ))}
-        </div>
-        <div className='flow-spacer'>{filtersComponents}</div>
+    <>
+    <h2 className={styles.title}>Filters</h2>
+      <div className={`${styles.body} flow-spacer`}>
+        {filtersComponents}
       </div>
-    </div>
+    </>
   )
 }
 
