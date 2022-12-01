@@ -1,7 +1,7 @@
 import widgetStyles from '../styles/WidgetStyles.module.css'
 
 const WidgetWrapper = ({
-  className='',
+  className = '',
   children,
   areaName = '',
   position = '',
