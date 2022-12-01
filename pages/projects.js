@@ -12,10 +12,8 @@ import Filters from '../components/Filters.widget'
 // TODO:
 // 1. get filters!!!
 
-
 export default function Home ({ filtersData }) {
   const [appliedFilters, setAppliedFilters] = useState({})
-
 
   return (
     <>
@@ -26,11 +24,15 @@ export default function Home ({ filtersData }) {
       </Head>
       <main className={`main-container ${pageStyles.projects}`}>
         <div className={widgetStyles['widgets-wrapper']}>
-            <WidgetWrapper columns={3} areaName='projects'>
-              <ProjectsWithFilters appliedFilters={appliedFilters} />
-            </WidgetWrapper>
+          <WidgetWrapper columns={3} areaName='projects'>
+            <ProjectsWithFilters appliedFilters={appliedFilters} />
+          </WidgetWrapper>
           <WidgetWrapper columns={1} areaName='filters'>
-            <Filters data={filtersData} setFilters={setAppliedFilters} appliedFilters={appliedFilters} />
+            <Filters
+              data={filtersData}
+              setFilters={setAppliedFilters}
+              appliedFilters={appliedFilters}
+            />
           </WidgetWrapper>
         </div>
       </main>
@@ -47,9 +49,17 @@ export async function getStaticProps () {
     filtersArray
   )
 
+  const staticFilters = [
+    {
+      name: 'years',
+      label: 'Vintage year',
+      values: [2021, 2022, 2023, 2024, 2025, 2026]
+    }
+  ]
+
   return {
     props: {
-      filtersData: data
+      filtersData: [...data, ...staticFilters]
     },
     revalidate: 860
   }

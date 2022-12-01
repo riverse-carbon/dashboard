@@ -6,16 +6,13 @@ import styles from '../styles/ProjectNode.module.css'
 // TODO:
 // 1. replace fakeData with a real one
 
-const fakeData = {
-  price: 50
-}
 
 function ProjectNode ({ data }) {
-  const { sectors, tagline, uid, name } = data
+  const { sectors, tagline, uid, name, priceRange } = data
   const ccAvailable = (+data['CCC - Total'] || 0) + (+data['RCC - Total'] || 0)
   // img or logo if img doesn't exist (file type is not an image)
   const img = data?.cover.length !== 0 ? data.cover[0].url : data.logo[0].url
-  const { price } = fakeData
+  const price = (priceRange[0] === priceRange[1] ? `${priceRange[0]} €` : `${priceRange[0]} - ${priceRange[1]} €` )
 
   return (
     <Link href={`/projects/${uid}`}>
@@ -52,7 +49,7 @@ function ProjectNode ({ data }) {
               <span>Price</span>
               <span
                 className={styles['value'] + ' border-radius--small'}
-              >{`${price} €`}</span>
+              >{`${price}`}</span>
             </p>
           </div>
         </div>

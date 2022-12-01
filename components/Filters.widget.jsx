@@ -1,49 +1,45 @@
 import { useId, useState, useEffect } from 'react'
 import styles from '../styles/Filters.module.css'
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
-
+import Box from '@mui/material/Box'
+import Slider from '@mui/material/Slider'
 
 // TODO:
-// 1. Check a11y and add aria-expanded
+// 1. Check a11y
 
 const addedFilters = [
   {
     style: 'range',
-    name: 'price',
+    name: 'priceRange',
     label: 'Price',
     values: [30, 120],
     valuesSign: '€',
     step: 1
-  },
-  {
-    style: 'multiselect',
-    name: 'year',
-    label: 'Vintage year',
-    values: [2021, 2022, 2023, 2024, 2025],
   }
 ]
 
-
-const RangeSlider = ({ filterObject, setFilterValues,
-  appliedFilters = [] }) => {
+const RangeSlider = ({ filterObject, setFilterValues }) => {
   const { label, name, values } = filterObject
   const valuesSign = filterObject.valuesSign || ''
 
   const labelId = useId()
-  const [value, setValue] = useState([values[0], values[1]]);
+  const [value, setValue] = useState([values[0], values[1]])
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+    setFilterValues(name, newValue)
+    setValue(newValue)
+  }
 
   return (
-    <Box component='fieldset'
-    className={`${styles['filter-fieldset']} ${styles['fieldset--range']}`}
-    sx={{ width: '100%' }}>
-      <legend id={labelId} className='text-bold'>{label}:</legend>
+    <Box
+      component='fieldset'
+      tabIndex={0}
+      className={`${styles['filter-fieldset']} ${styles['fieldset--range']}`}
+    >
+      <legend id={labelId} className='text-bold'>
+        {label}:
+      </legend>
       <div className={styles['values-wrapper']}>
-      <div className={styles.labels}>
+        <div className={styles.labels}>
           <span>
             {values[0]}
             {valuesSign}
@@ -53,19 +49,19 @@ const RangeSlider = ({ filterObject, setFilterValues,
             {valuesSign}
           </span>
         </div>
-      <Slider
-      className={styles.slider}
-        aria-labelledby={labelId}
-        min={values[0]}
-        max={values[1]}
-        valueLabelDisplay='auto'
-        value={value}
-        onChange={handleChange}
-        getAriaValueText={(value) => value}
-      />
+        <Slider
+          className={styles.slider}
+          aria-labelledby={labelId}
+          min={values[0]}
+          max={values[1]}
+          valueLabelDisplay='auto'
+          value={value}
+          onChange={handleChange}
+          getAriaValueText={value => value}
+        />
       </div>
     </Box>
-  );
+  )
 }
 
 // const RangeFilter = ({ filterObject }) => {
@@ -163,7 +159,6 @@ const Filters = ({ setFilters, appliedFilters, data }) => {
   //     e.target.setAttribute('aria-expanded', 'true')
   //   }
   // }
-
   useEffect(() => {
     const handleFilterChange = (filter, values) => {
       setFilters({ ...appliedFilters, [filter]: values })
@@ -180,18 +175,21 @@ const Filters = ({ setFilters, appliedFilters, data }) => {
         )
       })
       const fakeFilters = addedFilters.map(filter => {
-        return (filter.style === 'range' 
-        ? <RangeSlider key={filter.name} filterObject={filter} appliedFilters={appliedFilters[filter.name]}
-        setFilterValues={handleFilterChange} />
-        : <MultiselectFilter
-        key={filter.name}
-        filterObject={filter}
-        appliedFilters={appliedFilters[filter.name]}
-        setFilterValues={handleFilterChange}
-      />
+        return filter.style === 'range' ? (
+          <RangeSlider
+            key={filter.name}
+            filterObject={filter}
+            setFilterValues={handleFilterChange}
+          />
+        ) : (
+          <MultiselectFilter
+            key={filter.name}
+            filterObject={filter}
+            appliedFilters={appliedFilters[filter.name]}
+            setFilterValues={handleFilterChange}
+          />
         )
-      }
-        )
+      })
       setFiltersComponents([...fakeFilters, ...filtersComponentsArray])
     }
   }, [filters, appliedFilters, setFilters])
@@ -201,10 +199,8 @@ const Filters = ({ setFilters, appliedFilters, data }) => {
   }
   return (
     <>
-    <h2 className={styles.title}>Filters</h2>
-      <div className={`${styles.body} flow-spacer`}>
-        {filtersComponents}
-      </div>
+      <h2 className={styles.title}>Filters</h2>
+      <div className={`${styles.body} flow-spacer`}>{filtersComponents}</div>
     </>
   )
 }

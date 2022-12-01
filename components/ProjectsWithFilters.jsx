@@ -30,11 +30,20 @@ function ProjectsWithFilters ({ limit = 100, appliedFilters }) {
         if (appliedFilters[key].length === 0) {
           return true
         }
+        if (key === 'priceRange') {
+          const filterMin = +appliedFilters[key][0]
+          const filterMax = +appliedFilters[key][1]
+          const projectMin = +data[key][0]
+          const projectMax = +data[key][1]
+
+          const inRange = projectMin <= filterMax && projectMax >= filterMin
+          return inRange
+        }
         return appliedFilters[key].some(value => {
           if (Array.isArray(data[key])) {
             return data[key].includes(value)
           }
-          return data[key] === value
+          return data[key] == value
         })
       })
     })
@@ -53,7 +62,7 @@ function ProjectsWithFilters ({ limit = 100, appliedFilters }) {
 
   return (
     <>
-      <h2 >Contribution projects</h2>
+      <h2>Contribution projects</h2>
       <div className={styles['list-wrapper']}>
         <ul role='list' className='list'>
           {projectsFiltered.length !== 0 ? (
