@@ -117,7 +117,6 @@ const SeparateProject = ({ project }) => {
           </ul>
         </section>
         <section className={styles.cta}>
-          <h2>Buy carbon credits</h2>
           <button
             onClick={handleBuyCredits}
             className={`link-with-icon link-with-icon--centered`}
