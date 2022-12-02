@@ -51,7 +51,7 @@ export async function getStaticPaths () {
     params: { uid: project.fields.uid }
   }))
   return {
-    paths,
+    paths: [],
     fallback: true
   }
 }
@@ -99,6 +99,6 @@ export async function getStaticProps ({ params }) {
     props: {
       project
     },
-    revalidate: 600
+    revalidate: 10
   }
 }
