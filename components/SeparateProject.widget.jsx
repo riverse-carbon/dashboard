@@ -1,6 +1,6 @@
 import Image from 'next/future/image'
 import Link from 'next/link'
-import CardSVG from '../public/icons/CardSVG'
+import CardSVG from '../public/icons/CartSVG'
 import styles from '../styles/SeparateProject.widget.module.css'
 import { handleModalOpen, ModalId } from './ModalDialog'
 import { useContext } from 'react'
@@ -12,7 +12,7 @@ import { useContext } from 'react'
 // 7. add tagline instead of name
 // 9. rich text (markdown) processing
 
-const SeparateProject = ({ project }) => {
+const SeparateProject = ({ project, id }) => {
   const modalId = useContext(ModalId)
   const cover = project.cover[0]
   const { images } = project
@@ -117,6 +117,7 @@ const SeparateProject = ({ project }) => {
           </ul>
         </section>
         <section className={styles.cta}>
+          <h2 className='visually-hidden'>Time to take actions</h2>
           <button
             onClick={handleBuyCredits}
             className={`link-with-icon link-with-icon--centered`}

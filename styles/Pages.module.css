@@ -25,3 +25,7 @@
   --grid-areas: 'organization organization organization newUser'
     'billing billing billing newUser';
 }
+
+.cart {
+  --grid-areas: 'cart cart cart .';
+}

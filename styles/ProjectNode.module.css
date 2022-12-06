@@ -97,7 +97,7 @@
 
 .contribution-total-wrapper {
   display: flex;
-  flex-direction: var(--contribution-total-direction, column);
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: var(--gap-xs);

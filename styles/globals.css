@@ -87,11 +87,11 @@
   --transition-duration--long: 1ms;
   --transition-delay: 1ms;
 
-  --button-padding--block: 0.25em;
-  --button-padding--inline: 1.25em;
+  --button-padding--block: 0.5em;
+  --button-padding--inline: 1em;
 
-  --button-padding--block: 0.25em;
-  --button-padding--inline: 1.25em;
+  --button-padding--block: 0.5em;
+  --button-padding--inline: 1em;
 
   --br: 12px;
   --br-xs: 8px;

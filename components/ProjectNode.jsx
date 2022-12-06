@@ -41,13 +41,15 @@ function ProjectNode ({ data }) {
           <div className={styles['name-wrapper']}>
             {/* <h4>{name}</h4> */}
             <h4 className={styles['tagline']}>{tagline}</h4>
-            <p className={styles['sectors'] + ' text-bold'}>Sectors: {sectors.join(', ')}</p>
+            <p className={styles['sectors'] + ' text-bold'}>
+              Sectors: {sectors.join(', ')}
+            </p>
           </div>
           <div className={styles['contribution-total-wrapper']}>
             <p
               className={`${styles['contribution']} flex flex-column flex-block-center`}
             >
-              <span>CO2 Contribution</span>
+              <span>Carbon credits</span>
               <span
                 className={styles['value'] + ' border-radius--small'}
               >{`${contribution} tCO2`}</span>
@@ -55,7 +57,7 @@ function ProjectNode ({ data }) {
             <p
               className={`${styles['total']} flex flex-column flex-block-center`}
             >
-              <span>Total</span>
+              <span>Value</span>
               <span
                 className={styles['value'] + ' border-radius--small'}
               >{`${total} €`}</span>

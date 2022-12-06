@@ -1,4 +1,5 @@
 import Airtable from 'airtable'
+import { getYearsCreditsPricesFields } from '../../../components/db/normalizeProjectData'
 
 // TODO: no maxRecords!!
 
@@ -20,39 +21,50 @@ export default async function getProjects (req, res) {
           // populate data array
           records.forEach(record => {
             const { id, fields } = record
-            const priceRange = ['50', '50']
-            if (fields['year-credits-price']) {
-              fields.pricesPerYear = []
-              fields.creditsPerYear = []
-              fields.years = []
-              fields['year-credits-price'].forEach(data => {
-                const yearCreditsPrice = data.split('|')
-                const { 0: year, 1: credits, 2: price } = yearCreditsPrice
-                if (price < priceRange[0]) {
-                  priceRange[0] = price
-                }
-                if (price > priceRange[1]) {
-                  priceRange[1] = price
-                }
-                fields.pricesPerYear.push(price)
-                fields.creditsPerYear.push(credits)
-                fields.years.push(year)
-              })
-              // const creditsPerYear = fields['year-credits-price'].map(data => {
-              //   const yearCreditsPrice = data.split('|')
-              //   const { 0:year, 1:credits, 2:price} = yearCreditsPrice
-              //       if (price < priceRange[0]) {
-              //         priceRange[0] = price
-              //   }
-              //   if (price > priceRange[1]) {
-              //     priceRange[1] = price
-              //   }
-              //   return {year, credits, price}
-              // }
-              // )
-              // fields.creditsPerYear = creditsPerYear
-            }
-            fields.priceRange = priceRange
+            const yearsCreditsPricesFields = getYearsCreditsPricesFields(
+              fields['year-credits-price']
+            )
+            Object.entries(yearsCreditsPricesFields).forEach(field => {
+              fields[field[0]] = field[1]
+            })
+            // const priceRange = [50, 50]
+            // if (fields['year-credits-price']) {
+            //   fields.pricesPerYear = []
+            //   fields.creditsPerYear = []
+            //   fields.years = []
+            //   fields['year-credits-price'].forEach(data => {
+            //     const yearCreditsPrice = data.split('|')
+
+            //     const year = yearCreditsPrice[0]
+            //     const credits = +yearCreditsPrice[1]
+            //     const price = +yearCreditsPrice[2]
+
+            //     if (price < priceRange[0]) {
+            //       priceRange[0] = price
+            //     }
+            //     if (price > priceRange[1]) {
+            //       priceRange[1] = price
+            //     }
+            //     fields.pricesPerYear.push(price)
+            //     fields.creditsPerYear.push(credits)
+            //     fields.years.push(year)
+            //   })
+
+            // const creditsPerYear = fields['year-credits-price'].map(data => {
+            //   const yearCreditsPrice = data.split('|')
+            //   const { 0:year, 1:credits, 2:price} = yearCreditsPrice
+            //       if (price < priceRange[0]) {
+            //         priceRange[0] = price
+            //   }
+            //   if (price > priceRange[1]) {
+            //     priceRange[1] = price
+            //   }
+            //   return {year, credits, price}
+            // }
+            // )
+            // fields.creditsPerYear = creditsPerYear
+            // }
+            // fields.priceRange = priceRange
             data.push({ id, fields })
           })
           fetchNextPage()

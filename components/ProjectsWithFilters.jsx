@@ -62,7 +62,7 @@ function ProjectsWithFilters ({ limit = 100, appliedFilters }) {
 
   return (
     <>
-      <h2>Contribution projects</h2>
+      <h2>Available carbon credits</h2>
       <div className={styles['list-wrapper']}>
         <ul role='list' className='list'>
           {projectsFiltered.length !== 0 ? (

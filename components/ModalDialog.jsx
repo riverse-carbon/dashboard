@@ -1,22 +1,30 @@
-import { useRef, createContext } from 'react'
+import { useRef, createContext, useContext } from 'react'
 
 export const ModalId = createContext('')
 
-export const DialogCallback = createContext({ dialog: null, dialogCallbackOnClose: () => {}})
+export const DialogCallback = createContext({
+  dialog: null,
+  dialogCallbackOnClose: () => {}
+})
 
 export const handleModalOpen = modalId => {
   const modal = document.querySelector(`#${modalId}`)
   modal.showModal()
 }
 
+export const useModal = () => {
+  return useContext(DialogCallback)
+}
+
 const ModalDialog = ({ modalId, children }) => {
   const containerRef = useRef(null)
   const dialogRef = useRef(null)
 
-  const closeDialogWithCallback = (toExecute) => {
+  const closeDialogWithCallback = toExecute => {
     dialogRef.current.close()
     if (typeof toExecute === 'function') {
-      toExecute()}
+      toExecute()
+    }
   }
 
   const handleClick = e => {
@@ -26,17 +34,15 @@ const ModalDialog = ({ modalId, children }) => {
   }
 
   return (
-    <dialog
-    ref={dialogRef}
-    id={modalId}
-    onClick={handleClick}
-    >
-      <DialogCallback.Provider value={{dialog: dialogRef, dialogCallbackOnClose: closeDialogWithCallback}}>
-      <div ref={containerRef}
-      className='modal'
+    <dialog ref={dialogRef} id={modalId} onClick={handleClick}>
+      <DialogCallback.Provider
+        value={{
+          dialog: dialogRef,
+          dialogCallbackOnClose: closeDialogWithCallback
+        }}
       >
-<button onClick={() => dialogRef.current.close()}>Back</button>
-        {children}
+        <div ref={containerRef} className='modal'>
+          {children}
         </div>
       </DialogCallback.Provider>
     </dialog>

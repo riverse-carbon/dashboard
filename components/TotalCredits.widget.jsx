@@ -1,7 +1,7 @@
 import styles from '../styles/TotalCreditsWidget.module.css'
 
 import CarbonCreditsSVG from '../public/icons/CarbonCreditsSVG'
-import CardSVG from '../public/icons/CardSVG'
+import CardSVG from '../public/icons/CartSVG'
 import TransferSVG from '../public/icons/TransferSVG'
 import Link from 'next/link'
 import InformationSVG from '../public/icons/InformationSVG'
@@ -77,7 +77,7 @@ const TotalCreditsWidget = ({}) => {
           <Link href='#'>
             <a className='button-style link-with-icon link-with-icon--centered'>
               <StatsSVG />
-              Manage credits
+              Retire credits
             </a>
           </Link>
         </div>

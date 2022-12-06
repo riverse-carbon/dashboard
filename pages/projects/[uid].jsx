@@ -8,6 +8,9 @@ import widgetStyles from '../../styles/WidgetStyles.module.css'
 import pageStyles from '../../styles/Pages.module.css'
 import ModalDialog, { ModalId } from '../../components/ModalDialog'
 import BuyCreditsWidget from '../../components/BuyCredits.widget'
+import { getYearsCreditsPricesFields } from '../../components/db/normalizeProjectData'
+import BuyCreditsNew from '../../components/BuyCreditsNew.widget'
+import { CartProvider } from '../../components/forms/cart'
 
 export default function ProjectPage ({ project }) {
   const modalId = 'buy-credits-modal'
@@ -18,7 +21,7 @@ export default function ProjectPage ({ project }) {
       </main>
     )
   return (
-    <>
+    <CartProvider>
       <Head>
         <title>{project.fields.name} project</title>
         <meta name='description' content='' />
@@ -27,7 +30,7 @@ export default function ProjectPage ({ project }) {
         <main className={`main-container ${pageStyles['project-page']}`}>
           <div className={widgetStyles['widgets-wrapper']}>
             <WidgetWrapper columns={3} areaName='project'>
-              <SeparateProject project={project.fields} />
+              <SeparateProject project={project.fields} id={project.id} />
             </WidgetWrapper>
             <WidgetWrapper columns={1} areaName='credits' position='sticky'>
               <TotalCredits />
@@ -35,10 +38,13 @@ export default function ProjectPage ({ project }) {
           </div>
         </main>
       </ModalId.Provider>
-      <ModalDialog modalId={modalId}>
-        <BuyCreditsWidget project={project.fields} />
-      </ModalDialog>
-    </>
+      {project.fields.years ? (
+        <ModalDialog modalId={modalId}>
+          {/* <BuyCreditsWidget project={project.fields} /> */}
+          <BuyCreditsNew project={project.fields} id={project.id} />
+        </ModalDialog>
+      ) : null}
+    </CartProvider>
   )
 }
 
@@ -52,7 +58,7 @@ export async function getStaticPaths () {
   }))
   return {
     paths: [],
-    fallback: true
+    fallback: 'blocking'
   }
 }
 
@@ -63,36 +69,44 @@ export async function getStaticProps ({ params }) {
     params.uid
   )
 
+  const { fields } = project
+
   // data restructuring
+  var yearsCreditsPricesFields = getYearsCreditsPricesFields(
+    fields['year-credits-price']
+  )
+  Object.entries(yearsCreditsPricesFields).forEach(field => {
+    fields[field[0]] = field[1]
+  })
   const {
     'sdgs-description': descriptions,
     'sdgs-icons': icons,
     impactDesc,
     impactFigures,
     impactIcons
-  } = project.fields
+  } = fields
 
-  project.fields.sdgsArray = descriptions.map((desc, i) => {
+  fields.sdgsArray = descriptions.map((desc, i) => {
     const { url, width, height } = icons[i]
 
     return { icon: { url, width, height }, desc }
   })
 
-  project.fields.keyImpact = impactDesc.map((desc, i) => ({
+  fields.keyImpact = impactDesc.map((desc, i) => ({
     desc,
     figure: impactFigures[i],
     icon: impactIcons[i]
   }))
 
-  project.fields.cccp = [
-    { name: 'Unicity', value: project.fields['cccp-unicity'] },
-    { name: 'Permanence', value: project.fields['cccp-permanence'] },
+  fields.cccp = [
+    { name: 'Unicity', value: fields['cccp-unicity'] },
+    { name: 'Permanence', value: fields['cccp-permanence'] },
     {
       name: 'Measurability & reality',
-      value: project.fields['cccp-measurability']
+      value: fields['cccp-measurability']
     },
-    { name: 'Additionality', value: project.fields['cccp-additionality'] },
-    { name: 'Rebound effects', value: project.fields['cccp-rebound-effects'] }
+    { name: 'Additionality', value: fields['cccp-additionality'] },
+    { name: 'Rebound effects', value: fields['cccp-rebound-effects'] }
   ]
 
   return {

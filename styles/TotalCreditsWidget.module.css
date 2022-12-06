@@ -13,6 +13,7 @@
 .total,
 .credits-wrapper {
   font-style: italic;
+  font-weight: 500;
 }
 
 .total {

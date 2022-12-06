@@ -9,10 +9,12 @@ import CarbonCreditsSVG from '../public/icons/CarbonCreditsSVG'
 import BillingSVG from '../public/icons/BillingSVG'
 import DocumentationSVG from '../public/icons/DocumentationSVG'
 import MembersSVG from '../public/icons/MembersSVG'
+import CardSVG from '../public/icons/CartSVG'
 
 // TODO:
 // 1. change disabled links
 // 2. add aria-current=page!!!
+// 3. use separate components for links (so href is same as current path)
 
 function Nav () {
   const currentPath = useRouter().asPath
@@ -23,9 +25,11 @@ function Nav () {
       <nav aria-label='main' className={styles.nav}>
         <ul role='list' className='list'>
           <li className={styles['logo-wrapper']}>
-            <a href='https://riverse.io'>
-              <LogoSVG clrMonochrome={false} />
-            </a>
+            <Link href='/'>
+              <a>
+                <LogoSVG clrMonochrome={false} />
+              </a>
+            </Link>
           </li>
           <li className={styles['nav-list-nested']}>
             <ul role='list' className='list'>
@@ -59,15 +63,11 @@ function Nav () {
                   </a>
                 </Link>
               </li>
-              <li
-                className={
-                  currentPath === '/carbon-credits' ? styles.active : ''
-                }
-              >
-                <Link href='/carbon-credits'>
+              <li className={currentPath === '/cart' ? styles.active : ''}>
+                <Link href='/cart'>
                   <a className={'link-with-icon'}>
-                    <CarbonCreditsSVG />
-                    Carbon credits
+                    <CardSVG />
+                    Cart
                   </a>
                 </Link>
               </li>
@@ -120,9 +120,12 @@ function Nav () {
             </ul>
           </li>
           <li className={styles['contact-button-wrapper']}>
-            <Link href='#'>
-              <a className='button-style link-block'>Need help?</a>
-            </Link>
+            <a
+              href='mailto:support@riverse.io?subject=Platform%help'
+              className='button-style link-block'
+            >
+              Need help?
+            </a>
           </li>
         </ul>
       </nav>

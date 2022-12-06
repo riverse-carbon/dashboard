@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useUser } from '@auth0/nextjs-auth0'
 import styles from '../styles/Banner.module.css'
 import photoPlaceholder from '../public/photo-placeholder.svg'
-import CardSVG from '../public/icons/CardSVG'
+import CardSVG from '../public/icons/CartSVG'
 import { useRouter } from 'next/router'
 
 // TODO:
@@ -29,7 +29,9 @@ function Banner () {
             Buy carbon credits
           </a>
         </Link>
-        <div className={styles.email}>{user.email}</div>
+        <div className={styles.email}>
+          {user.given_name} {user.family_name}
+        </div>
         <Image className={styles.photo} src={photoPlaceholder} alt='' />
         <a href='/api/auth/logout' className={`button-style`}>
           Logout
