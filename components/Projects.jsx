@@ -1,15 +1,17 @@
-import styles from '../styles/Projects.module.css'
-import ProjectNode from './ProjectNode'
-import useSWR from 'swr'
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import useSWR from 'swr';
+
+import styles from 'styles/Projects.module.css'
+
+import ProjectNode from './ProjectNode';
 
 // TODO: maxRecords 100 is enough?
 
-function Projects ({ limit = 100 }) {
-  const fetcher = url => fetch(url).then(res => res.json())
-  const API = '/api/protected/projects'
-  const { data, error } = useSWR(API, fetcher)
-  const [projects, setProjects] = useState([])
+const Projects = ({ limit = 100 }) => {
+  const fetcher = url => fetch(url).then(res => res.json());
+  const API = '/api/protected/projects';
+  const { data, error } = useSWR(API, fetcher);
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     if (data && !data.error) {
@@ -18,19 +20,25 @@ function Projects ({ limit = 100 }) {
         .map(project => <ProjectNode key={project.id} data={project.fields} />)
       setProjects(projectsList)
     }
-  }, [data, limit])
+  }, [data, limit]);
 
-  if (data && data.error)
-    return `${data.error}. Contact us if the problem persists`
-  if (error) return 'An error has occurred. Contact us if the problem persists'
-  if (!data)
+  if (error) {
+    return <>'An error has occurred. Contact us if the problem persists';</>;
+  }
+
+  if (data && data.error) {
+    return <>`${data.error}. Contact us if the problem persists`;</>;
+  }
+
+  if (!data) {
     return (
       <h2>
         Contributed projects
         <br />
         Loading...
       </h2>
-    )
+    );
+  }
 
   return (
     <>
@@ -41,7 +49,7 @@ function Projects ({ limit = 100 }) {
         </ul>
       </div>
     </>
-  )
+  );
 }
 
-export default Projects
+export default Projects;
