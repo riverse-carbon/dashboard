@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import Image from 'next/future/image';
-import Link from 'next/link';
 
 import styles from 'styles/SeparateProject.widget.module.css';
 import CardSVG from '../../public/icons/CartSVG';

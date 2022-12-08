@@ -1,7 +1,7 @@
 import Image from 'next/future/image';
 import Link from 'next/link';
-import Project from '../pages/projects/[uid]';
-import styles from '../styles/ProjectNode.module.css';
+
+import styles from 'styles/ProjectNode.module.css';
 
 // TODO:
 // 1. replace fakeData with a real one

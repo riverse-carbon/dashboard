@@ -2,8 +2,8 @@ import Image from 'next/future/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useUser } from '@auth0/nextjs-auth0';
-import styles from 'styles/Banner.module.css';
 
+import styles from 'styles/Banner.module.css';
 import photoPlaceholder from '../../public/photo-placeholder.svg';
 import CardSVG from '../../public/icons/CartSVG';
 

@@ -1,5 +1,6 @@
-import styles from '../styles/Projects.module.css';
 import Image from 'next/future/image';
+
+import styles from 'styles/Projects.module.css';
 
 // TODO:
 // 1. alt attribute?

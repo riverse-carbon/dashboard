@@ -1,5 +1,6 @@
 import Image from 'next/future/image';
-import styles from '../styles/Documentation.module.css';
+
+import styles from 'styles/Documentation.module.css';
 
 const PostPreviewCard = ({ data }) => {
   return (
