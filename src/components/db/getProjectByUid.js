@@ -1,15 +1,16 @@
 import Airtable from 'airtable'
 
-const getAllProjects = async (apiKey, view) => {
+const getProjectByUid = async (apiKey, view, uid) => {
   // Connect to db
   const base = new Airtable({ apiKey }).base('apptpGktGToVH41dj')
-
   const data = []
 
   // get records
   await base('tblRCb5aZpcAw36Wa')
     .select({
-      view
+      view,
+      maxRecords: 1,
+      filterByFormula: `{uid} = '${uid.toUpperCase()}'`
     })
     .eachPage(function page (records, fetchNextPage) {
       records.forEach(record => {
@@ -18,11 +19,12 @@ const getAllProjects = async (apiKey, view) => {
       })
       fetchNextPage()
     })
+    // eslint-disable-next-line
     .then(res => {})
     .catch(err => {
       throw err
     })
-  return data
+  return data[0] || []
 }
 
-export default getAllProjects
+export default getProjectByUid

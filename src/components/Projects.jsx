@@ -23,11 +23,11 @@ const Projects = ({ limit = 100 }) => {
   }, [data, limit]);
 
   if (error) {
-    return <>'An error has occurred. Contact us if the problem persists';</>;
+    return <>An error has occurred. Contact us if the problem persists</>;
   }
 
   if (data && data.error) {
-    return <>`${data.error}. Contact us if the problem persists`;</>;
+    return <>{data.error}. Contact us if the problem persists</>;
   }
 
   if (!data) {

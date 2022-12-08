@@ -57,7 +57,7 @@ export const CartProvider = ({ children }) => {
     var total = {}
     var totalPrice = 0
     var totalCredits = 0
-    cartItems.forEach(item => {})
+    // cartItems.forEach(item => {})
   }
 
   return (

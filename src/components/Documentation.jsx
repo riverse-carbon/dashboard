@@ -1,8 +1,9 @@
-import styles from '../styles/Documentation.module.css'
-import { useState, useEffect } from 'react'
-import PostPreviewCard from './PostPreviewCard'
+import { useState, useEffect } from 'react';
 
-import { documentationPages } from '../db'
+import styles from 'styles/Documentation.module.css';
+
+import { documentationPages } from '../../db';
+import PostPreviewCard from './PostPreviewCard';
 // TODO: use static generation and dynamic data for posts
 
 function Documentation () {

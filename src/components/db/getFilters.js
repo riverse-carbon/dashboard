@@ -30,6 +30,7 @@ const getFilters = async (apiKey, view, filtersArray) => {
       })
       fetchNextPage()
     })
+    // eslint-disable-next-line
     .then(res => {})
     .catch(err => {
       throw err

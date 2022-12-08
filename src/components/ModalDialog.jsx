@@ -4,7 +4,7 @@ export const ModalId = createContext('')
 
 export const DialogCallback = createContext({
   dialog: null,
-  dialogCallbackOnClose: () => {}
+  dialogCallbackOnClose: null
 })
 
 export const handleModalOpen = modalId => {

@@ -1,15 +1,17 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import styles from '../styles/Nav.module.css'
-import LogoSVG from '../public/icons/LogoSVG'
-import DashboardSVG from '../public/icons/DashboardSVG'
-import ProjectsSVG from '../public/icons/ProjectsSVG'
-import ContributionSVG from '../public/icons/ContributionSVG'
-import CarbonCreditsSVG from '../public/icons/CarbonCreditsSVG'
-import BillingSVG from '../public/icons/BillingSVG'
-import DocumentationSVG from '../public/icons/DocumentationSVG'
-import MembersSVG from '../public/icons/MembersSVG'
-import CardSVG from '../public/icons/CartSVG'
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import styles from 'styles/Nav.module.css';
+
+import LogoSVG from '../../public/icons/LogoSVG';
+import DashboardSVG from '../../public/icons/DashboardSVG';
+import ProjectsSVG from '../../public/icons/ProjectsSVG';
+import ContributionSVG from '../../public/icons/ContributionSVG';
+import CarbonCreditsSVG from '../../public/icons/CarbonCreditsSVG';
+import BillingSVG from '../../public/icons/BillingSVG';
+import DocumentationSVG from '../../public/icons/DocumentationSVG';
+import MembersSVG from '../../public/icons/MembersSVG';
+import CardSVG from '../../public/icons/CartSVG';
 
 // TODO:
 // 1. change disabled links

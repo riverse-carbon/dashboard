@@ -1,9 +1,10 @@
-import styles from '../styles/BuyCreditsWidget.module.css'
-import CarbonCreditsSVG from '../public/icons/CarbonCreditsSVG'
-import Link from 'next/link'
-import InformationSVG from '../public/icons/InformationSVG'
-import { useState, useEffect, useContext } from 'react'
-import { DialogCallback } from './ModalDialog'
+import { useState, useEffect, useContext } from 'react';
+
+import CarbonCreditsSVG from '../../public/icons/CarbonCreditsSVG';
+import InformationSVG from '../../public/icons/InformationSVG';
+import styles from 'styles/BuyCreditsWidget.module.css';
+
+import { DialogCallback } from './ModalDialog';
 
 // TODO:
 // 1. replace fake data
@@ -40,7 +41,7 @@ const BuyCreditsWidget = ({ project }) => {
   }
 
   const [ showConfirmationWidget, setShowConfirmationWidget ] = useState(false)
-  
+
   const [ formInputs, setFormInputs ] = useState({tagline: tagline || '', name: name || '', creditType: 'sequestration', creditsPurchased: 0, price: price, vintageYear: 0})
   // const totalToPay = {formInputs} try object destructuring
   const [totalPrice, setTotalPrice] = useState(0)
@@ -48,17 +49,17 @@ const BuyCreditsWidget = ({ project }) => {
   useEffect(() => {
     setTotalPrice(price*formInputs.creditsPurchased)
   }, [price, formInputs.creditsPurchased])
-  
+
   const updateFormInput = (inputName, inputValue) => {
     setFormInputs({...formInputs, [inputName]: inputValue})
 
-  }  
+  }
 
   const resetState = () => {
     setShowConfirmationWidget(false)
     setFormInputs({tagline: tagline || '', name: name || '', creditType: 'sequestration', creditsPurchased: 0, price: price, vintageYear: 0})
   }
-    
+
 
   const handleCCNumberChange = e => {
     var newValue = e.target.valueAsNumber
@@ -215,21 +216,21 @@ const BuyCreditsWidget = ({ project }) => {
   )
 }
 
-const CreditsDetailed = ({ data }) => {
-  const credits = data.map(credit => (
-    <p key={credit.name} className={styles['credit']}>
-      <span
-        className={styles['credit-name']}
-        title={getCreditTypeDescription(credit.name)}
-      >
-        {credit.name}
-        <InformationSVG />
-      </span>
-      <span className={styles['credit-value']}>{credit.amount}</span>
-    </p>
-  ))
-  return <div className={styles['credits-wrapper']}>{credits}</div>
-}
+// const CreditsDetailed = ({ data }) => {
+//   const credits = data.map(credit => (
+//     <p key={credit.name} className={styles['credit']}>
+//       <span
+//         className={styles['credit-name']}
+//         title={getCreditTypeDescription(credit.name)}
+//       >
+//         {credit.name}
+//         <InformationSVG />
+//       </span>
+//       <span className={styles['credit-value']}>{credit.amount}</span>
+//     </p>
+//   ))
+//   return <div className={styles['credits-wrapper']}>{credits}</div>
+// }
 
 const VintageYearSelect = ({ years, updateInput }) => {
   const options = years.map(year => (
@@ -239,8 +240,9 @@ const VintageYearSelect = ({ years, updateInput }) => {
   ))
   useEffect(() => {
     updateInput('vintageYear', years[0])
-  }, [])
-  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleChange = (e) => {
     updateInput('vintageYear', e.target.value)
   }
@@ -288,10 +290,10 @@ const RadioFieldSet = ({ updateInput, sequestration, avoidance }) => {
 
 const ConfirmationWidget = ({ transactionInfo, totalPrice, cancelPurchase, resetInputs }) => {
   const { tagline, name, creditType, creditsPurchased, price, vintageYear} = transactionInfo
-  
-  
+
+
   const [ transaction, setTransaction ] = useState(null)
-  
+
   const resetState = () => {
     resetInputs()
     setTransaction(null)
@@ -315,7 +317,7 @@ const ConfirmationWidget = ({ transactionInfo, totalPrice, cancelPurchase, reset
 
   return (
     <div className={`${styles['text-bold']} flow-spacer ${styles['confirmation-widget']}`}>
-      {transaction ? <TransactionResult  success={transaction.success} resetInputs={resetState} /> 
+      {transaction ? <TransactionResult  success={transaction.success} resetInputs={resetState} />
       : <>
   <h2>Your order</h2>
   <p>Project:<span className={styles['text-normal']}>{tagline}</span></p>
@@ -336,7 +338,7 @@ const ConfirmationWidget = ({ transactionInfo, totalPrice, cancelPurchase, reset
 }
 
 // display correct error message?
-const TransactionResult = ({success, error, resetInputs }) => {
+const TransactionResult = ({success, resetInputs }) => {
   const dialogCloseCallback = useContext(DialogCallback).dialogCallbackOnClose
   const handleButtonClick = () => {
     dialogCloseCallback(() => {

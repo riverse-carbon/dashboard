@@ -9,7 +9,6 @@ import { useCart } from './cart'
 export const AddNewUsersForm = ({
   rolesList = ['buyer', 'viewer'],
   styles = '',
-  revalidate = () => {}
 }) => {
   return (
     <>
@@ -33,7 +32,6 @@ export const AddNewUsersForm = ({
           } catch (err) {
             alert(err.message && err.response?.data?.error)
           } finally {
-            revalidate()
             setSubmitting(false)
           }
         }}

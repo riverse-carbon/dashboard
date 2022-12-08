@@ -1,9 +1,10 @@
-import Image from 'next/future/image'
-import Link from 'next/link'
-import CardSVG from '../public/icons/CartSVG'
-import styles from '../styles/SeparateProject.widget.module.css'
-import { handleModalOpen, ModalId } from './ModalDialog'
-import { useContext } from 'react'
+import { useContext } from 'react';
+import Image from 'next/future/image';
+import Link from 'next/link';
+
+import styles from 'styles/SeparateProject.widget.module.css';
+import CardSVG from '../../public/icons/CartSVG';
+import { handleModalOpen, ModalId } from './ModalDialog';
 
 // TODO:
 // 1. check sizes on image attribute

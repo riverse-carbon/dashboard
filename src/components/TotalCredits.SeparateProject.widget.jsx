@@ -1,11 +1,14 @@
-import styles from '../styles/TotalCreditsWidget.module.css'
+import Link from 'next/link';
+import { useContext } from 'react';
 
-import CarbonCreditsSVG from '../public/icons/CarbonCreditsSVG'
-import CardSVG from '../public/icons/CartSVG'
-import TransferSVG from '../public/icons/TransferSVG'
-import Link from 'next/link'
-import InformationSVG from '../public/icons/InformationSVG'
-import StatsSVG from '../public/icons/StatsSVG'
+import styles from 'styles/TotalCreditsWidget.module.css';
+
+import CarbonCreditsSVG from '../../public/icons/CarbonCreditsSVG';
+import CardSVG from '../../public/icons/CartSVG';
+import TransferSVG from '../../public/icons/TransferSVG';
+import InformationSVG from '../../public/icons/InformationSVG';
+import StatsSVG from '../../public/icons/StatsSVG';
+import { handleModalOpen, ModalId } from './ModalDialog';
 
 // TODO:
 // 1. replace fake data
@@ -13,9 +16,9 @@ import StatsSVG from '../public/icons/StatsSVG'
 
 const fakeData = {
   credits: [
-    { name: 'Ex-ante', amount: 26 },
-    { name: 'Ex-post', amount: 6 },
-    { name: 'Retired', amount: 10 }
+    { name: 'Ex-ante', amount: 6 },
+    { name: 'Ex-post', amount: 1 },
+    { name: 'Retired', amount: 3 }
   ]
 }
 
@@ -47,12 +50,16 @@ const CreditsDetailed = ({ data }) => {
 }
 
 const TotalCreditsWidget = ({}) => {
+  const modalId = useContext(ModalId)
+  const handleBuyCredit = () => {
+    handleModalOpen(modalId)
+  }
   const totalCredits = fakeData.credits.reduce((prev, next) => {
     return (prev += next.amount)
   }, 0)
   return (
     <>
-      <h2 className={styles.title}> Total credits purchased</h2>
+      <h2 className={`${styles.title}`}>Credits</h2>
       <div className={styles.body}>
         <p className={styles.total}>
           <span>{totalCredits}</span>
@@ -62,19 +69,20 @@ const TotalCreditsWidget = ({}) => {
         <CreditsDetailed data={fakeData.credits} />
 
         <div className={styles['credits-links-wrapper']}>
+          <button
+            onClick={handleBuyCredit}
+            className='link-with-icon link-with-icon--centered'
+          >
+            <CardSVG />
+            Buy credits
+          </button>
           <Link href='/projects'>
-            <a className='button-style link-with-icon link-with-icon--centered'>
-              <CardSVG />
-              Buy credits
-            </a>
-          </Link>
-          <Link href='#'>
             <a className='button-style link-with-icon link-with-icon--centered'>
               <TransferSVG />
               Transfer credits
             </a>
           </Link>
-          <Link href='#'>
+          <Link href='/projects'>
             <a className='button-style link-with-icon link-with-icon--centered'>
               <StatsSVG />
               Retire credits

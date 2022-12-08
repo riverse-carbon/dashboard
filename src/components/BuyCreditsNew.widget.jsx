@@ -1,11 +1,13 @@
-import CarbonCreditsSVG from '../public/icons/CarbonCreditsSVG'
-import { CreditsTransaction } from './forms/forms'
-import { useModal } from './ModalDialog'
-import NewTransactionInfo from './NewTransactionInfo'
-import styles from '../styles/BuyCreditsWidget.module.css'
-import { useState, useCallback, useMemo } from 'react'
-import { useCart } from './forms/cart'
-import axios from 'axios'
+import axios from 'axios';
+import { useState, useCallback, useMemo } from 'react';
+
+import styles from 'styles/BuyCreditsWidget.module.css';
+import CarbonCreditsSVG from '../../public/icons/CarbonCreditsSVG';
+
+import { CreditsTransaction } from './forms/forms';
+import { useModal } from './ModalDialog';
+import NewTransactionInfo from './NewTransactionInfo';
+import { useCart } from './forms/cart';
 
 const BuyCreditsNew = ({ project, id }) => {
   const { tagline, name } = project

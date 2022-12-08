@@ -1,10 +1,11 @@
-import Image from 'next/future/image'
-import Link from 'next/link'
-import { useUser } from '@auth0/nextjs-auth0'
-import styles from '../styles/Banner.module.css'
-import photoPlaceholder from '../public/photo-placeholder.svg'
-import CardSVG from '../public/icons/CartSVG'
-import { useRouter } from 'next/router'
+import Image from 'next/future/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useUser } from '@auth0/nextjs-auth0';
+import styles from 'styles/Banner.module.css';
+
+import photoPlaceholder from '../../public/photo-placeholder.svg';
+import CardSVG from '../../public/icons/CartSVG';
 
 // TODO:
 // 1. DRY returned HTML
@@ -12,9 +13,9 @@ import { useRouter } from 'next/router'
 // 3. contact button (!href)
 
 function Banner () {
-  const { user, error, isLoading } = useUser()
+  const { user } = useUser();
 
-  const currentPath = useRouter().asPath
+  const currentPath = useRouter().asPath;
 
   if (user)
     return (
@@ -33,9 +34,11 @@ function Banner () {
           {user.given_name} {user.family_name}
         </div>
         <Image className={styles.photo} src={photoPlaceholder} alt='' />
-        <a href='/api/auth/logout' className={`button-style`}>
-          Logout
-        </a>
+        <Link href='/api/auth/logout'>
+          <a  className={`button-style`}>
+            Logout
+          </a>
+        </Link>
       </div>
     )
 
