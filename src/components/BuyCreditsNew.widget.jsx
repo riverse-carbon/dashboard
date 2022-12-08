@@ -10,13 +10,27 @@ import NewTransactionInfo from './NewTransactionInfo';
 import { useCart } from './forms/cart';
 
 const BuyCreditsNew = ({ project, id }) => {
+  const [transactions, setTransactions] = useState([]);
+
+  console.log(project);
+
+  const [currentInput, setCurrentInput] = useState({
+    year: '',
+    price: 0,
+    credits: 0,
+    maxCredits: 0,
+    mechanism: '',
+  });
+
+  const updateInfo = (name, value) => {};
+
   const { tagline, name } = project;
   // TODO: add cover image?
 
   const [total, setTotal] = useState(0);
   const [addedToDB, setAddedToDB] = useState(false);
 
-  const [transactions, setTransactions] = useState([]);
+  // const [transactions, setTransactions] = useState([])
 
   const { cartItems, addToCart } = useCart();
   const { dialogCallbackOnClose } = useModal();

@@ -1,11 +1,9 @@
+import styles from '../styles/Organization.module.css';
+import profile1 from '../public/profile1.png';
+import profile2 from '../public/profile2.png';
+import profile3 from '../public/profilePlaceholder.min.png';
+import ActiveUserSVG from '../public/icons/ActiveUserSVG';
 import { useUser } from '@auth0/nextjs-auth0';
-
-import styles from 'styles/Organization.module.css';
-
-import profile1 from '../../public/profile1.png';
-import profile2 from '../../public/profile2.png';
-import profile3 from '../../public/profilePlaceholder.min.png';
-import ActiveUserSVG from '../../public/icons/ActiveUserSVG';
 import { AddNewUsersForm } from './forms/forms';
 
 // TODO:
@@ -16,7 +14,7 @@ const Organization = ({ data, children }) => {
   const { name, contribution, cccTotal, users } = data;
   const usersHTML = users.map(user => (
     <li
-      key={user.firstName + '-' + user.lastName}
+      key={user.email + user.role}
       className={`${styles.user} ${user.email === currentUserEmail ? styles.current : ''}`}>
       <div className={styles['user-info']}>
         <span className={styles.name}>

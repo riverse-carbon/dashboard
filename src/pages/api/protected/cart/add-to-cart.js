@@ -59,6 +59,7 @@ const addToCart = async (req, res) => {
     return dataFromDB;
   };
   const finalResult = await processMaxRecordsPerCall(data, maxRecords);
+
   res.json({ data: finalResult });
   // var creationResult = await base(transactionTable)
   //   .create([

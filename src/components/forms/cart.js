@@ -1,11 +1,54 @@
 import axios from 'axios';
 import { useContext, createContext } from 'react';
+import useSWR, { mutate } from 'swr';
 import useLocalStorage from '../hooks/useLocalStorage';
+
+// TODO: add toasts or other interactivity after record successfully created/deleted/modified
 
 const CartContext = createContext({});
 
 export const useCart = () => {
   return useContext(CartContext);
+};
+
+const getCartAPI = 'api/protected/cart/get-cart-info';
+const addToCartAPI = 'api/protected/cart/add-to-cart';
+const deleteTransactionsAPI = 'api/protected/cart/delete-transaction';
+
+// const postFetch = (api, data) => axios.post(api, data).then(res => res)
+
+export const getCart = () => {
+  const getFetch = api => axios.get(api).then(res => res);
+
+  return [getCartAPI, getFetch];
+};
+
+export const removeFromCart = async id => {
+  try {
+    // send id as a list of ids to delete
+    var idList = [];
+    if (typeof id === 'string') {
+      idList = [id];
+    }
+    if (Array.isArray(id)) {
+      idList = id;
+    }
+
+    const res = await axios.post(deleteTransactionsAPI, { id: idList });
+    if (res.data.success === true) {
+      // TODO: add optimistic data
+      mutate(getCartAPI);
+    }
+  } catch (err) {
+    alert(err.message);
+  }
+};
+
+export const addToCart = async transactions => {
+  const res = await axios.post(addToCartAPI, { data: transactions });
+  if (!res.ok) {
+    console.log('Something went wrong');
+  }
 };
 
 export const CartProvider = ({ children }) => {
@@ -24,17 +67,34 @@ export const CartProvider = ({ children }) => {
     }
     setCartItems(currentCart);
   };
-  console.log(cartItems);
+
   const updateCartItem = transaction => {
-    // TODO
+    // TODO: feature
   };
 
-  const removeFromCart = (projectId, transactionId) => {
-    const updatedCart = [...cartItems];
-    const project = updatedCart.find(pr => pr.projectId === projectId);
-    project.transactions = project.transactions.filter(transaction => transaction.id !== transactionId);
+  const getCart = () => {
+    return [getCartAPI, getFetch];
+  };
 
-    setCartItems(updatedCart);
+  const removeFromCart = async id => {
+    try {
+      // send id as a list of ids to delete
+      var idList = [];
+      if (typeof id === 'string') {
+        idList = [id];
+      }
+      if (Array.isArray(id)) {
+        idList = id;
+      }
+
+      const res = await axios.post(deleteTransactionsAPI, { id: idList });
+      if (res.data.success === true) {
+        // TODO: add optimistic data
+        mutate(getCartAPI);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
   const validateCart = async () => {
@@ -47,6 +107,11 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const removeProjectFromCart = id => {
+    if (id) {
+    }
+  };
+
   const emptyCart = () => {
     setCartItems([]);
   };
@@ -55,7 +120,7 @@ export const CartProvider = ({ children }) => {
     var total = {};
     var totalPrice = 0;
     var totalCredits = 0;
-    // cartItems.forEach(item => {})
+    cartItems.forEach(item => {});
   };
 
   return (
@@ -67,6 +132,7 @@ export const CartProvider = ({ children }) => {
         emptyCart,
         getTotal,
         cartItems,
+        getCart,
       }}>
       {children}
     </CartContext.Provider>

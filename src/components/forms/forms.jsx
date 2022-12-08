@@ -68,6 +68,10 @@ export const CreditsTransaction = ({
   const [currentYearPrice, setCurrentYearPrice] = useState(pricesPerYear[0]);
   const [currentYearMaxCredits, setCurrentYearMaxCredits] = useState(pricesPerYear[0]);
 
+  const handleSelectChange = (name, value) => {
+    updateInfo(name, value);
+  };
+
   // const { addToCart } = useCart()
 
   // const handleTransactionAdd = async values => {
@@ -112,6 +116,7 @@ export const CreditsTransaction = ({
               name='mechanism'
               className={styles['select-wrapper'] || 'select-wrapper'}
               options={mechanismList}
+              // onChange={handleSelectChange} add when inventory is ready
             />
             <SelectInput
               label='Vintage year'
@@ -120,10 +125,8 @@ export const CreditsTransaction = ({
               options={years}
               onChange={e => {
                 handleChange(e);
-                const value = e.target.value;
-                const index = years.findIndex(year => year == value);
-                setCurrentYearMaxCredits(creditsPerYear[index]);
-                setCurrentYearPrice(pricesPerYear[index]);
+                const { value, name } = e.target;
+                handleSelectChange(name, value);
               }}
             />
             <TextInput
