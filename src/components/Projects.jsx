@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 
-import styles from 'styles/Projects.module.css'
+import styles from 'styles/Projects.module.css';
 
 import ProjectNode from './ProjectNode';
 
@@ -11,16 +10,6 @@ const Projects = ({ limit = 100 }) => {
   const fetcher = url => fetch(url).then(res => res.json());
   const API = '/api/protected/projects';
   const { data, error } = useSWR(API, fetcher);
-  const [projects, setProjects] = useState([]);
-
-  useEffect(() => {
-    if (data && !data.error) {
-      const projectsList = data.data
-        .slice(0, limit)
-        .map(project => <ProjectNode key={project.id} data={project.fields} />)
-      setProjects(projectsList)
-    }
-  }, [data, limit]);
 
   if (error) {
     return <>An error has occurred. Contact us if the problem persists</>;
@@ -39,6 +28,7 @@ const Projects = ({ limit = 100 }) => {
       </h2>
     );
   }
+  const projects = data.data.slice(0, limit).map(project => <ProjectNode key={project.id} data={project.fields} />);
 
   return (
     <>
@@ -50,6 +40,6 @@ const Projects = ({ limit = 100 }) => {
       </div>
     </>
   );
-}
+};
 
 export default Projects;

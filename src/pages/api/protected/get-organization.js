@@ -1,14 +1,14 @@
-import Airtable from 'airtable'
-import { withApiAuthRequired, getSession } from '@auth0/nextjs-auth0'
+import Airtable from 'airtable';
+import { withApiAuthRequired, getSession } from '@auth0/nextjs-auth0';
 
 const getOrganizationById = async (base, orgId) => {
   const res = await base('tblJEouCsTaRLICkV')
     .find(orgId)
     .then(org => org.fields)
-    .catch(e => console.log(e))
+    .catch(e => console.log(e));
 
-  return res
-}
+  return res;
+};
 
 // const getMembers = async (base, orgId) => {
 //   const res = await base('tblG56b6iiigWe8kI')
@@ -29,25 +29,23 @@ const getOrganizationById = async (base, orgId) => {
 // }
 
 const GetOrganization = async (req, res) => {
-  const session = getSession(req, res)
-  var orgId = session.user['https://registry.riverse.io/org'] || ''
+  const session = getSession(req, res);
+  var orgId = session.user['https://registry.riverse.io/org'] || '';
   // var role = session.user['https://registry.riverse.io/role'] || '';
   // var currentUser = session.user['https://registry.riverse.io/userId'] || '';
   // var {email:userEmail } = session.user
   // Connect to db
-  var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-    'apptpGktGToVH41dj'
-  )
+  var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base('apptpGktGToVH41dj');
 
-  const organization = await getOrganizationById(base, orgId)
+  const organization = await getOrganizationById(base, orgId);
 
   const users = organization['name (from users)'].map((firstName, i) => {
-    const lastName = organization['surname (from users)'][i]
-    const role = organization['role (from users)'][i]
-    const email = organization['email (from users)'][i]
-    const active = organization['active (from users)'][i]
-    return { firstName, lastName, role, email, active }
-  })
+    const lastName = organization['surname (from users)'][i];
+    const role = organization['role (from users)'][i];
+    const email = organization['email (from users)'][i];
+    const active = organization['active (from users)'][i];
+    return { firstName, lastName, role, email, active };
+  });
 
   // TODO: transactions? inventory? organization type?
   const organizationDataSplit = {
@@ -55,17 +53,17 @@ const GetOrganization = async (req, res) => {
       name: organization['organization'],
       contribution: organization['contribution(€)'],
       cccTotal: organization['ccc_total'],
-      users: users
+      users: users,
     },
     billingInfo: {
       siren: organization['SIREN'],
       vatNumber: organization['VAT number'],
       address: organization['billing-address'],
-      country: organization['country']
-    }
-  }
+      country: organization['country'],
+    },
+  };
 
-  res.send({ organization: organizationDataSplit })
+  res.send({ organization: organizationDataSplit });
 
   // var result = []
   // // get 1 record from users table
@@ -105,6 +103,6 @@ const GetOrganization = async (req, res) => {
   // .catch(err => console.log(err));
 
   //   res.send({ results: response})
-}
+};
 
-export default withApiAuthRequired(GetOrganization)
+export default withApiAuthRequired(GetOrganization);

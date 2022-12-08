@@ -6,7 +6,7 @@
   text-align: center;
 }
 
-.body>*+* {
+.body > * + * {
   margin-block-start: var(--block-spacer);
 }
 
@@ -31,11 +31,11 @@
   height: var(--total-fs);
 }
 
-.credits-links-wrapper>*+* {
+.credits-links-wrapper > * + * {
   margin-block-start: var(--block-spacer-xs);
 }
 
-.credits-links-wrapper>* {
+.credits-links-wrapper > * {
   width: 100%;
 }
 
@@ -45,7 +45,7 @@
   gap: var(--gap-xs);
 }
 
-.credit>* {
+.credit > * {
   display: block;
 }
 

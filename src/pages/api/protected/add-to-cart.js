@@ -1,40 +1,36 @@
-import { getSession } from '@auth0/nextjs-auth0'
-import Airtable from 'airtable'
+import { getSession } from '@auth0/nextjs-auth0';
+import Airtable from 'airtable';
 
 const addToCart = async (req, res) => {
-  var session = getSession(req, res)
+  var session = getSession(req, res);
 
-  var currentUserId = session.user['https://registry.riverse.io/userId'] || ''
+  var currentUserId = session.user['https://registry.riverse.io/userId'] || '';
 
-  var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-    'apptpGktGToVH41dj'
-  )
+  var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base('apptpGktGToVH41dj');
 
-  var transactionTable = 'tblTFyoZB0zBQXuRT'
+  var transactionTable = 'tblTFyoZB0zBQXuRT';
 
-  var { data } = req.body
+  var { data } = req.body;
 
-  var maxRecords = 10
+  var maxRecords = 10;
 
   const addToCart = async dataArray => {
     var creationResult = await base(transactionTable)
       .create(dataArray)
-      .then(results =>
-        results.map(result => ({ id: result.id, fields: result.fields }))
-      )
+      .then(results => results.map(result => ({ id: result.id, fields: result.fields })))
       .catch(err => {
-        console.log(err)
+        console.log(err);
         // throw new Error(err)
-      })
-    return creationResult
-  }
+      });
+    return creationResult;
+  };
   const processMaxRecordsPerCall = async (data, maxRecords = 10) => {
-    var dataCopy = [...data]
+    var dataCopy = [...data];
 
     var dataToProcess = dataCopy.reduce((result, item, index) => {
-      const indexToInsert = Math.floor(index / maxRecords)
+      const indexToInsert = Math.floor(index / maxRecords);
       if (index % maxRecords === 0) {
-        result[indexToInsert] = []
+        result[indexToInsert] = [];
       }
 
       const itemWithFields = {
@@ -45,25 +41,25 @@ const addToCart = async (req, res) => {
           actionType: item.actionType,
           credits: item.credits,
           mechanism: item.mechanism,
-          year: item.year
-        }
-      }
-      result[indexToInsert].push(itemWithFields)
-      return result
-    }, [])
+          year: item.year,
+        },
+      };
+      result[indexToInsert].push(itemWithFields);
+      return result;
+    }, []);
 
     const dataFromDB = await dataToProcess.reduce(async (memo, batch) => {
-      const result = await memo
-      const res = await addToCart(batch)
-      result.push(...res)
+      const result = await memo;
+      const res = await addToCart(batch);
+      result.push(...res);
 
-      return result
-    }, [])
+      return result;
+    }, []);
 
-    return dataFromDB
-  }
-  const finalResult = await processMaxRecordsPerCall(data, maxRecords)
-  res.json({ data: finalResult })
+    return dataFromDB;
+  };
+  const finalResult = await processMaxRecordsPerCall(data, maxRecords);
+  res.json({ data: finalResult });
   // var creationResult = await base(transactionTable)
   //   .create([
   //     {
@@ -81,6 +77,6 @@ const addToCart = async (req, res) => {
   //   })
 
   // res.json({ transactionId: creationResult.id })
-}
+};
 
-export default addToCart
+export default addToCart;

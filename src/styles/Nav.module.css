@@ -21,7 +21,7 @@
   padding-block-end: var(--padding-spacer);
 }
 
-.nav>ul {
+.nav > ul {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@ li.active {
   background-color: hsl(var(--clr-main--300));
 }
 
-.nav>ul>li:not(:first-of-type)+li:not(.contact-button-wrapper) {
+.nav > ul > li:not(:first-of-type) + li:not(.contact-button-wrapper) {
   margin-block-start: var(--block-spacer);
 }
 

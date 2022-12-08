@@ -1,19 +1,19 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
-import getFilters from '../components/db/getFilters'
+import getFilters from '../components/db/getFilters';
 
-import { useState } from 'react'
-import widgetStyles from '../styles/WidgetStyles.module.css'
-import ProjectsWithFilters from '../components/ProjectsWithFilters'
-import WidgetWrapper from '../components/WidgetWrapper'
-import pageStyles from '../styles/Pages.module.css'
-import Filters from '../components/Filters.widget'
+import { useState } from 'react';
+import widgetStyles from '../styles/WidgetStyles.module.css';
+import ProjectsWithFilters from '../components/ProjectsWithFilters';
+import WidgetWrapper from '../components/WidgetWrapper';
+import pageStyles from '../styles/Pages.module.css';
+import Filters from '../components/Filters.widget';
 
 // TODO:
 // 1. get filters!!!
 
-export default function Home ({ filtersData }) {
-  const [appliedFilters, setAppliedFilters] = useState({})
+export default function Home({ filtersData }) {
+  const [appliedFilters, setAppliedFilters] = useState({});
 
   return (
     <>
@@ -28,41 +28,33 @@ export default function Home ({ filtersData }) {
             <ProjectsWithFilters appliedFilters={appliedFilters} />
           </WidgetWrapper>
           <WidgetWrapper columns={1} areaName='filters'>
-            <Filters
-              data={filtersData}
-              setFilters={setAppliedFilters}
-              appliedFilters={appliedFilters}
-            />
+            <Filters data={filtersData} setFilters={setAppliedFilters} appliedFilters={appliedFilters} />
           </WidgetWrapper>
         </div>
       </main>
     </>
-  )
+  );
 }
 
-export async function getStaticProps () {
-  const filtersArray = ['sectors', 'mechanism', 'country']
+export async function getStaticProps() {
+  const filtersArray = ['sectors', 'mechanism', 'country'];
 
-  const data = await getFilters(
-    process.env.API_KEY,
-    process.env.DB_VIEW,
-    filtersArray
-  )
+  const data = await getFilters(process.env.API_KEY, process.env.DB_VIEW, filtersArray);
 
   const staticFilters = [
     {
       name: 'years',
       label: 'Vintage year',
-      values: [2021, 2022, 2023, 2024, 2025, 2026]
-    }
-  ]
+      values: [2021, 2022, 2023, 2024, 2025, 2026],
+    },
+  ];
 
   return {
     props: {
-      filtersData: [...data, ...staticFilters]
+      filtersData: [...data, ...staticFilters],
     },
-    revalidate: 860
-  }
+    revalidate: 860,
+  };
 
   // [
   //   {

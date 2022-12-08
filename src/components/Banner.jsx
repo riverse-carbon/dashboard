@@ -12,7 +12,7 @@ import CardSVG from '../../public/icons/CartSVG';
 // 2. login/out buttons
 // 3. contact button (!href)
 
-function Banner () {
+function Banner() {
   const { user } = useUser();
 
   const currentPath = useRouter().asPath;
@@ -23,9 +23,7 @@ function Banner () {
         <p className={styles.greeting}>Welcome</p>
         {/* <div className={styles['email-photo-wrapper']}> */}
         <Link href='/projects'>
-          <a
-            className={`${styles['contact-button']} button-style link-with-icon`}
-          >
+          <a className={`${styles['contact-button']} button-style link-with-icon`}>
             <CardSVG />
             Buy carbon credits
           </a>
@@ -35,25 +33,20 @@ function Banner () {
         </div>
         <Image className={styles.photo} src={photoPlaceholder} alt='' />
         <Link href='/api/auth/logout'>
-          <a  className={`button-style`}>
-            Logout
-          </a>
+          <a className={`button-style`}>Logout</a>
         </Link>
       </div>
-    )
+    );
 
   return (
     <div className={`${styles.banner} banner`}>
       <p className={styles.greeting}>Welcome</p>
 
-      <a
-        href={`/api/auth/login?returnTo=${currentPath}`}
-        className={`${styles['contact-button']} button-style`}
-      >
+      <a href={`/api/auth/login?returnTo=${currentPath}`} className={`${styles['contact-button']} button-style`}>
         Login
       </a>
     </div>
-  )
+  );
 }
 
-export default Banner
+export default Banner;

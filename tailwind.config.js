@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
-      main: ['DM Sans', 'sans-serif']
+      main: ['DM Sans', 'sans-serif'],
     },
     extend: {
       colors: {
@@ -12,9 +12,9 @@ module.exports = {
         },
       },
       boxShadow: {
-        high: 'var(--shadow-elevation-high)'
-      }
+        high: 'var(--shadow-elevation-high)',
+      },
     },
   },
   plugins: [],
-}
+};

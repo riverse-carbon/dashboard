@@ -15,41 +15,38 @@ const fakeData = {
   credits: [
     { name: 'Ex-ante', amount: 26 },
     { name: 'Ex-post', amount: 6 },
-    { name: 'Retired', amount: 10 }
-  ]
-}
+    { name: 'Retired', amount: 10 },
+  ],
+};
 
 const getCreditTypeDescription = creditName => {
   switch (creditName) {
     case 'Ex-ante':
-      return 'before the event'
+      return 'before the event';
     case 'Ex-post':
-      return 'after the event'
+      return 'after the event';
     case 'Retired':
-      return 'already used'
+      return 'already used';
   }
-}
+};
 
 const CreditsDetailed = ({ data }) => {
   const credits = data.map(credit => (
     <p key={credit.name} className={styles['credit']}>
-      <span
-        className={styles['credit-name']}
-        title={getCreditTypeDescription(credit.name)}
-      >
+      <span className={styles['credit-name']} title={getCreditTypeDescription(credit.name)}>
         {credit.name}
         <InformationSVG />
       </span>
       <span className={styles['credit-value']}>{credit.amount}</span>
     </p>
-  ))
-  return <div className={styles['credits-wrapper']}>{credits}</div>
-}
+  ));
+  return <div className={styles['credits-wrapper']}>{credits}</div>;
+};
 
 const TotalCreditsWidget = ({}) => {
   const totalCredits = fakeData.credits.reduce((prev, next) => {
-    return (prev += next.amount)
-  }, 0)
+    return (prev += next.amount);
+  }, 0);
   return (
     <>
       <h2 className={styles.title}> Total credits purchased</h2>
@@ -83,7 +80,7 @@ const TotalCreditsWidget = ({}) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default TotalCreditsWidget
+export default TotalCreditsWidget;

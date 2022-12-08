@@ -1,13 +1,6 @@
-import { useCart } from './forms/cart'
+import { useCart } from './forms/cart';
 
-const NewTransactionInfo = ({
-  index,
-  mechanism,
-  year,
-  credits,
-  total,
-  handleRemove
-}) => {
+const NewTransactionInfo = ({ index, mechanism, year, credits, total, handleRemove }) => {
   // const { removeFromCart } = useCart()
 
   // TODO: check ARIA for remove button label
@@ -22,13 +15,12 @@ const NewTransactionInfo = ({
       </p>
       <button
         onClick={() => {
-          handleRemove(index)
-        }}
-      >
+          handleRemove(index);
+        }}>
         X<span className='visually-hidden'>Remove from cart</span>
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default NewTransactionInfo
+export default NewTransactionInfo;

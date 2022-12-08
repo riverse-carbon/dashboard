@@ -1,12 +1,6 @@
-function FiltersPicker ({
-  filters,
-  setCurrentFilter,
-  groupName,
-  defaultValue = 0,
-  styles
-}) {
-  function handleFilterChange (e) {
-    setCurrentFilter({ label: e.target.dataset.label, value: e.target.value })
+function FiltersPicker({ filters, setCurrentFilter, groupName, defaultValue = 0, styles }) {
+  function handleFilterChange(e) {
+    setCurrentFilter({ label: e.target.dataset.label, value: e.target.value });
   }
 
   return (
@@ -22,16 +16,13 @@ function FiltersPicker ({
               name={groupName}
               value={filter.value}
               onClick={handleFilterChange}
-              defaultChecked={index === defaultValue}
-            ></input>
-            <label htmlFor={`${groupName}-${filter.value}`}>
-              {filter.label}
-            </label>
+              defaultChecked={index === defaultValue}></input>
+            <label htmlFor={`${groupName}-${filter.value}`}>{filter.label}</label>
           </div>
-        )
+        );
       })}
     </div>
-  )
+  );
 }
 
-export default FiltersPicker
+export default FiltersPicker;

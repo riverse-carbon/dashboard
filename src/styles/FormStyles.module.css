@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   gap: var(--gap);
 
-  padding-block: var(--padding-spacer-xs)
+  padding-block: var(--padding-spacer-xs);
 }
 
 .add-new-user button[type='submit'] {
@@ -17,8 +17,8 @@
   position: relative;
 }
 
-.add-new-user :where(.input--text-wrapper>*),
-.add-new-user :where(.input--select-wrapper>*) {
+.add-new-user :where(.input--text-wrapper > *),
+.add-new-user :where(.input--select-wrapper > *) {
   display: block;
 }
 
@@ -28,5 +28,4 @@
 
 .add-new-user :where(.input--error) {
   position: absolute;
-
 }

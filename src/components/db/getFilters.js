@@ -1,52 +1,52 @@
-import Airtable from 'airtable'
+import Airtable from 'airtable';
 
 const getFilters = async (apiKey, view, filtersArray) => {
   // Connect to db
-  const base = new Airtable({ apiKey }).base('apptpGktGToVH41dj')
+  const base = new Airtable({ apiKey }).base('apptpGktGToVH41dj');
 
-  const dataSets = {}
+  const dataSets = {};
   filtersArray.forEach(filter => {
-    dataSets[filter] = new Set()
-  })
+    dataSets[filter] = new Set();
+  });
 
   // get records
   await base('tblRCb5aZpcAw36Wa')
     .select({
-      view
+      view,
     })
-    .eachPage(function page (records, fetchNextPage) {
+    .eachPage(function page(records, fetchNextPage) {
       records.forEach(record => {
-        const { fields } = record
+        const { fields } = record;
         filtersArray.forEach(filter => {
-          var value = fields[filter]
+          var value = fields[filter];
           if (Array.isArray(value)) {
             value.forEach(val => {
-              dataSets[filter].add(val)
-            })
+              dataSets[filter].add(val);
+            });
           } else {
-            dataSets[filter].add(value)
+            dataSets[filter].add(value);
           }
-        })
-      })
-      fetchNextPage()
+        });
+      });
+      fetchNextPage();
     })
     // eslint-disable-next-line
     .then(res => {})
     .catch(err => {
-      throw err
-    })
+      throw err;
+    });
 
   const filtersData = Object.entries(dataSets).map(entry => {
-    const name = entry[0]
-    const values = []
+    const name = entry[0];
+    const values = [];
     entry[1].forEach(val => {
-      values.push(val)
-    })
-    const label = name.charAt(0).toUpperCase() + name.slice(1)
+      values.push(val);
+    });
+    const label = name.charAt(0).toUpperCase() + name.slice(1);
 
-    return { name, values, label }
-  })
-  return filtersData
-}
+    return { name, values, label };
+  });
+  return filtersData;
+};
 
-export default getFilters
+export default getFilters;

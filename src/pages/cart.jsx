@@ -1,12 +1,13 @@
-import Head from 'next/head'
-import widgetStyles from '../styles/WidgetStyles.module.css'
-import WidgetWrapper from '../components/WidgetWrapper'
-import pageStyles from '../styles/Pages.module.css'
-import Cart from '../components/Cart.widget'
+import Head from 'next/head';
+
+import WidgetWrapper from 'components/WidgetWrapper';
+import Cart from 'components/Cart.widget';
+import pageStyles from 'styles/Pages.module.css';
+import widgetStyles from 'styles/WidgetStyles.module.css';
 
 // TODO: ADD H1 on EVERY page!
 
-export default function Home () {
+export default function Home() {
   return (
     <>
       <Head>
@@ -22,5 +23,5 @@ export default function Home () {
         </div>
       </main>
     </>
-  )
+  );
 }

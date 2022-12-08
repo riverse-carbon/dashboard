@@ -1,7 +1,7 @@
-import styles from '../styles/BillingInformation.widget.module.css'
+import styles from '../styles/BillingInformation.widget.module.css';
 
-const BillingInformation = ({data}) => {
-  const { address, siren, vatNumber, country } = data
+const BillingInformation = ({ data }) => {
+  const { address, siren, vatNumber, country } = data;
   return (
     <>
       <h2 className={styles.title}>Billing information</h2>
@@ -17,12 +17,14 @@ const BillingInformation = ({data}) => {
           </section>
           <section>
             <h3>Billing address</h3>
-            <span>{address}, {country}</span>
+            <span>
+              {address}, {country}
+            </span>
           </section>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default BillingInformation
+export default BillingInformation;

@@ -1,6 +1,6 @@
-import Image from 'next/future/image'
-import Link from 'next/link'
-import styles from '../styles/ProjectNode.module.css'
+import Image from 'next/future/image';
+import Link from 'next/link';
+import styles from '../styles/ProjectNode.module.css';
 
 // TODO:
 // 1. replace fakeData with a real one
@@ -13,15 +13,15 @@ import styles from '../styles/ProjectNode.module.css'
 
 const fakeData = {
   total: 432,
-  contribution: 345.3
-}
+  contribution: 345.3,
+};
 
-function ProjectNode ({ data }) {
+function ProjectNode({ data }) {
   // try {
-  const { name, sectors, tagline, sdgs, uid, cover } = data
+  const { name, sectors, tagline, sdgs, uid, cover } = data;
   // img or logo if img doesn't exist (file type is not an image)
-  const img = data?.cover.length !== 0 ? data.cover[0].url : data.logo[0].url
-  const { total, contribution } = fakeData
+  const img = data?.cover.length !== 0 ? data.cover[0].url : data.logo[0].url;
+  const { total, contribution } = fakeData;
 
   return (
     <Link href={`/projects/${uid}`}>
@@ -41,35 +41,25 @@ function ProjectNode ({ data }) {
           <div className={styles['name-wrapper']}>
             {/* <h4>{name}</h4> */}
             <h4 className={styles['tagline']}>{tagline}</h4>
-            <p className={styles['sectors'] + ' text-bold'}>
-              Sectors: {sectors.join(', ')}
-            </p>
+            <p className={styles['sectors'] + ' text-bold'}>Sectors: {sectors.join(', ')}</p>
           </div>
           <div className={styles['contribution-total-wrapper']}>
-            <p
-              className={`${styles['contribution']} flex flex-column flex-block-center`}
-            >
+            <p className={`${styles['contribution']} flex flex-column flex-block-center`}>
               <span>Carbon credits</span>
-              <span
-                className={styles['value'] + ' border-radius--small'}
-              >{`${contribution} tCO2`}</span>
+              <span className={styles['value'] + ' border-radius--small'}>{`${contribution} tCO2`}</span>
             </p>
-            <p
-              className={`${styles['total']} flex flex-column flex-block-center`}
-            >
+            <p className={`${styles['total']} flex flex-column flex-block-center`}>
               <span>Value</span>
-              <span
-                className={styles['value'] + ' border-radius--small'}
-              >{`${total} €`}</span>
+              <span className={styles['value'] + ' border-radius--small'}>{`${total} €`}</span>
             </p>
           </div>
         </div>
       </li>
     </Link>
-  )
+  );
   // } catch (e) {
   //   console.error('missing info in one of the projects', e)
   // }
 }
 
-export default ProjectNode
+export default ProjectNode;

@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import PieChart from './PieChart'
-import FiltersPicker from './FiltersPicker'
-import styles from '../styles/Contribution.module.css'
+import { useState } from 'react';
+import PieChart from './PieChart';
+import FiltersPicker from './FiltersPicker';
+import styles from '../styles/Contribution.module.css';
 
 // TODO:
 // 1. add aria-controls on filters wrapper
@@ -10,14 +10,12 @@ const FILTERSLIST = [
   { label: 'Mechanism', value: 'mechanism' },
   { label: 'Sectors', value: 'sectors' },
   { label: 'Country', value: 'country' },
-  { label: 'Vintage year', value: 'vintageYear' }
-]
-const DEFAULTCHECKED = 0
+  { label: 'Vintage year', value: 'vintageYear' },
+];
+const DEFAULTCHECKED = 0;
 
-function PieChartWithFiltersWrapper ({ data }) {
-  const [currentFilter, setCurrentFilter] = useState(
-    FILTERSLIST[DEFAULTCHECKED]
-  )
+function PieChartWithFiltersWrapper({ data }) {
+  const [currentFilter, setCurrentFilter] = useState(FILTERSLIST[DEFAULTCHECKED]);
   return (
     <>
       <FiltersPicker
@@ -29,7 +27,7 @@ function PieChartWithFiltersWrapper ({ data }) {
       />
       <PieChart rawData={data} filter={currentFilter} />
     </>
-  )
+  );
 }
 
-export default PieChartWithFiltersWrapper
+export default PieChartWithFiltersWrapper;

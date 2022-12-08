@@ -1,6 +1,6 @@
-import styles from '../styles/Contribution.module.css'
-import SdgsList from './SdgsList'
-import PieChartWithFiltersWrapper from './PieChartWithFiltersWrapper'
+import styles from '../styles/Contribution.module.css';
+import SdgsList from './SdgsList';
+import PieChartWithFiltersWrapper from './PieChartWithFiltersWrapper';
 
 // TODO:
 // 1.check 'before useMemo article'
@@ -8,7 +8,7 @@ import PieChartWithFiltersWrapper from './PieChartWithFiltersWrapper'
 // 3.maybe use SQL to query data in a usable format instead of
 //   formatting data on client side
 
-function Contribution ({ projects, sdgs }) {
+function Contribution({ projects, sdgs }) {
   return (
     <div className={styles.container}>
       <h2>Contribution summary</h2>
@@ -23,7 +23,7 @@ function Contribution ({ projects, sdgs }) {
         <div className={styles['bar-chart']}></div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Contribution
+export default Contribution;

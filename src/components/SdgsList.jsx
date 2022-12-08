@@ -1,18 +1,18 @@
-import Image from 'next/future/image'
+import Image from 'next/future/image';
 
-function uniqueSdgsFromProjects (projects) {
-  const uniqueSdgs = new Set()
+function uniqueSdgsFromProjects(projects) {
+  const uniqueSdgs = new Set();
   projects.map(project => {
     project.sdgs.forEach(sdg => {
-      uniqueSdgs.add(sdg)
-    })
-  })
-  return uniqueSdgs
+      uniqueSdgs.add(sdg);
+    });
+  });
+  return uniqueSdgs;
 }
 
-function SdgsList ({ sdgs, projects }) {
-  const sdgsToShow = uniqueSdgsFromProjects(projects)
-  const array = sdgs.filter(sdg => sdgsToShow.has(sdg.id))
+function SdgsList({ sdgs, projects }) {
+  const sdgsToShow = uniqueSdgsFromProjects(projects);
+  const array = sdgs.filter(sdg => sdgsToShow.has(sdg.id));
   return (
     <ul className='list' role='list'>
       {array.map(sdg => (
@@ -21,7 +21,7 @@ function SdgsList ({ sdgs, projects }) {
         </li>
       ))}
     </ul>
-  )
+  );
 }
 
-export default SdgsList
+export default SdgsList;

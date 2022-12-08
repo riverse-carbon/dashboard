@@ -14,8 +14,7 @@
   --grid-item--max-width: calc((100% - var(--total-gap-width)) / var(--grid-column-count));
 
   display: grid;
-  grid-template-columns: repeat(auto-fill,
-      minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
   grid-gap: var(--grid-layout-gap);
   align-items: start;
 }
@@ -51,7 +50,7 @@
   grid-template-rows: min-content 1fr;
 }
 
-.widgets-wrapper>* {
+.widgets-wrapper > * {
   grid-area: var(--area-name);
 }
 
@@ -77,6 +76,6 @@
   font-size: var(--widget-title, var(--fs-500));
 }
 
-.widget-card>*+* {
+.widget-card > * + * {
   margin-block-start: var(--block-spacer);
 }

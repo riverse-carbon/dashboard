@@ -1,41 +1,33 @@
-import { Formik, Field, Form } from 'formik'
-import { TextInput, SelectInput } from './components'
-import * as Yup from 'yup'
-import axios from 'axios'
-import formStyles from '../../styles/FormStyles.module.css'
-import { useState } from 'react'
-import { useCart } from './cart'
+import { Formik, Field, Form } from 'formik';
+import { TextInput, SelectInput } from './components';
+import * as Yup from 'yup';
+import axios from 'axios';
+import formStyles from '../../styles/FormStyles.module.css';
+import { useState } from 'react';
+import { useCart } from './cart';
 
-export const AddNewUsersForm = ({
-  rolesList = ['buyer', 'viewer'],
-  styles = '',
-}) => {
+export const AddNewUsersForm = ({ rolesList = ['buyer', 'viewer'], styles = '' }) => {
   return (
     <>
       <Formik
         initialValues={{
           email: '',
-          role: ''
+          role: '',
         }}
         validationSchema={Yup.object({
-          email: Yup.string()
-            .email('Invalid email address')
-            .required('Required'),
-          role: Yup.string()
-            .oneOf(rolesList, 'Invalid role')
-            .required('Required')
+          email: Yup.string().email('Invalid email address').required('Required'),
+          role: Yup.string().oneOf(rolesList, 'Invalid role').required('Required'),
         })}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            const api = '/api/protected/create-new-user'
-            await axios.post(api, values)
+            const api = '/api/protected/create-new-user';
+            await axios.post(api, values);
           } catch (err) {
-            alert(err.message && err.response?.data?.error)
+            alert(err.message && err.response?.data?.error);
           } finally {
-            setSubmitting(false)
+            setSubmitting(false);
           }
-        }}
-      >
+        }}>
         {({ isSubmitting }) => (
           <Form className={`${formStyles['add-new-user']} ${styles}`}>
             <TextInput
@@ -50,8 +42,7 @@ export const AddNewUsersForm = ({
               label='Role'
               name='role'
               className={styles['select-wrapper'] || ''}
-              options={rolesList}
-            ></SelectInput>
+              options={rolesList}></SelectInput>
 
             <button type='submit' disabled={isSubmitting}>
               {isSubmitting ? 'Loading...' : 'Add user'}
@@ -60,8 +51,8 @@ export const AddNewUsersForm = ({
         )}
       </Formik>
     </>
-  )
-}
+  );
+};
 
 // TODO: pass max credits and vintage years to validator from project data
 export const CreditsTransaction = ({
@@ -69,15 +60,13 @@ export const CreditsTransaction = ({
   project,
   projectId,
   styles = '',
-  addToProject
+  addToProject,
 }) => {
-  const { years, pricesPerYear, creditsPerYear } = project
-  const mechanismList = ['sequestration', 'avoidance']
+  const { years, pricesPerYear, creditsPerYear } = project;
+  const mechanismList = ['sequestration', 'avoidance'];
 
-  const [currentYearPrice, setCurrentYearPrice] = useState(pricesPerYear[0])
-  const [currentYearMaxCredits, setCurrentYearMaxCredits] = useState(
-    pricesPerYear[0]
-  )
+  const [currentYearPrice, setCurrentYearPrice] = useState(pricesPerYear[0]);
+  const [currentYearMaxCredits, setCurrentYearMaxCredits] = useState(pricesPerYear[0]);
 
   // const { addToCart } = useCart()
 
@@ -95,24 +84,19 @@ export const CreditsTransaction = ({
           actionType: 'purchase',
           credits: '',
           mechanism: mechanismList[0],
-          year: years[0]
+          year: years[0],
         }}
         validationSchema={Yup.object({
-          actionType: Yup.string()
-            .oneOf(transactionTypes, 'Invalid transaction type')
-            .required('Required'),
-          credits: Yup.number()
-            .positive('at least 1')
-            .integer('integers only')
-            .required('Required'),
+          actionType: Yup.string().oneOf(transactionTypes, 'Invalid transaction type').required('Required'),
+          credits: Yup.number().positive('at least 1').integer('integers only').required('Required'),
           mechanism: Yup.string().oneOf(mechanismList).required('Required'),
-          year: Yup.string().oneOf(years).required('Required')
+          year: Yup.string().oneOf(years).required('Required'),
         })}
         onSubmit={(values, { setSubmitting }) => {
-          const total = currentYearPrice * values.credits
-          addToProject({ ...values, currentYearPrice, total })
+          const total = currentYearPrice * values.credits;
+          addToProject({ ...values, currentYearPrice, total });
           // addToCart({ ...values, currentYearPrice, total, transactionId })
-          setSubmitting(false)
+          setSubmitting(false);
           // try {
           //   await handleTransactionAdd(values)
           // } catch (err) {
@@ -120,8 +104,7 @@ export const CreditsTransaction = ({
           // } finally {
           //   setSubmitting(false)
           // }
-        }}
-      >
+        }}>
         {({ handleChange, values }) => (
           <Form className={`${formStyles['add-new-user']} ${styles}`}>
             <SelectInput
@@ -136,11 +119,11 @@ export const CreditsTransaction = ({
               className={styles['select-wrapper'] || 'select-wrapper'}
               options={years}
               onChange={e => {
-                handleChange(e)
-                const value = e.target.value
-                const index = years.findIndex(year => year == value)
-                setCurrentYearMaxCredits(creditsPerYear[index])
-                setCurrentYearPrice(pricesPerYear[index])
+                handleChange(e);
+                const value = e.target.value;
+                const index = years.findIndex(year => year == value);
+                setCurrentYearMaxCredits(creditsPerYear[index]);
+                setCurrentYearPrice(pricesPerYear[index]);
               }}
             />
             <TextInput
@@ -169,6 +152,6 @@ export const CreditsTransaction = ({
         )}
       </Formik>
     </>
-  )
-}
+  );
+};
 // status(Pending,Validated,Cancelled), actionType(purchase,transfer) project credits vintage mechanism comment(?) buyer inventory(?should come from other fields?)

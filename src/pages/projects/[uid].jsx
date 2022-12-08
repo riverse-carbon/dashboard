@@ -1,25 +1,25 @@
-import Head from 'next/head'
-import getAllProjects from '../../components/db/getAllProjects'
-import getProjectByUid from '../../components/db/getProjectByUid'
-import SeparateProject from '../../components/SeparateProject.widget'
-import TotalCredits from '../../components/TotalCredits.SeparateProject.widget'
-import WidgetWrapper from '../../components/WidgetWrapper'
-import widgetStyles from '../../styles/WidgetStyles.module.css'
-import pageStyles from '../../styles/Pages.module.css'
-import ModalDialog, { ModalId } from '../../components/ModalDialog'
-import BuyCreditsWidget from '../../components/BuyCredits.widget'
-import { getYearsCreditsPricesFields } from '../../components/db/normalizeProjectData'
-import BuyCreditsNew from '../../components/BuyCreditsNew.widget'
-import { CartProvider } from '../../components/forms/cart'
+import Head from 'next/head';
+import getAllProjects from '../../components/db/getAllProjects';
+import getProjectByUid from '../../components/db/getProjectByUid';
+import SeparateProject from '../../components/SeparateProject.widget';
+import TotalCredits from '../../components/TotalCredits.SeparateProject.widget';
+import WidgetWrapper from '../../components/WidgetWrapper';
+import widgetStyles from '../../styles/WidgetStyles.module.css';
+import pageStyles from '../../styles/Pages.module.css';
+import ModalDialog, { ModalId } from '../../components/ModalDialog';
+import BuyCreditsWidget from '../../components/BuyCredits.widget';
+import { getYearsCreditsPricesFields } from '../../components/db/normalizeProjectData';
+import BuyCreditsNew from '../../components/BuyCreditsNew.widget';
+import { CartProvider } from '../../components/forms/cart';
 
-export default function ProjectPage ({ project }) {
-  const modalId = 'buy-credits-modal'
+export default function ProjectPage({ project }) {
+  const modalId = 'buy-credits-modal';
   if (!project)
     return (
       <main className={`main-container`}>
         <h1>Loading...</h1>
       </main>
-    )
+    );
   return (
     <CartProvider>
       <Head>
@@ -45,74 +45,65 @@ export default function ProjectPage ({ project }) {
         </ModalDialog>
       ) : null}
     </CartProvider>
-  )
+  );
 }
 
-export async function getStaticPaths () {
-  const projects = await getAllProjects(
-    process.env.API_KEY,
-    process.env.DB_VIEW
-  )
+export async function getStaticPaths() {
+  const projects = await getAllProjects(process.env.API_KEY, process.env.DB_VIEW);
   const paths = projects.map(project => ({
-    params: { uid: project.fields.uid }
-  }))
+    params: { uid: project.fields.uid },
+  }));
   return {
     paths: [],
-    fallback: 'blocking'
-  }
+    fallback: 'blocking',
+  };
 }
 
-export async function getStaticProps ({ params }) {
-  const project = await getProjectByUid(
-    process.env.API_KEY,
-    process.env.DB_VIEW,
-    params.uid
-  )
+export async function getStaticProps({ params }) {
+  const project = await getProjectByUid(process.env.API_KEY, process.env.DB_VIEW, params.uid);
 
-  const { fields } = project
+  const { fields } = project;
 
   // data restructuring
-  var yearsCreditsPricesFields = getYearsCreditsPricesFields(
-    fields['year-credits-price']
-  )
+  var yearsCreditsPricesFields = getYearsCreditsPricesFields(fields['year-credits-price']);
   Object.entries(yearsCreditsPricesFields).forEach(field => {
-    fields[field[0]] = field[1]
-  })
-  const {
-    'sdgs-description': descriptions,
-    'sdgs-icons': icons,
-    impactDesc,
-    impactFigures,
-    impactIcons
-  } = fields
+    fields[field[0]] = field[1];
+  });
+  const { 'sdgs-description': descriptions, 'sdgs-icons': icons, impactDesc, impactFigures, impactIcons } = fields;
 
   fields.sdgsArray = descriptions.map((desc, i) => {
-    const { url, width, height } = icons[i]
+    const { url, width, height } = icons[i];
 
-    return { icon: { url, width, height }, desc }
-  })
+    return { icon: { url, width, height }, desc };
+  });
+
+  if (fields) {
+    console.log('toto');
+  } else {
+    console.log('titi');
+  }
 
   fields.keyImpact = impactDesc.map((desc, i) => ({
     desc,
     figure: impactFigures[i],
-    icon: impactIcons[i]
-  }))
+    icon: impactIcons[i],
+  }));
 
   fields.cccp = [
     { name: 'Unicity', value: fields['cccp-unicity'] },
     { name: 'Permanence', value: fields['cccp-permanence'] },
     {
       name: 'Measurability & reality',
-      value: fields['cccp-measurability']
+      value: fields['cccp-measurability'],
     },
     { name: 'Additionality', value: fields['cccp-additionality'] },
-    { name: 'Rebound effects', value: fields['cccp-rebound-effects'] }
-  ]
+    { name: 'Rebound effects', value: fields['cccp-rebound-effects'] },
+  ];
 
   return {
     props: {
-      project
+      project,
     },
-    revalidate: 10
-  }
+    revalidate: 10,
+  };
 }

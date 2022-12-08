@@ -1,11 +1,6 @@
-export default function Logo ({ clrMonochrome = false }) {
+export default function Logo({ clrMonochrome = false }) {
   return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='226.68'
-      height='39.26'
-      viewBox='0 0 642.55 111.28'
-    >
+    <svg xmlns='http://www.w3.org/2000/svg' width='226.68' height='39.26' viewBox='0 0 642.55 111.28'>
       <polygon
         points='96.37 7.71 96.37 13.79 110.26 17.26 110.26 64.13 113.91 64.13 151.94 55.8 151.94 51.63 137.18 46.94 137.18 17.26 151.94 13.79 151.94 7.71 96.37 7.71'
         fill='currentColor'
@@ -43,5 +38,5 @@ export default function Logo ({ clrMonochrome = false }) {
         fill='currentColor'
       />
     </svg>
-  )
+  );
 }

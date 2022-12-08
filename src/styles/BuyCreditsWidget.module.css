@@ -2,9 +2,7 @@
   /* TODO: create utility classes inside widgets!!!*/
   position: relative;
   z-index: 0;
-
 }
-
 
 /* colors + typography */
 
@@ -45,13 +43,13 @@
   padding: var(--padding-spacer);
 }
 
-.title>*:first-child {
+.title > *:first-child {
   width: 2rem;
   height: 2rem;
 }
 
 .subtitle,
-.subtitle>span:not(:first-child) {
+.subtitle > span:not(:first-child) {
   margin-block-start: 3px;
 }
 
@@ -65,20 +63,19 @@
   text-align: center;
 }
 
-.radio-label-wrapper>label {
+.radio-label-wrapper > label {
   display: block;
 
   padding-block: var(--padding-spacer-xs);
 
   cursor: pointer;
-
 }
 
 .tab-content-wrapper {
   padding: var(--padding-spacer);
 }
 
-.tab-content-wrapper>*:not(.submit) {
+.tab-content-wrapper > *:not(.submit) {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -135,7 +132,7 @@
   place-items: center;
 }
 
-:is(.plus-button, .minus-button)>span {
+:is(.plus-button, .minus-button) > span {
   width: 1rem;
   height: 1rem;
 }
@@ -147,7 +144,6 @@
 
 /* confirmation widget */
 .confirmation-widget {
-
   color: hsl(var(--clr-main--900));
 
   padding: var(--padding-spacer);
@@ -157,7 +153,7 @@
   font-size: var(--fs-500);
 }
 
-.confirmation-widget>* {
+.confirmation-widget > * {
   display: flex;
   justify-content: space-between;
   gap: var(--gap-xs);
@@ -176,12 +172,12 @@
   --svg-clr-inside: hsl(var(--clr-main--100));
   display: flex;
   align-items: flex-start;
-  gap: .1em;
+  gap: 0.1em;
 }
 
-.confirmation--price-with-icon>svg {
-  width: .7em;
-  height: .7em;
+.confirmation--price-with-icon > svg {
+  width: 0.7em;
+  height: 0.7em;
 }
 
 .confirmation--submit {

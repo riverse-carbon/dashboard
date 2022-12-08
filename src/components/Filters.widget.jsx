@@ -1,7 +1,7 @@
-import { useId, useState, useEffect } from 'react'
-import styles from '../styles/Filters.module.css'
-import Box from '@mui/material/Box'
-import Slider from '@mui/material/Slider'
+import { useId, useState, useEffect } from 'react';
+import styles from '../styles/Filters.module.css';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 
 // TODO:
 // 1. Check a11y
@@ -13,28 +13,24 @@ const addedFilters = [
     label: 'Price',
     values: [30, 120],
     valuesSign: '€',
-    step: 1
-  }
-]
+    step: 1,
+  },
+];
 
 const RangeSlider = ({ filterObject, setFilterValues }) => {
-  const { label, name, values } = filterObject
-  const valuesSign = filterObject.valuesSign || ''
+  const { label, name, values } = filterObject;
+  const valuesSign = filterObject.valuesSign || '';
 
-  const labelId = useId()
-  const [value, setValue] = useState([values[0], values[1]])
+  const labelId = useId();
+  const [value, setValue] = useState([values[0], values[1]]);
 
   const handleChange = (event, newValue) => {
-    setFilterValues(name, newValue)
-    setValue(newValue)
-  }
+    setFilterValues(name, newValue);
+    setValue(newValue);
+  };
 
   return (
-    <Box
-      component='fieldset'
-      tabIndex={0}
-      className={`${styles['filter-fieldset']} ${styles['fieldset--range']}`}
-    >
+    <Box component='fieldset' tabIndex={0} className={`${styles['filter-fieldset']} ${styles['fieldset--range']}`}>
       <legend id={labelId} className='text-bold'>
         {label}:
       </legend>
@@ -61,8 +57,8 @@ const RangeSlider = ({ filterObject, setFilterValues }) => {
         />
       </div>
     </Box>
-  )
-}
+  );
+};
 
 // const RangeFilter = ({ filterObject }) => {
 //   const { label, name, values } = filterObject
@@ -105,51 +101,41 @@ const RangeSlider = ({ filterObject, setFilterValues }) => {
 //   )
 // }
 
-const MultiselectFilter = ({
-  filterObject,
-  setFilterValues,
-  appliedFilters = []
-}) => {
-  const { label, name, values } = filterObject
+const MultiselectFilter = ({ filterObject, setFilterValues, appliedFilters = [] }) => {
+  const { label, name, values } = filterObject;
 
   const handleChange = e => {
-    var checked = e.target.checked
-    var value = e.target.value
-    var updatedValues = [...appliedFilters]
+    var checked = e.target.checked;
+    var value = e.target.value;
+    var updatedValues = [...appliedFilters];
     if (checked) {
-      updatedValues.push(value)
-      setFilterValues(name, updatedValues)
+      updatedValues.push(value);
+      setFilterValues(name, updatedValues);
     }
     if (!checked) {
-      const withoutExcludedValue = updatedValues.filter(val => val !== value)
-      setFilterValues(name, withoutExcludedValue)
+      const withoutExcludedValue = updatedValues.filter(val => val !== value);
+      setFilterValues(name, withoutExcludedValue);
     }
-  }
+  };
 
   const buttons = values.map(value => (
     <div key={value} className={styles['checkbox-wrapper']}>
-      <input
-        type='checkbox'
-        name={name}
-        value={value}
-        id={`${name}-${value}`}
-        onChange={handleChange}
-      />
+      <input type='checkbox' name={name} value={value} id={`${name}-${value}`} onChange={handleChange} />
       <label htmlFor={`${name}-${value}`}>{value}</label>
     </div>
-  ))
+  ));
   return (
     <fieldset tabIndex={0} name={name} className={styles['filter-fieldset']}>
       <legend className='text-bold'>{label}:</legend>
       <div className={styles['values-wrapper']}>{buttons}</div>
     </fieldset>
-  )
-}
+  );
+};
 
 const Filters = ({ setFilters, appliedFilters, data }) => {
-  const filters = data
+  const filters = data;
 
-  const [filtersComponents, setFiltersComponents] = useState([])
+  const [filtersComponents, setFiltersComponents] = useState([]);
 
   // const handleFiltersToggle = e => {
   //   const expanded = e.target.getAttribute('aria-expanded')
@@ -161,8 +147,8 @@ const Filters = ({ setFilters, appliedFilters, data }) => {
   // }
   useEffect(() => {
     const handleFilterChange = (filter, values) => {
-      setFilters({ ...appliedFilters, [filter]: values })
-    }
+      setFilters({ ...appliedFilters, [filter]: values });
+    };
     if (filters.length !== 0) {
       const filtersComponentsArray = filters.map(filter => {
         return (
@@ -172,15 +158,11 @@ const Filters = ({ setFilters, appliedFilters, data }) => {
             appliedFilters={appliedFilters[filter.name]}
             setFilterValues={handleFilterChange}
           />
-        )
-      })
+        );
+      });
       const fakeFilters = addedFilters.map(filter => {
         return filter.style === 'range' ? (
-          <RangeSlider
-            key={filter.name}
-            filterObject={filter}
-            setFilterValues={handleFilterChange}
-          />
+          <RangeSlider key={filter.name} filterObject={filter} setFilterValues={handleFilterChange} />
         ) : (
           <MultiselectFilter
             key={filter.name}
@@ -188,21 +170,21 @@ const Filters = ({ setFilters, appliedFilters, data }) => {
             appliedFilters={appliedFilters[filter.name]}
             setFilterValues={handleFilterChange}
           />
-        )
-      })
-      setFiltersComponents([...fakeFilters, ...filtersComponentsArray])
+        );
+      });
+      setFiltersComponents([...fakeFilters, ...filtersComponentsArray]);
     }
-  }, [filters, appliedFilters, setFilters])
+  }, [filters, appliedFilters, setFilters]);
 
   if (filters.length === 0) {
-    return <></>
+    return <></>;
   }
   return (
     <>
       <h2 className={styles.title}>Filters</h2>
       <div className={`${styles.body} flow-spacer`}>{filtersComponents}</div>
     </>
-  )
-}
+  );
+};
 
-export default Filters
+export default Filters;

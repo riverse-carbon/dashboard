@@ -1,15 +1,15 @@
-import getById from './getById'
+import getById from './getById';
 
 const verifyUserEmail = async (base, userId, userEmail) => {
-  var usersTable = 'tblG56b6iiigWe8kI'
+  var usersTable = 'tblG56b6iiigWe8kI';
 
-  var userFromDB = await getById(base, usersTable, userId)
+  var userFromDB = await getById(base, usersTable, userId);
 
   if (!userFromDB || !userEmail === userFromDB.fields.email) {
-    return false
+    return false;
   }
 
-  return userFromDB
-}
+  return userFromDB;
+};
 
-export default verifyUserEmail
+export default verifyUserEmail;

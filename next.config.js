@@ -7,19 +7,19 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**.airtableusercontent.com'
+        hostname: '**.airtableusercontent.com',
       },
       {
         protocol: 'https',
-        hostname: '**.airtable.com'
+        hostname: '**.airtable.com',
       },
       {
         protocol: 'https',
-        hostname: '**.googleusercontent.com'
-      }
-    ]
+        hostname: '**.googleusercontent.com',
+      },
+    ],
     // domains: ['dl.airtable.com', 'lh3.googleusercontent.com']
-  }
-}
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

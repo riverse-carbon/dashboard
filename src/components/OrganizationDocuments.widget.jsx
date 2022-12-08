@@ -3,7 +3,7 @@ const OrganizationDocuments = () => {
     <>
       <h2>Documents</h2>
     </>
-  )
-}
+  );
+};
 
-export default OrganizationDocuments
+export default OrganizationDocuments;

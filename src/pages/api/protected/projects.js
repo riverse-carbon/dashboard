@@ -1,32 +1,28 @@
-import Airtable from 'airtable'
-import { getYearsCreditsPricesFields } from '../../../components/db/normalizeProjectData'
+import Airtable from 'airtable';
+import { getYearsCreditsPricesFields } from '../../../components/db/normalizeProjectData';
 
 // TODO: no maxRecords!!
 
-export default async function getProjects (req, res) {
+export default async function getProjects(req, res) {
   try {
-    const data = []
+    const data = [];
 
     // Connect to db
-    const base = new Airtable({ apiKey: process.env.API_KEY }).base(
-      'apptpGktGToVH41dj'
-    )
+    const base = new Airtable({ apiKey: process.env.API_KEY }).base('apptpGktGToVH41dj');
     // get records
     base('tblRCb5aZpcAw36Wa')
       .select({
-        view: process.env.DB_VIEW
+        view: process.env.DB_VIEW,
       })
       .eachPage(
-        function page (records, fetchNextPage) {
+        function page(records, fetchNextPage) {
           // populate data array
           records.forEach(record => {
-            const { id, fields } = record
-            const yearsCreditsPricesFields = getYearsCreditsPricesFields(
-              fields['year-credits-price']
-            )
+            const { id, fields } = record;
+            const yearsCreditsPricesFields = getYearsCreditsPricesFields(fields['year-credits-price']);
             Object.entries(yearsCreditsPricesFields).forEach(field => {
-              fields[field[0]] = field[1]
-            })
+              fields[field[0]] = field[1];
+            });
             // const priceRange = [50, 50]
             // if (fields['year-credits-price']) {
             //   fields.pricesPerYear = []
@@ -65,19 +61,19 @@ export default async function getProjects (req, res) {
             // fields.creditsPerYear = creditsPerYear
             // }
             // fields.priceRange = priceRange
-            data.push({ id, fields })
-          })
-          fetchNextPage()
+            data.push({ id, fields });
+          });
+          fetchNextPage();
         },
-        function done (err) {
+        function done(err) {
           if (err) {
-            throw err
+            throw err;
           }
-          if (data.length === 0) throw 'No available data'
-          res.status(200).json({ data })
+          if (data.length === 0) throw 'No available data';
+          res.status(200).json({ data });
         }
-      )
+      );
   } catch (err) {
-    res.status(500).json({ err })
+    res.status(500).json({ err });
   }
 }

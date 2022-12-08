@@ -1,10 +1,10 @@
-import styles from '../styles/ContributionWidget.module.css'
+import styles from '../styles/ContributionWidget.module.css';
 
 // TODO: replace fake data
 
 const fakeData = {
-  total: '2100'
-}
+  total: '2100',
+};
 
 const ContributionWidget = ({}) => {
   return (
@@ -12,7 +12,7 @@ const ContributionWidget = ({}) => {
       <h2 className={styles.title}>Current portfolio value</h2>
       <div className={styles.body}>{fakeData.total} €</div>
     </>
-  )
-}
+  );
+};
 
-export default ContributionWidget
+export default ContributionWidget;

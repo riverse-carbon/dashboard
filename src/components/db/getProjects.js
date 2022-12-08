@@ -1,43 +1,36 @@
-import Airtable from 'airtable'
+import Airtable from 'airtable';
 
-const getAllProjects = async (
-  view = 'Projects list (for web & app)',
-  formula,
-  maxRecords = '',
-  recordTransform
-) => {
+const getAllProjects = async (view = 'Projects list (for web & app)', formula, maxRecords = '', recordTransform) => {
   // Connect to db
-  const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-    'apptpGktGToVH41dj'
-  )
+  const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base('apptpGktGToVH41dj');
 
-  const data = []
+  const data = [];
 
   // get records
   await base('tblRCb5aZpcAw36Wa')
     .select({
       view,
       filterByFormula: formula,
-      maxRecords
+      maxRecords,
     })
-    .eachPage(function page (records, fetchNextPage) {
+    .eachPage(function page(records, fetchNextPage) {
       records.forEach(record => {
         if (recordTransform) {
-          recordTransform(record)
+          recordTransform(record);
         }
-        const { id, fields } = record
-        data.push({ id, fields })
-        return { id, fields }
-      })
-      fetchNextPage()
+        const { id, fields } = record;
+        data.push({ id, fields });
+        return { id, fields };
+      });
+      fetchNextPage();
     })
     .then(res => {
-      console.log(res)
+      console.log(res);
     })
     .catch(err => {
-      throw err
-    })
-  return data
-}
+      throw err;
+    });
+  return data;
+};
 
-export default getAllProjects
+export default getAllProjects;

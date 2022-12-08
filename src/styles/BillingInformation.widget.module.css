@@ -10,9 +10,9 @@
 .body {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--gap)
+  gap: var(--gap);
 }
 
-.body>section:last-child {
+.body > section:last-child {
   grid-column: span 2;
 }

@@ -10,36 +10,33 @@ import NewTransactionInfo from './NewTransactionInfo';
 import { useCart } from './forms/cart';
 
 const BuyCreditsNew = ({ project, id }) => {
-  const { tagline, name } = project
+  const { tagline, name } = project;
   // TODO: add cover image?
 
-  const [total, setTotal] = useState(0)
-  const [addedToDB, setAddedToDB] = useState(false)
+  const [total, setTotal] = useState(0);
+  const [addedToDB, setAddedToDB] = useState(false);
 
-  const [transactions, setTransactions] = useState([])
+  const [transactions, setTransactions] = useState([]);
 
-  const { cartItems, addToCart } = useCart()
-  const { dialogCallbackOnClose } = useModal()
+  const { cartItems, addToCart } = useCart();
+  const { dialogCallbackOnClose } = useModal();
 
   const handleCancel = useCallback(() => {
-    dialogCallbackOnClose()
-  }, [dialogCallbackOnClose])
+    dialogCallbackOnClose();
+  }, [dialogCallbackOnClose]);
 
   const handleAddToCart = useCallback(async () => {
     try {
-      const api = '/api/protected/add-to-cart'
-      const res = await axios.post(api, { data: transactions })
-      const { data } = res.data
+      const api = '/api/protected/add-to-cart';
+      const res = await axios.post(api, { data: transactions });
+      const { data } = res.data;
       if (!data || data.length === 0) {
-        throw new Error('Transaction failed')
+        throw new Error('Transaction failed');
       }
-      addToCart({ projectId: id, transactions: data })
-      setAddedToDB(true)
+      addToCart({ projectId: id, transactions: data });
+      setAddedToDB(true);
     } catch (err) {
-      alert(
-        'Something went wrong. please contact us at support@riverse.io . ' +
-          (err.message || 'Unknown error')
-      )
+      alert('Something went wrong. please contact us at support@riverse.io . ' + (err.message || 'Unknown error'));
     }
     // const transactionId = res.data.transactionId
     // if (!transactionId) {
@@ -47,21 +44,21 @@ const BuyCreditsNew = ({ project, id }) => {
     //     'There was a problem while adding transaction to the cart'
     //   )
     // }
-  }, [transactions, id, addToCart])
+  }, [transactions, id, addToCart]);
 
   const handleAddToProject = useCallback(transactionObj => {
-    setTransactions(trans => [...trans, transactionObj])
-  }, [])
+    setTransactions(trans => [...trans, transactionObj]);
+  }, []);
 
   const handleRemoveFromProject = useCallback(index => {
-    setTransactions(trans => trans.filter((transaction, i) => i !== index))
-  }, [])
+    setTransactions(trans => trans.filter((transaction, i) => i !== index));
+  }, []);
 
   const items = useMemo(() => {
-    var totalCounter = 0
+    var totalCounter = 0;
     const nodes = transactions.reduce((result, transaction, index) => {
-      const { mechanism, year, total, credits } = transaction
-      totalCounter += total
+      const { mechanism, year, total, credits } = transaction;
+      totalCounter += total;
       result.push(
         <NewTransactionInfo
           key={`${mechanism}-${year}-${credits}-${totalCounter}`}
@@ -72,9 +69,9 @@ const BuyCreditsNew = ({ project, id }) => {
           total={total}
           handleRemove={handleRemoveFromProject}
         />
-      )
-      return result
-    }, [])
+      );
+      return result;
+    }, []);
     // return nodes
     // const nodes = cartItems.reduce((result, transaction) => {
     //   // add only transactions within this project
@@ -93,9 +90,9 @@ const BuyCreditsNew = ({ project, id }) => {
     //   }
     //   return result
     // }, [])
-    setTotal(totalCounter)
-    return nodes
-  }, [transactions, handleRemoveFromProject])
+    setTotal(totalCounter);
+    return nodes;
+  }, [transactions, handleRemoveFromProject]);
 
   return (
     <div className={`${styles['widget-wrapper']} ${styles['text-bold']}`}>
@@ -106,14 +103,12 @@ const BuyCreditsNew = ({ project, id }) => {
           <p className={styles.subtitle}>
             <span className='block'>
               <span>
-                Project:{' '}
-                <span className={`${styles['text-normal']}`}>{tagline}</span>
+                Project: <span className={`${styles['text-normal']}`}>{tagline}</span>
               </span>
             </span>
             <span className='block'>
               <span>
-                Developer:{' '}
-                <span className={`${styles['text-normal']}`}>{name}</span>
+                Developer: <span className={`${styles['text-normal']}`}>{name}</span>
               </span>
             </span>
           </p>
@@ -122,11 +117,7 @@ const BuyCreditsNew = ({ project, id }) => {
       <div className={styles.body}>
         <div>
           <h3>Create your order</h3>
-          <CreditsTransaction
-            project={project}
-            projectId={id}
-            addToProject={handleAddToProject}
-          />
+          <CreditsTransaction project={project} projectId={id} addToProject={handleAddToProject} />
         </div>
         <div>
           <h3>Your Order</h3>
@@ -138,16 +129,12 @@ const BuyCreditsNew = ({ project, id }) => {
         <button onClick={handleCancel} className={styles['cancel-button']}>
           Cancel
         </button>
-        <button
-          onClick={handleAddToCart}
-          disabled={transactions.length < 1}
-          className={styles['add-to-cart-button']}
-        >
+        <button onClick={handleAddToCart} disabled={transactions.length < 1} className={styles['add-to-cart-button']}>
           Add to cart
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BuyCreditsNew
+export default BuyCreditsNew;

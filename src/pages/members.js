@@ -1,33 +1,33 @@
-import Head from 'next/head'
-import widgetStyles from '../styles/WidgetStyles.module.css'
-import WidgetWrapper from '../components/WidgetWrapper'
-import Organization from '../components/Organization.widget'
-import BillingInformation from '../components/BillingInformation.widget'
-import OrganizationDocuments from '../components/OrganizationDocuments.widget'
-import pageStyles from '../styles/Pages.module.css'
-import useSWR, { mutate } from 'swr'
-import { useUser } from '@auth0/nextjs-auth0'
-import { AddNewUsersForm } from '../components/forms/forms'
+import Head from 'next/head';
+import widgetStyles from '../styles/WidgetStyles.module.css';
+import WidgetWrapper from '../components/WidgetWrapper';
+import Organization from '../components/Organization.widget';
+import BillingInformation from '../components/BillingInformation.widget';
+import OrganizationDocuments from '../components/OrganizationDocuments.widget';
+import pageStyles from '../styles/Pages.module.css';
+import useSWR, { mutate } from 'swr';
+import { useUser } from '@auth0/nextjs-auth0';
+import { AddNewUsersForm } from '../components/forms/forms';
 
 // TODO: parse
 
-const fetcher = url => fetch(url).then(res => res.json())
+const fetcher = url => fetch(url).then(res => res.json());
 
-const getOrgURL = 'api/protected/get-organization'
+const getOrgURL = 'api/protected/get-organization';
 
-export default function Home () {
-  const { data, error } = useSWR(getOrgURL, fetcher)
+export default function Home() {
+  const { data, error } = useSWR(getOrgURL, fetcher);
   if (error) {
     return (
       <>
         <main className={`main-container ${pageStyles.members}`}>
           <p className='fetch-error'>
-            Error encountered while getting information. Try to refresh the page
-            and contact our team in the problem persists.
+            Error encountered while getting information. Try to refresh the page and contact our team in the problem
+            persists.
           </p>
         </main>
       </>
-    )
+    );
   }
   return (
     <>
@@ -51,14 +51,10 @@ export default function Home () {
           <OrganizationDocuments />
         </WidgetWrapper> */}
           <WidgetWrapper columns={3} areaName='billing'>
-            {data ? (
-              <BillingInformation data={data.organization.billingInfo} />
-            ) : (
-              <h2>Loading...</h2>
-            )}
+            {data ? <BillingInformation data={data.organization.billingInfo} /> : <h2>Loading...</h2>}
           </WidgetWrapper>
         </div>
       </main>
     </>
-  )
+  );
 }

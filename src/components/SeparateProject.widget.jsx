@@ -14,13 +14,13 @@ import { handleModalOpen, ModalId } from './ModalDialog';
 // 9. rich text (markdown) processing
 
 const SeparateProject = ({ project, id }) => {
-  const modalId = useContext(ModalId)
-  const cover = project.cover[0]
-  const { images } = project
+  const modalId = useContext(ModalId);
+  const cover = project.cover[0];
+  const { images } = project;
   const sdgs =
     project.sdgsArray &&
     project.sdgsArray.map((sdg, i) => {
-      const { url, width, height } = sdg.icon
+      const { url, width, height } = sdg.icon;
       return (
         <li className={styles.sdg} key={i}>
           <div className={styles['image-wrapper']}>
@@ -28,8 +28,8 @@ const SeparateProject = ({ project, id }) => {
           </div>
           {sdg.desc}
         </li>
-      )
-    })
+      );
+    });
 
   const cccp = project.cccp.map((principle, i) => (
     <li className={styles.principle} key={i}>
@@ -39,39 +39,28 @@ const SeparateProject = ({ project, id }) => {
         <p>{principle.value}</p>
       </div>
     </li>
-  ))
+  ));
 
   // const carousel = project.carouselImg.map(img =>)
-  const carousel = project.images[2]
+  const carousel = project.images[2];
 
   const keyImpact = project.keyImpact.map((impact, i) => (
     <li className={styles['impact-item']} key={i}>
-      <Image
-        src={impact.icon.url}
-        width={impact.icon.width || 64}
-        height={impact.icon.height || 64}
-        alt=''
-      />
+      <Image src={impact.icon.url} width={impact.icon.width || 64} height={impact.icon.height || 64} alt='' />
       <span className={styles.figure}>{impact.figure}</span>
       <span className={styles.desc}>{impact.desc}</span>
     </li>
-  ))
+  ));
 
   const handleBuyCredits = () => {
-    handleModalOpen(modalId)
-  }
+    handleModalOpen(modalId);
+  };
 
   return (
     <>
       <div className={`${styles.body} flow-spacer`}>
         <div className={styles.hero}>
-          <Image
-            src={cover.url}
-            alt=''
-            fill={true}
-            sizes='70vw'
-            priority={true}
-          />
+          <Image src={cover.url} alt='' fill={true} sizes='70vw' priority={true} />
         </div>
         <section className={`${styles.title} flow-spacer spacer-xs`}>
           <h1>{project.tagline}</h1>
@@ -119,17 +108,14 @@ const SeparateProject = ({ project, id }) => {
         </section>
         <section className={styles.cta}>
           <h2 className='visually-hidden'>Time to take actions</h2>
-          <button
-            onClick={handleBuyCredits}
-            className={`link-with-icon link-with-icon--centered`}
-          >
+          <button onClick={handleBuyCredits} className={`link-with-icon link-with-icon--centered`}>
             <CardSVG />
             Buy carbon credits
           </button>
         </section>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default SeparateProject
+export default SeparateProject;

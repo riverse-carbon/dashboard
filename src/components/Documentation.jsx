@@ -6,15 +6,13 @@ import { documentationPages } from '../../db';
 import PostPreviewCard from './PostPreviewCard';
 // TODO: use static generation and dynamic data for posts
 
-function Documentation () {
-  const [posts, setPosts] = useState([])
+function Documentation() {
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const postsList = documentationPages.posts.map((post, i) => (
-      <PostPreviewCard key={i} data={post} />
-    ))
-    setPosts(postsList)
-  }, [])
+    const postsList = documentationPages.posts.map((post, i) => <PostPreviewCard key={i} data={post} />);
+    setPosts(postsList);
+  }, []);
 
   return (
     <>
@@ -25,7 +23,7 @@ function Documentation () {
         </ul>
       </div>
     </>
-  )
+  );
 }
 
-export default Documentation
+export default Documentation;

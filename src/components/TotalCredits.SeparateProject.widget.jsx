@@ -18,45 +18,42 @@ const fakeData = {
   credits: [
     { name: 'Ex-ante', amount: 6 },
     { name: 'Ex-post', amount: 1 },
-    { name: 'Retired', amount: 3 }
-  ]
-}
+    { name: 'Retired', amount: 3 },
+  ],
+};
 
 const getCreditTypeDescription = creditName => {
   switch (creditName) {
     case 'Ex-ante':
-      return 'before the event'
+      return 'before the event';
     case 'Ex-post':
-      return 'after the event'
+      return 'after the event';
     case 'Retired':
-      return 'already used'
+      return 'already used';
   }
-}
+};
 
 const CreditsDetailed = ({ data }) => {
   const credits = data.map(credit => (
     <p key={credit.name} className={styles['credit']}>
-      <span
-        className={styles['credit-name']}
-        title={getCreditTypeDescription(credit.name)}
-      >
+      <span className={styles['credit-name']} title={getCreditTypeDescription(credit.name)}>
         {credit.name}
         <InformationSVG />
       </span>
       <span className={styles['credit-value']}>{credit.amount}</span>
     </p>
-  ))
-  return <div className={styles['credits-wrapper']}>{credits}</div>
-}
+  ));
+  return <div className={styles['credits-wrapper']}>{credits}</div>;
+};
 
 const TotalCreditsWidget = ({}) => {
-  const modalId = useContext(ModalId)
+  const modalId = useContext(ModalId);
   const handleBuyCredit = () => {
-    handleModalOpen(modalId)
-  }
+    handleModalOpen(modalId);
+  };
   const totalCredits = fakeData.credits.reduce((prev, next) => {
-    return (prev += next.amount)
-  }, 0)
+    return (prev += next.amount);
+  }, 0);
   return (
     <>
       <h2 className={`${styles.title}`}>Credits</h2>
@@ -69,10 +66,7 @@ const TotalCreditsWidget = ({}) => {
         <CreditsDetailed data={fakeData.credits} />
 
         <div className={styles['credits-links-wrapper']}>
-          <button
-            onClick={handleBuyCredit}
-            className='link-with-icon link-with-icon--centered'
-          >
+          <button onClick={handleBuyCredit} className='link-with-icon link-with-icon--centered'>
             <CardSVG />
             Buy credits
           </button>
@@ -91,7 +85,7 @@ const TotalCreditsWidget = ({}) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default TotalCreditsWidget
+export default TotalCreditsWidget;

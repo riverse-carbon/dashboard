@@ -18,12 +18,12 @@ import CardSVG from '../../public/icons/CartSVG';
 // 2. add aria-current=page!!!
 // 3. use separate components for links (so href is same as current path)
 
-function Nav () {
-  const currentPath = useRouter().asPath
+function Nav() {
+  const currentPath = useRouter().asPath;
 
   return (
     /* eslint-disable */
-    <header className="relative z-10 text-lg bg-white shadow-high">
+    <header className='relative z-10 text-lg bg-white shadow-high'>
       <nav aria-label='main' className={styles.nav}>
         <ul role='list' className='list'>
           <li className={styles['logo-wrapper']}>
@@ -43,11 +43,7 @@ function Nav () {
                   </a>
                 </Link>
               </li>{' '}
-              <li
-                className={
-                  currentPath.startsWith('/projects') ? styles.active : ''
-                }
-              >
+              <li className={currentPath.startsWith('/projects') ? styles.active : ''}>
                 <Link href='/projects'>
                   <a className={'link-with-icon'}>
                     <ProjectsSVG />
@@ -55,9 +51,7 @@ function Nav () {
                   </a>
                 </Link>
               </li>
-              <li
-                className={currentPath === '/contribution' ? styles.active : ''}
-              >
+              <li className={currentPath === '/contribution' ? styles.active : ''}>
                 <Link href='/contribution'>
                   <a className={'link-with-icon'}>
                     <ContributionSVG />
@@ -122,18 +116,15 @@ function Nav () {
             </ul>
           </li>
           <li className={styles['contact-button-wrapper']}>
-            <a
-              href='mailto:support@riverse.io?subject=Platform%help'
-              className='button-style link-block'
-            >
+            <a href='mailto:support@riverse.io?subject=Platform%help' className='button-style link-block'>
               Need help?
             </a>
           </li>
         </ul>
       </nav>
     </header>
-  )
+  );
   /* eslint-enable */
 }
 
-export default Nav
+export default Nav;
