@@ -1,11 +1,7 @@
 import Link from 'next/link';
 import styles from 'styles/TotalCreditsWidget.module.css';
 
-import CarbonCreditsSVG from '../../public/icons/CarbonCreditsSVG';
-import CardSVG from '../../public/icons/CartSVG';
-import TransferSVG from '../../public/icons/TransferSVG';
-import InformationSVG from '../../public/icons/InformationSVG';
-import StatsSVG from '../../public/icons/StatsSVG';
+import { CarbonCreditsSVG, CartSVG, TransferSVG, InformationSVG, StatsSVG } from 'components/icons';
 
 // TODO:
 // 1. replace fake data
@@ -61,7 +57,7 @@ const TotalCreditsWidget = ({}) => {
         <div className={styles['credits-links-wrapper']}>
           <Link href='/projects'>
             <a className='button-style link-with-icon link-with-icon--centered'>
-              <CardSVG />
+              <CartSVG />
               Buy credits
             </a>
           </Link>

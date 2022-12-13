@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 
-import CarbonCreditsSVG from '../../public/icons/CarbonCreditsSVG';
-import InformationSVG from '../../public/icons/InformationSVG';
+import { CarbonCreditsSVG, InformationSVG } from 'components/icons';
 import styles from 'styles/BuyCreditsWidget.module.css';
 
 import { DialogCallback } from './ModalDialog';

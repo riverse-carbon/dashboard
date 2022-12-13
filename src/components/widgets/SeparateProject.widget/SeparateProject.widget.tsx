@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import Image from 'next/future/image';
 
-import CardSVG from '../../../../public/icons/CartSVG';
+import { CartSVG } from 'components/icons';
 import { handleModalOpen, ModalId } from 'components/ModalDialog';
 import MarkdownComponent from './markdown';
 import type { Project } from 'components/types/project';
@@ -136,7 +136,7 @@ const SeparateProject = ({ project }: { project: Project }) => {
         <section className='p-md shadow-medium rounded text-center'>
           <h2 className='sr-only text-2xl '>Time to take actions</h2>
           <button onClick={handleBuyCredits} className='link-with-icon link-with-icon--centered max-w-max mx-auto'>
-            <CardSVG />
+            <CartSVG />
             Buy carbon credits
           </button>
         </section>

@@ -1,11 +1,16 @@
 import { useRemark } from 'react-remark';
 import { useEffect } from 'react';
 
-const MarkdownComponent = ({ text, className }: { text: string; className: string }) => {
+type Props = {
+  text: string;
+  className?: string;
+};
+
+const MarkdownComponent = ({ text, className }: Props) => {
   const [markdown, setMarkdownSource] = useRemark({
     rehypeReactOptions: {
       components: {
-        p: (props:any) => <p className={className} {...props} />,
+        p: (props: any) => <p className={className} {...props} />,
       },
     },
   });
