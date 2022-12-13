@@ -1,18 +1,17 @@
 import Head from 'next/head';
-import getAllProjects from '../../components/db/getAllProjects';
-import getProjectByUid from '../../components/db/getProjectByUid';
-import SeparateProject from '../../components/SeparateProject.widget';
-import TotalCredits from '../../components/TotalCredits.SeparateProject.widget';
-import WidgetWrapper from '../../components/WidgetWrapper';
-import widgetStyles from '../../styles/WidgetStyles.module.css';
-import pageStyles from '../../styles/Pages.module.css';
-import ModalDialog, { ModalId } from '../../components/ModalDialog';
-import BuyCreditsWidget from '../../components/BuyCredits.widget';
-import { getYearsCreditsPricesFields } from '../../components/db/normalizeProjectData';
-import BuyCreditsNew from '../../components/BuyCreditsNew.widget';
-import { CartProvider } from '../../components/forms/cart';
+// import getAllProjects from 'components/db/getAllProjects';
+import getProjectByUid from 'components/db/getProjectByUid';
+import SeparateProject from 'components/widgets/SeparateProject.widget/SeparateProject.widget';
+import TotalCredits from 'components/TotalCredits.SeparateProject.widget';
+import WidgetWrapper from 'components/WidgetWrapper';
+import widgetStyles from 'styles/WidgetStyles.module.css';
+import pageStyles from 'styles/Pages.module.css';
+import ModalDialog, { ModalId } from 'components/ModalDialog';
+import { getYearsCreditsPricesFields } from 'components/db/normalizeProjectData';
+import BuyCreditsNew from 'components/BuyCreditsNew.widget';
+import { CartProvider } from 'components/forms/cart';
 
-export default function ProjectPage({ project }) {
+export default function ProjectPage ({ project }) {
   const modalId = 'buy-credits-modal';
   if (!project)
     return (
@@ -48,18 +47,18 @@ export default function ProjectPage({ project }) {
   );
 }
 
-export async function getStaticPaths() {
-  const projects = await getAllProjects(process.env.API_KEY, process.env.DB_VIEW);
-  const paths = projects.map(project => ({
-    params: { uid: project.fields.uid },
-  }));
+export async function getStaticPaths () {
+  // const projects = await getAllProjects(process.env.API_KEY, process.env.DB_VIEW);
+  // const paths = projects.map(project => ({
+  //   params: { uid: project.fields.uid },
+  // }));
   return {
     paths: [],
-    fallback: 'blocking',
+    fallback: 'blocking'
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps ({ params }) {
   const project = await getProjectByUid(process.env.API_KEY, process.env.DB_VIEW, params.uid);
 
   const { fields } = project;
@@ -86,7 +85,7 @@ export async function getStaticProps({ params }) {
   fields.keyImpact = impactDesc.map((desc, i) => ({
     desc,
     figure: impactFigures[i],
-    icon: impactIcons[i],
+    icon: impactIcons[i]
   }));
 
   fields.cccp = [
@@ -94,16 +93,16 @@ export async function getStaticProps({ params }) {
     { name: 'Permanence', value: fields['cccp-permanence'] },
     {
       name: 'Measurability & reality',
-      value: fields['cccp-measurability'],
+      value: fields['cccp-measurability']
     },
     { name: 'Additionality', value: fields['cccp-additionality'] },
-    { name: 'Rebound effects', value: fields['cccp-rebound-effects'] },
+    { name: 'Rebound effects', value: fields['cccp-rebound-effects'] }
   ];
 
   return {
     props: {
-      project,
+      project
     },
-    revalidate: 10,
+    revalidate: 10
   };
 }

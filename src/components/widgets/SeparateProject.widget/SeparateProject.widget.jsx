@@ -2,17 +2,18 @@ import { useContext } from 'react';
 import Image from 'next/future/image';
 
 import styles from 'styles/SeparateProject.widget.module.css';
-import CardSVG from '../../public/icons/CartSVG';
-import { handleModalOpen, ModalId } from './ModalDialog';
+import CardSVG from '../../../../public/icons/CartSVG';
+import { handleModalOpen, ModalId } from 'components/ModalDialog';
+import MarkdownComponent from './markdown';
 
 // TODO:
 // 1. check sizes on image attribute
-// 3. limit text height + readmore button on solution
+// 3. limit text height + read more button on solution
 // 8. main max-width ?
 // 7. add tagline instead of name
 // 9. rich text (markdown) processing
 
-const SeparateProject = ({ project, id }) => {
+const SeparateProject = ({ project }) => {
   const modalId = useContext(ModalId);
   const cover = project.cover[0];
   const { images } = project;
@@ -69,7 +70,7 @@ const SeparateProject = ({ project, id }) => {
         <section className={`${styles.solution} ${styles['two-cols']}`}>
           <div className={`${styles['text-wrapper']}`}>
             <h2>The solution</h2>
-            <p>{project.solution}</p>
+            <MarkdownComponent text={project.solution} />
           </div>
           <div className={styles['image-wrapper']}>
             <Image src={images[0].url} alt='' width='250' height='250' />
