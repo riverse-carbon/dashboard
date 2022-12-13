@@ -23,7 +23,7 @@ function Nav() {
 
   return (
     /* eslint-disable */
-    <header className='relative z-10 text-lg bg-white shadow-high'>
+    <header className='relative z-10 text-base bg-white shadow-high'>
       <nav aria-label='main' className={styles.nav}>
         <ul role='list' className='list'>
           <li className={styles['logo-wrapper']}>
