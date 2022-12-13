@@ -5,7 +5,7 @@ import { useUser } from '@auth0/nextjs-auth0';
 
 import styles from 'styles/Banner.module.css';
 import photoPlaceholder from '../../public/photo-placeholder.svg';
-import CardSVG from '../../public/icons/CartSVG';
+import { CartSVG } from 'components/icons';
 
 // TODO:
 // 1. DRY returned HTML
@@ -24,7 +24,7 @@ function Banner() {
         {/* <div className={styles['email-photo-wrapper']}> */}
         <Link href='/projects'>
           <a className={`${styles['contact-button']} button-style link-with-icon`}>
-            <CardSVG />
+            <CartSVG />
             Buy carbon credits
           </a>
         </Link>

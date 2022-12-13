@@ -3,11 +3,7 @@ import { useContext } from 'react';
 
 import styles from 'styles/TotalCreditsWidget.module.css';
 
-import CarbonCreditsSVG from '../../public/icons/CarbonCreditsSVG';
-import CardSVG from '../../public/icons/CartSVG';
-import TransferSVG from '../../public/icons/TransferSVG';
-import InformationSVG from '../../public/icons/InformationSVG';
-import StatsSVG from '../../public/icons/StatsSVG';
+import { CarbonCreditsSVG, CartSVG, TransferSVG, InformationSVG, StatsSVG } from 'components/icons';
 import { handleModalOpen, ModalId } from './ModalDialog';
 
 // TODO:
@@ -67,7 +63,7 @@ const TotalCreditsWidget = ({}) => {
 
         <div className={styles['credits-links-wrapper']}>
           <button onClick={handleBuyCredit} className='link-with-icon link-with-icon--centered'>
-            <CardSVG />
+            <CartSVG />
             Buy credits
           </button>
           <Link href='/projects'>

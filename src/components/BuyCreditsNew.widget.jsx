@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState, useCallback, useMemo } from 'react';
 
 import styles from 'styles/BuyCreditsWidget.module.css';
-import CarbonCreditsSVG from '../../public/icons/CarbonCreditsSVG';
+import { CarbonCreditsSVG } from 'components/icons';
 
 import { CreditsTransaction } from './forms/forms';
 import { useModal } from './ModalDialog';
