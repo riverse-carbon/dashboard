@@ -18,6 +18,7 @@ module.exports = {
         primary: {
           DEFAULT: 'var(--primary-color)',
           100: 'var(--clr-primary--100)',
+          200: 'var(--clr-primary--200)',
           300: 'var(--clr-primary--300)',
         },
         green: {

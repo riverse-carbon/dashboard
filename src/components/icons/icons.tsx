@@ -200,7 +200,7 @@ export const LogoSVG = ({ width = '226.68', height = '39.26', clrMonochrome = fa
   );
 };
 
-export const MembersSVG = ({ width = 18, height = 18, ...props }: Props) => {
+export const AdminSVG = ({ width = 18, height = 18, ...props }: Props) => {
   return (
     <svg
       aria-hidden='true'
