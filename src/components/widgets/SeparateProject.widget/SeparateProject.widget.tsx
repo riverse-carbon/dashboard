@@ -4,7 +4,7 @@ import Image from 'next/future/image';
 import { CartSVG } from 'components/icons';
 import { handleModalOpen, ModalId } from 'components/ModalDialog';
 import MarkdownComponent from './markdown';
-import type { Project } from 'components/types/project';
+import type { Project } from 'components/types/project.d';
 
 // TODO:
 // 1. check sizes on image attribute

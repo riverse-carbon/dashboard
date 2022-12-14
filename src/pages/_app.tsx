@@ -6,7 +6,7 @@ import '@fontsource/dm-sans';
 import '@fontsource/noto-serif';
 import 'styles/globals.css';
 
-import Nav from 'components/Nav';
+import Nav from 'components/widgets/Nav';
 import Banner from 'components/Banner';
 import GuestUserScreen from 'components/GuestUserScreen';
 import { CartProvider } from 'components/forms/cart';
