@@ -37,7 +37,7 @@ function Nav (): JSX.Element {
           </li>
           <li>
             <ul role='list' className='list'>
-              <NavItem path='/' currentPath={currentPath} label='Dashboard' icon={<DashboardSVG />} />
+              <NavItem path='/dashboard' currentPath={currentPath} label='Dashboard' icon={<DashboardSVG />} />
               <NavItem path='/projects' currentPath={currentPath} label='Projects' icon={<ProjectsSVG />} />
               <NavItem path='/contribution' currentPath={currentPath} label='Contribution' icon={<ContributionSVG />} />
               <NavItem path='/cart' currentPath={currentPath} label='Cart' icon={<CartSVG />} />
