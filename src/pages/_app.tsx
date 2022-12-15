@@ -7,7 +7,7 @@ import '@fontsource/noto-serif';
 import 'styles/globals.css';
 
 import Nav from 'components/widgets/Nav';
-import Banner from 'components/Banner';
+import Banner from 'components/widgets/Banner';
 import GuestUserScreen from 'components/GuestUserScreen';
 import { CartProvider } from 'components/forms/cart';
 
