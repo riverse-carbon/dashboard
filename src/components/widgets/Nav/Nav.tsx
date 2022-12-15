@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import styles from 'styles/Nav.module.css';
-
+import NavItem from './link';
 import {
   LogoSVG,
   DashboardSVG,
@@ -13,7 +12,6 @@ import {
   AdminSVG,
   CartSVG
 } from 'components/icons';
-import NavItem from './link';
 
 // TODO:
 // 0. Add index page and move dashboard to /dashboard
@@ -25,7 +23,7 @@ function Nav (): JSX.Element {
 
   return (
     /* eslint-disable */
-    <header className='relative z-10 text-base bg-primary-100 shadow-high'>
+    <header className='relative text-base z-10 bg-primary-100 shadow-high'>
       <nav aria-label='main' className='sticky left-0 top-0 bottom-0 w-full h-screen pb-md'>
         <ul role='list' className='h-full flex flex-col'>
           <li className='grid h-[5rem] items-center'>
@@ -36,7 +34,7 @@ function Nav (): JSX.Element {
             </Link>
           </li>
           <li>
-            <ul role='list' className='list'>
+            <ul role='list'>
               <NavItem path='/' currentPath={currentPath} label='Dashboard' icon={<DashboardSVG />} />
               <NavItem path='/projects' currentPath={currentPath} label='Projects' icon={<ProjectsSVG />} />
               <NavItem path='/contribution' currentPath={currentPath} label='Contribution' icon={<ContributionSVG />} />
@@ -44,7 +42,7 @@ function Nav (): JSX.Element {
             </ul>
           </li>
           <li className='mt-md'>
-            <ul role='list' className='list flow-spacer spacer-xs'>
+            <ul role='list'>
               <NavItem
                 // path='/billing'
                 path='#'
@@ -62,8 +60,8 @@ function Nav (): JSX.Element {
               <NavItem path='/admin' currentPath={currentPath} label='Admin' icon={<AdminSVG />} />
             </ul>
           </li>
-          <li className='mt-auto mx-auto'>
-            <a href='mailto:support@riverse.io?subject=Platform%help' className='button-style link-block'>
+          <li className='mt-auto mx-md'>
+            <a href='mailto:support@riverse.io?subject=Platform%help' className='button block text-center'>
               Need help?
             </a>
           </li>

@@ -16,17 +16,19 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: 'var(--primary-color)',
           100: 'var(--clr-primary--100)',
           200: 'var(--clr-primary--200)',
           300: 'var(--clr-primary--300)',
+          400: 'var(--clr-primary--400)',
+          700: 'var(--clr-primary--700)',
+          DEFAULT: 'var(--clr-primary--800)',
+          900: 'var(--clr-primary--900)',
         },
         green: {
-          DEFAULT: 'var(--clr-green--700)',
           400: 'var(--clr-green--400)',
+          DEFAULT: 'var(--clr-green--700)',
         },
       },
-
       spacing: {
         sm: '0.625rem',
         md: '1.25rem',
@@ -36,6 +38,7 @@ module.exports = {
         lg: '3.75rem',
       },
       boxShadow: {
+        low: 'var(--shadow-elevation-low)',
         medium: 'var(--shadow-elevation-medium)',
         high: 'var(--shadow-elevation-high)',
       },

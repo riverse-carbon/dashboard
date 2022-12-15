@@ -67,13 +67,13 @@ const TotalCreditsWidget = ({}) => {
             Buy credits
           </button>
           <Link href='/projects'>
-            <a className='button-style link-with-icon link-with-icon--centered'>
+            <a className='button link-with-icon link-with-icon--centered'>
               <TransferSVG />
               Transfer credits
             </a>
           </Link>
           <Link href='/projects'>
-            <a className='button-style link-with-icon link-with-icon--centered'>
+            <a className='button link-with-icon link-with-icon--centered'>
               <StatsSVG />
               Retire credits
             </a>
