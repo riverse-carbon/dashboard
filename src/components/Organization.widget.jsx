@@ -1,14 +1,14 @@
-import { useUser } from '@auth0/nextjs-auth0';
+// import { useUser } from '@auth0/nextjs-auth0';
 
 import styles from 'styles/Organization.module.css';
 
 import { ActiveUserSVG } from 'components/icons';
 
-// TODO:
-
 const Organization = ({ data, children }) => {
-  const { user } = useUser();
-  const currentUserEmail = user.email || '';
+  // const { user } = useUser();
+  // const currentUserEmail = user.email || '';
+  const currentUserEmail = '';
+
   const { name, contribution, cccTotal, users } = data;
   const usersHTML = users.map(user => (
     <li

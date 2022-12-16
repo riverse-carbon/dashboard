@@ -14,10 +14,10 @@ const getOrgURL = 'api/protected/get-organization';
 
 // 8 columns 2 rows
 const gridTemplateAreas = {
-  all: '" org org org org org bill bill bill"'
+  all: '" org org org org org bill bill bill"',
 };
 
-export default function Home () {
+export default function Home() {
   const { data, error } = useSWR(getOrgURL, fetcher);
   if (error) {
     return (

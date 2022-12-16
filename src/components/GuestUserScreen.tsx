@@ -1,5 +1,4 @@
-import { useUser } from '@auth0/nextjs-auth0';
-import { useRouter } from 'next/router';
+import { useAuth0 } from '@auth0/auth0-react';
 import Button from './Button';
 import Main from './Main';
 
@@ -10,9 +9,7 @@ type GuestUserScreenProps = {
 };
 
 function GuestUserScreen({ children }: GuestUserScreenProps) {
-  const { user, error, isLoading } = useUser();
-
-  const currentPath = useRouter().asPath;
+  const { loginWithRedirect, isAuthenticated, isLoading, error } = useAuth0();
 
   if (isLoading)
     return (
@@ -29,14 +26,14 @@ function GuestUserScreen({ children }: GuestUserScreenProps) {
 
   return (
     <Main>
-      {user ? (
+      {isAuthenticated ? (
         children
       ) : (
         <>
           <h2>Welcome!</h2>
           <p>You have to login to see information</p>
           <div>
-            <Button label='Login' type='external' target='_self' href={`/api/auth/login?returnTo=${currentPath}`} />
+            <Button label='Login' onClick={() => loginWithRedirect()} />
           </div>
         </>
       )}

@@ -10,7 +10,7 @@ import {
   BillingSVG,
   DocumentationSVG,
   AdminSVG,
-  CartSVG
+  CartSVG,
 } from 'components/icons';
 import Button from 'components/Button';
 
@@ -19,7 +19,7 @@ import Button from 'components/Button';
 // 1. change disabled links
 // 2. add aria-current=page!!!
 
-function Nav (): JSX.Element {
+function Nav(): JSX.Element {
   const currentPath = useRouter().asPath;
 
   return (

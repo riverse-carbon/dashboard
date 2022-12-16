@@ -1,4 +1,6 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import { useProjects } from 'components/hooks/api/projects';
+import { useEffect } from 'react';
 
 import styles from 'styles/Projects.module.css';
 
@@ -7,7 +9,20 @@ import ProjectNode from './ProjectNode';
 // TODO: maxRecords 100 is enough?
 
 const Projects = ({ limit = 100 }) => {
+  const { getAccessTokenSilently } = useAuth0();
   const { data, isError, isLoading } = useProjects();
+
+  useEffect(() => {
+    async function testAccessToken() {
+      const accessToken = await getAccessTokenSilently({
+        audience: 'http://localhost:4242',
+      });
+
+      console.log('ACCESS TOKEN !');
+      console.log(accessToken);
+    }
+    testAccessToken();
+  }, [getAccessTokenSilently]);
 
   if (isError) {
     return <>An error has occurred. Contact us if the problem persists</>;

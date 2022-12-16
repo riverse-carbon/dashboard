@@ -1,5 +1,4 @@
-import { useRouter } from 'next/router';
-import { useUser } from '@auth0/nextjs-auth0';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import { CartSVG, PhotoPlaceHolderSVG } from 'components/icons';
 import Button from 'components/Button';
@@ -8,9 +7,7 @@ import Button from 'components/Button';
 // 1. Add photo if present
 
 const Banner = (): JSX.Element => {
-  const { user } = useUser();
-
-  const currentPath = useRouter().asPath;
+  const { loginWithRedirect, user, logout } = useAuth0();
 
   return (
     <div className='[grid-area:banner] sticky top-0 z-20 px-5 bg-primary-100 flex items-center gap-10 text-base shadow-high'>
@@ -23,17 +20,10 @@ const Banner = (): JSX.Element => {
             <PhotoPlaceHolderSVG />
           </p>
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages*/}
-          <Button label='Logout' href='/api/auth/logout' type='external' target='_self' />
+          <Button label='Logout' onClick={() => logout({ returnTo: 'http://localhost:3000' })} />
         </>
       ) : (
-        /* eslint-disable-next-line @next/next/no-html-link-for-pages*/
-        <Button
-          label='Login'
-          type='external'
-          target='_self'
-          href={`/api/auth/login?returnTo=${currentPath}`}
-          additionalStyles='ml-auto'
-        />
+        <Button label='Login' onClick={() => loginWithRedirect()} additionalStyles='ml-auto' />
       )}
     </div>
   );

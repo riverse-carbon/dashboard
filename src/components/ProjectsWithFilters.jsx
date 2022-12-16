@@ -7,7 +7,7 @@ import { useState, useEffect, useMemo } from 'react';
 // 1. maxRecords 100 is enough?
 // 2. check if strict comparison is better ?
 
-function ProjectsWithFilters ({ limit = 100, appliedFilters }) {
+function ProjectsWithFilters({ limit = 100, appliedFilters }) {
   const fetcher = url => fetch(url).then(res => res.json());
   const API = '/api/protected/projects';
   const { data, error } = useSWR(API, fetcher);
