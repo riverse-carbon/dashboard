@@ -2,12 +2,14 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import { CartSVG, PhotoPlaceHolderSVG } from 'components/icons';
 import Button from 'components/Button';
+import { useUserStore } from 'components/hooks/stores/user';
 
 // TODO:
 // 1. Add photo if present
 
 const Banner = (): JSX.Element => {
   const { loginWithRedirect, user, logout } = useAuth0();
+  const reset = useUserStore(user => user.reset);
 
   return (
     <div className='[grid-area:banner] sticky top-0 z-20 px-5 bg-primary-100 flex items-center gap-10 text-base shadow-high'>
@@ -20,7 +22,12 @@ const Banner = (): JSX.Element => {
             <PhotoPlaceHolderSVG />
           </p>
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages*/}
-          <Button label='Logout' onClick={() => logout({ returnTo: 'http://localhost:3000' })} />
+          <Button
+            label='Logout'
+            onClick={() => {
+              reset();
+              logout({ returnTo: 'http://localhost:3000' });
+            }} />
         </>
       ) : (
         <Button label='Login' onClick={() => loginWithRedirect()} additionalStyles='ml-auto' />
