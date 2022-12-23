@@ -2,8 +2,11 @@ import { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import dayjs from 'dayjs';
 import { shallow } from 'zustand/shallow';
+import getConfig from 'next/config';
 
 import { useUserStore } from 'components/hooks/stores/user';
+
+const { registry_api_url } = getConfig().publicRuntimeConfig;
 
 const AuthGuard = ({ children }) => {
   const { getAccessTokenSilently, loginWithRedirect, isAuthenticated, isLoading, error, user } = useAuth0();
@@ -25,7 +28,7 @@ const AuthGuard = ({ children }) => {
         id: 1,
         first_name: user.given_name,
         last_name: user.family_name,
-        email: user.email
+        email: user.email,
       });
     }
   }, [isAuthenticated, user_id, user, setUser]);
@@ -33,14 +36,13 @@ const AuthGuard = ({ children }) => {
   useEffect(() => {
     async function retrieveAccessToken() {
       const accessToken = await getAccessTokenSilently({
-        audience: 'http://localhost:4242',
+        audience: registry_api_url,
       });
 
       setAccessToken(accessToken);
     }
 
     if (isAuthenticated && (!access_token_updated_at || dayjs().diff(dayjs(access_token_updated_at), 'minute') > 60)) {
-      console.log('Retrieving access token')
       retrieveAccessToken();
     }
   }, [isAuthenticated, access_token_updated_at, getAccessTokenSilently, setAccessToken]);

@@ -8,10 +8,9 @@ export const projects_keys = {
   getProjectById: (id: string) => [...projects_keys.projects, id] as const,
 };
 
-export const useProjects = () => (
+export const useProjects = () =>
   useQuery(projects_keys.getProjects(), async () => {
     const res = await getProjects();
 
     return res.data;
-  })
-);
+  });

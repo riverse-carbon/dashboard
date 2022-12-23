@@ -21,7 +21,6 @@ const Banner = (): JSX.Element => {
             {`${user.given_name} ${user.family_name}`}
             <PhotoPlaceHolderSVG />
           </p>
-          {/* eslint-disable-next-line @next/next/no-html-link-for-pages*/}
           <Button
             label='Logout'
             onClick={() => {

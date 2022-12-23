@@ -52,12 +52,7 @@ function ProjectsWithFilters({ limit = 100, appliedFilters }) {
       <h2>Available carbon credits</h2>
       <div className={styles['list-wrapper']}>
         <ul role='list' className='list'>
-          { filtered_projects.length !== 0
-            ?
-            filtered_projects
-            :
-            <h4>No project correspond to applied filters</h4>
-          }
+          {filtered_projects.length !== 0 ? filtered_projects : <h4>No project correspond to applied filters</h4>}
         </ul>
       </div>
     </>
