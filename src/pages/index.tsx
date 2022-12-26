@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 import ContributionWidget from 'components/ContributionWidget';
-import Documentation from 'components/widgets/Documentation/Documentation';
+import Documentation from 'components/widgets/Documentation';
 import Projects from 'components/Projects';
 import TotalCreditsWidget from 'components/TotalCredits.widget';
 import WidgetWrapper from 'components/widgets/WidgetWrapper';
@@ -9,7 +9,7 @@ import WidgetsGrid from 'components/WidgetsGrid';
 
 // 8 columns 2 rows
 const gridTemplateAreas = {
-  all: '"pr pr pr pr contr contr docs docs" "pr pr pr pr creds creds docs docs"',
+  all: '"pr pr pr pr contr contr creds creds" "docs docs docs docs docs docs . ."',
 };
 
 const Page = () => (

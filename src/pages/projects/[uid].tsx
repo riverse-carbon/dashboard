@@ -19,10 +19,10 @@ type PagePropsType = {
 
 // 8 columns 2 rows
 const gridTemplateAreas = {
-  all: '"pr pr pr pr pr pr creds creds"'
+  all: '"pr pr pr pr pr pr creds creds"',
 };
 
-export default function ProjectPage ({ project }: PagePropsType) {
+export default function ProjectPage({ project }: PagePropsType) {
   const modalId = 'buy-credits-modal';
   const currentPath = useRouter().asPath;
 
@@ -70,7 +70,7 @@ export default function ProjectPage ({ project }: PagePropsType) {
   );
 }
 
-export async function getStaticPaths () {
+export async function getStaticPaths() {
   // no prerendering because of Airtable api calls limitations
   // const projects = await getAllProjects(process.env.API_KEY, process.env.DB_VIEW);
   // const paths = projects.map(project => ({
@@ -78,7 +78,7 @@ export async function getStaticPaths () {
   // }));
   return {
     paths: [],
-    fallback: 'blocking'
+    fallback: 'blocking',
   };
 }
 
@@ -88,7 +88,7 @@ type StaticPropsType = {
   };
 };
 
-export async function getStaticProps ({ params }: StaticPropsType) {
+export async function getStaticProps({ params }: StaticPropsType) {
   const project = await getProjectByUid(process.env.API_KEY, process.env.DB_VIEW, params.uid);
 
   const { fields } = project;
@@ -115,7 +115,7 @@ export async function getStaticProps ({ params }: StaticPropsType) {
   fields.keyImpact = impactDesc.map((desc: string, i: number) => ({
     desc,
     figure: impactFigures[i],
-    icon: impactIcons[i]
+    icon: impactIcons[i],
   }));
 
   fields.cccp = [
@@ -123,16 +123,16 @@ export async function getStaticProps ({ params }: StaticPropsType) {
     { name: 'Permanence', value: fields['cccp-permanence'] },
     {
       name: 'Measurability & reality',
-      value: fields['cccp-measurability']
+      value: fields['cccp-measurability'],
     },
     { name: 'Additionality', value: fields['cccp-additionality'] },
-    { name: 'Rebound effects', value: fields['cccp-rebound-effects'] }
+    { name: 'Rebound effects', value: fields['cccp-rebound-effects'] },
   ];
 
   return {
     props: {
-      project
+      project,
     },
-    revalidate: 10
+    revalidate: 10,
   };
 }

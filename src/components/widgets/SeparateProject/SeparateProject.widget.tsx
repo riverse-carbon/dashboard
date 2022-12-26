@@ -13,6 +13,8 @@ import type { Project } from 'components/types/project.d';
 // 9. Why undefined type on images and cover? Added optional chaining and fallback value as an empty string for Image source
 
 const SeparateProject = ({ project, id }: { project: Project; id: string }) => {
+  // use id for transactions
+  console.log(id);
   const modalId = useContext(ModalId);
   const cover = project.cover[0];
   const { images } = project;

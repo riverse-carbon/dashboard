@@ -1,9 +1,5 @@
 import profile from './public/profilePlaceholder.min.png';
 import projectImgPlaceholder from './public/projectImgPlaceholder.jpg';
-import post1image from './public/documentation_posts/1.png';
-import post2image from './public/documentation_posts/2.jpg';
-import post3image from './public/documentation_posts/3.png';
-import post4image from './public/documentation_posts/4.jpeg';
 
 const data = {
   user: {
@@ -85,41 +81,3 @@ const data = {
 };
 
 export default data;
-
-export const documentationPages = {
-  posts: [
-    {
-      title: 'Riverse standard rules',
-      previewText:
-        'Here you should fine a lot of answers to the questions you might have on the standard. You will find guidelines and process descriptions.',
-      date: 'July 26, 2022',
-      author: 'Grégoire Guirauden',
-      link: 'https://hubs.ly/Q01ncgNw0',
-      thumbnail: post1image,
-    },
-    {
-      title: 'Registry',
-      previewText: 'Our registry is the validation system for credit issuance/cancellation and property transfer',
-      date: 'July 10, 2022',
-      author: 'Grégoire Guirauden',
-      link: 'https://www.riverse.io/standard/registry',
-      thumbnail: post2image,
-    },
-    {
-      title: 'Carbon credit standards - Eligibility criteria comparison',
-      previewText: 'Comparison of main carbon credits standard eligibility criterias',
-      date: 'September 29, 2022',
-      author: 'Grégoire Guirauden',
-      link: 'https://www.riverse.io/blog/carbon-credit-standards-eligibility-criteria-comparison',
-      thumbnail: post3image,
-    },
-    {
-      title: 'Methodology',
-      previewText: 'Introduction to the methodological framework',
-      date: 'September 26, 2022',
-      author: 'Grégoire Guirauden',
-      link: 'https://www.riverse.io/standard/lca-rules',
-      thumbnail: post4image,
-    },
-  ],
-};

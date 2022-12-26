@@ -26,11 +26,8 @@
   --clr-green--700: hsl(178 20% 48%);
 
   /* shadows */
-  --shadow-elevation-low: 0.5px 0.5px 0.8px hsl(224 30% 67% / 0.34), 0.8px 0.8px 1.3px -1.2px hsl(224 30% 67% / 0.34),
-    2px 2px 3.2px -2.5px hsl(224 30% 67% / 0.34);
-  --shadow-elevation-medium: 0px 0px 10.2px -2px hsl(224 30% 67% / 0.36),
-    1.2px 1.2px 2.7px -0.8px hsl(224 30% 67% / 0.36), 3.1px 3.1px 6.5px -1px hsl(224 30% 67% / 0.36),
-    9.1px 9.1px 16.1px -2px hsl(224 30% 67% / 0.36);
+  --shadow-elevation-low: 0.8px 0.8px 1.7px hsl(224 30% 67% / 0.2), 3.6px 3.7px 7.7px hsl(224 30% 67% / 0.68);
+  --shadow-elevation-medium: 0.8px 0.8px 1.7px hsl(224 30% 67% / 0), 7.8px 8.3px 18.3px hsl(224 30% 67% / 0.95);
 
   --shadow-elevation-high: 0.5px 0.5px 0.5px hsl(224 30% 62% / 0.36), 3.2px 2.2px 3.5px -0.5px hsl(224 30% 62% / 0.36),
     6.3px 4.3px 6.8px -1px hsl(224 30% 62% / 0.36), 10.5px 8px 12.7px -1.5px hsl(224 30% 62% / 0.36),
@@ -307,18 +304,6 @@ select {
 
 .shadow-elevation-xl {
   box-shadow: var(--shadow-elevation-high);
-}
-
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4 {
-  /* font-family: var(--ff-serif); */
-  font-weight: var(--fw-bold);
 }
 
 .text-serif {

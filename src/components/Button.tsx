@@ -30,7 +30,7 @@ const Button = (props: AnchorProps | ButtonProps): JSX.Element => {
     'border-[.125em]',
     'border-primary',
     'rounded-lg',
-    'shadow-low',
+    'shadow-md',
     'text-base',
     'leading-[1.1]',
     'font-medium',
