@@ -18,11 +18,11 @@ function ProjectListView({ project }) {
         </div>
       </div>
       <p className={`${styles['contribution']} flex flex-block-center`} aria-labelledby=''>
-        <span className='visually-hidden'>CO2 Contribution is</span>
+        <span className='sr-only'>CO2 Contribution is</span>
         {`${project.contribution} tCO2`}
       </p>
       <p className={`${styles['total']} flex flex-block-center`} aria-labelledby=''>
-        <span className='visually-hidden'>Total is</span>
+        <span className='sr-only'>Total is</span>
         {`${project.total} €`}
       </p>
     </li>

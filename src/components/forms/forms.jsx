@@ -137,7 +137,7 @@ export const CreditsTransaction = ({
               className={styles['input-wrapper'] || 'input-wrapper'}
             />
             <button type='submit'>
-              Add<span className='visually-hidden'>to project cart</span>
+              Add<span className='sr-only'>to project cart</span>
             </button>
             <span className='block'>
               Price per 1CC <span>{currentYearPrice}€</span>

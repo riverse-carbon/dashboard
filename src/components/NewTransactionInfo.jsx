@@ -17,7 +17,7 @@ const NewTransactionInfo = ({ index, mechanism, year, credits, total, handleRemo
         onClick={() => {
           handleRemove(index);
         }}>
-        X<span className='visually-hidden'>Remove from cart</span>
+        X<span className='sr-only'>Remove from cart</span>
       </button>
     </div>
   );

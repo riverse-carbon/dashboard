@@ -56,19 +56,19 @@ const TotalCreditsWidget = ({}) => {
 
         <div className={styles['credits-links-wrapper']}>
           <Link href='/projects'>
-            <a className='button-style link-with-icon link-with-icon--centered'>
+            <a className='button link-with-icon link-with-icon--centered'>
               <CartSVG />
               Buy credits
             </a>
           </Link>
           <Link href='#'>
-            <a className='button-style link-with-icon link-with-icon--centered'>
+            <a className='button link-with-icon link-with-icon--centered'>
               <TransferSVG />
               Transfer credits
             </a>
           </Link>
           <Link href='#'>
-            <a className='button-style link-with-icon link-with-icon--centered'>
+            <a className='button link-with-icon link-with-icon--centered'>
               <StatsSVG />
               Retire credits
             </a>

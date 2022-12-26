@@ -26,7 +26,7 @@ const CartTransaction = ({ data }) => {
           onClick={() => {
             removeFromCart(projectId, id);
           }}>
-          X<span className='visually-hidden'>Remove from cart</span>
+          X<span className='sr-only'>Remove from cart</span>
         </button>
       </li>
     </>

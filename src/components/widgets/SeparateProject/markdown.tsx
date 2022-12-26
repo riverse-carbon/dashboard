@@ -6,10 +6,11 @@ type Props = {
   className?: string;
 };
 
-const MarkdownComponent = ({ text, className }: Props) => {
+const MarkdownComponent = ({ text, className }: Props): JSX.Element | null => {
   const [markdown, setMarkdownSource] = useRemark({
     rehypeReactOptions: {
       components: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         p: (props: any) => <p className={className} {...props} />,
       },
     },

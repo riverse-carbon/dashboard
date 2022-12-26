@@ -7,7 +7,7 @@ import { useState, useEffect, useMemo } from 'react';
 // 1. maxRecords 100 is enough?
 // 2. check if strict comparison is better ?
 
-function ProjectsWithFilters({ limit = 100, appliedFilters }) {
+function ProjectsWithFilters ({ limit = 100, appliedFilters }) {
   const fetcher = url => fetch(url).then(res => res.json());
   const API = '/api/protected/projects';
   const { data, error } = useSWR(API, fetcher);
@@ -50,12 +50,11 @@ function ProjectsWithFilters({ limit = 100, appliedFilters }) {
     setProjectsFiltered(filteredProjectsArray);
   }, [projects, appliedFilters]);
 
-  if (data && data.error) return `${data.error}. Contact us if the problem persists`;
-  if (error) return 'An error has occurred. Contact us if the problem persists';
+  if (error || (data && data.error)) return <p>An error has occurred. Contact us if the problem persists</p>;
   if (!data)
     return (
       <h2>
-        Loading <span className='visually-hidden'>all projects</span>...
+        Loading <span className='sr-only'>all projects</span>...
       </h2>
     );
 

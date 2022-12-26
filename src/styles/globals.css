@@ -2,105 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --primary-color: #1c2745;
-  --body-background-color: #ebf0ff;
+/* TODO: 
+1. apply and delete all utility classes */
 
+:root {
+  /* small screen font sizes */
   --fs-300: 0.75rem;
   --fs-400: 1rem;
   --fs-500: 1.25rem;
   --fs-600: 1.75rem;
   --fs-700: 2rem;
 
-  --fw-normal: 400;
-  --fw-bold: 500;
-
-  --clr-main--100: 0 0% 100%;
-  --clr-main--200: 224 100% 96%;
-  --clr-main--300: 224 43% 92%;
-  --clr-main--400: 224 43% 82%;
-  --clr-main--500: 224 43% 44%;
-  --clr-main--700: 224 43% 19%;
-  --clr-main--900: 0 0% 0%;
-
+  /* colors */
   --clr-primary--100: hsl(0 0% 100%);
   --clr-primary--200: hsl(224 100% 96%);
   --clr-primary--300: hsl(224 43% 92%);
+  --clr-primary--400: hsl(224 43% 82%);
+  --clr-primary--700: hsl(224 43% 44%);
+  --clr-primary--800: hsl(224 43% 19%);
+  --clr-primary--900: hsl(0 0% 0%);
+
   --clr-green--400: hsl(178 20% 58%);
   --clr-green--700: hsl(178 20% 48%);
 
-  --padding-spacer-xs: clamp(0.75rem, 2%, 1.5rem);
-  --padding-spacer: clamp(1.5rem, 4%, 3rem);
-  --padding-spacer-xl: clamp(3rem, 8%, 6rem);
+  /* shadows */
+  --shadow-elevation-low: 0.8px 0.8px 1.7px hsl(224 30% 67% / 0.2), 3.6px 3.7px 7.7px hsl(224 30% 67% / 0.68);
+  --shadow-elevation-medium: 0.8px 0.8px 1.7px hsl(224 30% 67% / 0), 7.8px 8.3px 18.3px hsl(224 30% 67% / 0.95);
 
-  --padding-spacer-xs: 0.625rem;
-  --padding-spacer: 1.25rem;
-  --padding-spacer-l: 2rem;
-  --padding-spacer-xl: 2.5rem;
-
-  --block-spacer-xs: min(0.5rem, 1vh);
-  --block-spacer: min(1.5rem, 3vh);
-  --block-spacer-xl: min(4rem, 9vh);
-
-  --block-spacer-xs: 0.625rem;
-  --block-spacer: 1.25rem;
-  --block-spacer-xl: 3.75rem;
-
-  --gap-xs: clamp(0.75rem, 2vmax, 1.5rem);
-  --gap: clamp(1.5rem, 4vmax, 3rem);
-  --gap-xl: clamp(3rem, 8vmax, 4rem);
-
-  --gap-xs: 0.625rem;
-  --gap: 1.25rem;
-  --gap-xl: 2.5rem;
-
-  --transition-duration: 1ms;
-  --transition-duration--quick: 1ms;
-  --transition-duration--long: 1ms;
-  --transition-delay: 1ms;
-
-  --button-padding--block: 0.5em;
-  --button-padding--inline: 1em;
-
-  --button-padding--block: 0.5em;
-  --button-padding--inline: 1em;
-
-  --br: 12px;
-  --br-xs: 8px;
-
-  --shadow-elevation-low: 0.5px 0.5px 0.8px hsl(224 30% 77% / 0.25), 1.5px 1.5px 2.4px -2.5px hsl(224 30% 77% / 0.25);
-  --shadow-elevation-medium: 0.1px 0.1px 1.4px 0.3px hsl(224 30% 77% / 0.23),
-    2px 2px 3.2px -1.2px hsl(224 30% 77% / 0.23), 7.5px 7.5px 11.9px -2.5px hsl(224 30% 77% / 0.23);
-  --shadow-elevation-high: 0.5px 0.5px 0.5px hsl(224 30% 77% / 0.25), 2.2px 2.2px 3.5px -0.5px hsl(224 30% 77% / 0.25),
-    4.3px 4.3px 6.8px -1px hsl(224 30% 77% / 0.25), 8px 8px 12.7px -1.5px hsl(224 30% 77% / 0.25),
-    14.5px 14.5px 23.1px -2px hsl(224 30% 77% / 0.25), 25px 24.9px 39.7px -2.5px hsl(224 30% 77% / 0.25);
+  --shadow-elevation-high: 0.5px 0.5px 0.5px hsl(224 30% 62% / 0.36), 3.2px 2.2px 3.5px -0.5px hsl(224 30% 62% / 0.36),
+    6.3px 4.3px 6.8px -1px hsl(224 30% 62% / 0.36), 10.5px 8px 12.7px -1.5px hsl(224 30% 62% / 0.36),
+    21.5px 14.5px 23.1px -2px hsl(224 30% 62% / 0.36), 37px 24.9px 39.7px -2.5px hsl(224 30% 62% / 0.36);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* inverted colors here */
-  }
-}
+    /*TODO: define inverted colors */
+    --clr-primary--100: hsl(0 0% 100%);
+    --clr-primary--200: hsl(224 100% 96%);
+    --clr-primary--300: hsl(224 43% 92%);
+    --clr-primary--400: hsl(224 43% 82%);
+    --clr-primary--700: hsl(224 43% 44%);
+    --clr-primary--800: hsl(224 43% 19%);
+    --clr-primary--900: hsl(0 0% 0%);
 
-body {
-  margin: 0;
-  padding: 0;
-  color: var(--primary-color);
-  background-color: var(--body-background-color);
-  font-family: 'DM Sans', sans-serif;
-  font-size: var(--fs-300);
-
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  height: -webkit-fill-available;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  :root {
-    --transition-duration: 350ms;
-    --transition-duration--quick: 150ms;
-    --transition-duration--long: 750ms;
-    --transition-delay: 50ms;
+    --clr-green--400: hsl(178 20% 58%);
+    --clr-green--700: hsl(178 20% 48%);
   }
 }
 
@@ -112,26 +58,7 @@ body {
     --fs-600: 2rem;
     --fs-700: 3rem;
   }
-}
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-*:focus {
-  outline-color: var(--clr-outline, hsl(var(--clr-main--900)));
-  outline-offset: 0.1em;
-  outline-width: 0.2em;
-  outline-style: dashed;
-}
-
-*:focus:not(:focus-visible) {
-  outline: none;
-}
-
-@media (min-width: 90em) {
   h1,
   .h1,
   h2,
@@ -144,35 +71,44 @@ body {
   }
 }
 
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-p,
-dl,
-dt,
-dd,
-figure {
-  margin: 0;
+@layer base {
+  body {
+    @apply m-0 p-0 text-primary bg-primary-200 font-main text-sm [-webkit-font-smoothing:antialiased] [-moz-font-smoothing:antialiased] [height:-webkit-fill-available];
+  }
+
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3,
+  .h3,
+  h4,
+  .h4 {
+    @apply font-medium;
+  }
+
+  button *,
+  .button * {
+    @apply pointer-events-none;
+  }
 }
 
-ul:where([class]),
-ol:where([class]) {
-  list-style: none;
+/* ADDITIONAL RESET */
+*:focus {
+  outline-color: var(--clr-primary--900);
+  outline-offset: 0.1em;
+  outline-width: 0.2em;
+  outline-style: dashed;
+}
 
-  padding: 0;
-  margin: 0;
+*:focus:not(:focus-visible) {
+  outline: none;
 }
 
 input,
 button,
 textarea,
 select {
-  font: inherit;
   letter-spacing: inherit;
   word-spacing: inherit;
 }
@@ -187,23 +123,8 @@ select:hover {
   border-color: hsl(var(--clr-main--500));
 }
 
-fieldset:where([class]) {
-  padding: 0;
-  margin-inline: 0;
-
-  border: none;
-}
-
-::placeholder {
-  opacity: 0.75;
-}
-
 a {
   text-decoration: underline;
-
-  z-index: 0;
-
-  color: inherit;
 
   transition: color var(--transition-duration--quick) linear;
 }
@@ -212,30 +133,8 @@ svg {
   overflow: visible;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-iframe {
-  aspect-ratio: var(--ratio, 8 / 5);
-  width: 100%;
-  height: auto;
-}
-
 [hidden] {
   display: none;
-}
-
-.visually-hidden {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
 }
 
 /* TODO: implement skip to content link! */
@@ -260,7 +159,7 @@ iframe {
 
 /* UTILITY CLASSES */
 
-button,
+/* button,
 .button-style,
 input,
 select {
@@ -301,7 +200,7 @@ button:not(:disabled):hover,
 
 button * {
   pointer-events: none;
-}
+} */
 
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
@@ -407,18 +306,6 @@ select {
   box-shadow: var(--shadow-elevation-high);
 }
 
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4 {
-  /* font-family: var(--ff-serif); */
-  font-weight: var(--fw-bold);
-}
-
 .text-serif {
   /* font-family: var(--ff-serif); */
 }
@@ -441,51 +328,6 @@ h4,
 
 .text-italic {
   font-style: italic;
-}
-
-/* GENERAL */
-
-.app {
-  position: relative;
-  display: grid;
-  grid-template-areas:
-    'header banner'
-    'header main';
-  grid-template-columns: fit-content(12rem) 1fr;
-  grid-template-rows: 5rem 1fr;
-}
-
-main {
-  grid-area: main;
-}
-
-.banner {
-  grid-area: banner;
-}
-
-header {
-  grid-area: header;
-}
-
-.main-container {
-  width: 100%;
-  max-height: calc(100vh - 5rem);
-
-  margin-inline: auto;
-  padding-inline: var(--padding-spacer);
-  padding-block: var(--block-spacer-xl);
-
-  overflow: auto;
-}
-
-@media (min-width: 100em) {
-  .main-container {
-    padding-inline: calc(var(--padding-spacer) + 2vw);
-  }
-}
-
-a.disabled {
-  opacity: 0.6;
 }
 
 dialog {
