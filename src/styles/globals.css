@@ -26,12 +26,15 @@
   --clr-green--700: hsl(178 20% 48%);
 
   /* shadows */
-  --shadow-elevation-low: 0.5px 0.5px 0.8px hsl(224 30% 77% / 0.25), 1.5px 1.5px 2.4px -2.5px hsl(224 30% 77% / 0.25);
-  --shadow-elevation-medium: 0.1px 0.1px 1.4px 0.3px hsl(224 30% 77% / 0.23),
-    2px 2px 3.2px -1.2px hsl(224 30% 77% / 0.23), 7.5px 7.5px 11.9px -2.5px hsl(224 30% 77% / 0.23);
-  --shadow-elevation-high: 0.5px 0.5px 0.5px hsl(224 30% 77% / 0.25), 2.2px 2.2px 3.5px -0.5px hsl(224 30% 77% / 0.25),
-    4.3px 4.3px 6.8px -1px hsl(224 30% 77% / 0.25), 8px 8px 12.7px -1.5px hsl(224 30% 77% / 0.25),
-    14.5px 14.5px 23.1px -2px hsl(224 30% 77% / 0.25), 25px 24.9px 39.7px -2.5px hsl(224 30% 77% / 0.25);
+  --shadow-elevation-low: 0.5px 0.5px 0.8px hsl(224 30% 67% / 0.34), 0.8px 0.8px 1.3px -1.2px hsl(224 30% 67% / 0.34),
+    2px 2px 3.2px -2.5px hsl(224 30% 67% / 0.34);
+  --shadow-elevation-medium: 0px 0px 10.2px -2px hsl(224 30% 67% / 0.36),
+    1.2px 1.2px 2.7px -0.8px hsl(224 30% 67% / 0.36), 3.1px 3.1px 6.5px -1px hsl(224 30% 67% / 0.36),
+    9.1px 9.1px 16.1px -2px hsl(224 30% 67% / 0.36);
+
+  --shadow-elevation-high: 0.5px 0.5px 0.5px hsl(224 30% 62% / 0.36), 3.2px 2.2px 3.5px -0.5px hsl(224 30% 62% / 0.36),
+    6.3px 4.3px 6.8px -1px hsl(224 30% 62% / 0.36), 10.5px 8px 12.7px -1.5px hsl(224 30% 62% / 0.36),
+    21.5px 14.5px 23.1px -2px hsl(224 30% 62% / 0.36), 37px 24.9px 39.7px -2.5px hsl(224 30% 62% / 0.36);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -73,11 +76,7 @@
 
 @layer base {
   body {
-    @apply m-0 p-0 text-primary bg-primary-200 font-main text-sm;
-
-    -webkit-font-smoothing: antialiased;
-    -moz-font-smoothing: antialiased;
-    height: -webkit-fill-available;
+    @apply m-0 p-0 text-primary bg-primary-200 font-main text-sm [-webkit-font-smoothing:antialiased] [-moz-font-smoothing:antialiased] [height:-webkit-fill-available];
   }
 
   h1,
@@ -88,49 +87,12 @@
   .h3,
   h4,
   .h4 {
-    font-weight: var(--fw-bold);
-  }
-
-  button,
-  .button {
-    @apply border-[.125em] border-primary rounded-sm shadow-low text-base leading-[1.1] font-medium py-[0.5em] px-[1em] text-primary-100 bg-primary no-underline cursor-pointer transition 
-    hover:text-primary hover:bg-primary-100 
-    disabled:sepia;
+    @apply font-medium;
   }
 
   button *,
   .button * {
     @apply pointer-events-none;
-  }
-}
-
-@layer components {
-  .app {
-    @apply relative grid;
-
-    grid-template-areas:
-      'header banner'
-      'header main';
-    grid-template-columns: fit-content(12rem) 1fr;
-    grid-template-rows: 5rem 1fr;
-  }
-
-  main {
-    grid-area: main;
-  }
-
-  .banner {
-    grid-area: banner;
-  }
-
-  header {
-    grid-area: header;
-  }
-}
-
-@layer utilities {
-  .with-icon {
-    @apply flex items-center gap-sm;
   }
 }
 
@@ -381,25 +343,6 @@ h4,
 
 .text-italic {
   font-style: italic;
-}
-
-/* GENERAL */
-
-.main-container {
-  width: 100%;
-  max-height: calc(100vh - 5rem);
-
-  margin-inline: auto;
-  padding-inline: var(--padding-spacer);
-  padding-block: var(--block-spacer-xl);
-
-  overflow: auto;
-}
-
-@media (min-width: 100em) {
-  .main-container {
-    padding-inline: calc(var(--padding-spacer) + 2vw);
-  }
 }
 
 dialog {

@@ -4,14 +4,7 @@ module.exports = {
   theme: {
     fontFamily: {
       main: ['"DM Sans"', 'sans-serif'],
-      serif: ['"Noto Serif"', 'sans-serif'],
-    },
-    fontSize: {
-      sm: ['var(--fs-300)', '1.5'],
-      base: ['var(--fs-400)', '1.5'],
-      xl: ['var(--fs-500)', '1.1'],
-      '2xl': ['var(--fs-600)', '1.1'],
-      '3xl': ['var(--fs-700)', '1.1'],
+      serif: ['"Noto Serif"', 'serif'],
     },
     extend: {
       colors: {
@@ -29,22 +22,17 @@ module.exports = {
           DEFAULT: 'var(--clr-green--700)',
         },
       },
-      spacing: {
-        sm: '0.625rem',
-        md: '1.25rem',
-        lg: '2.5rem',
-      },
-      margin: {
-        lg: '3.75rem',
+      fontSize: {
+        sm: ['var(--fs-300)', '1.5'],
+        base: ['var(--fs-400)', '1.5'],
+        xl: ['var(--fs-500)', '1.1'],
+        '2xl': ['var(--fs-600)', '1.1'],
+        '3xl': ['var(--fs-700)', '1.1'],
       },
       boxShadow: {
         low: 'var(--shadow-elevation-low)',
         medium: 'var(--shadow-elevation-medium)',
         high: 'var(--shadow-elevation-high)',
-      },
-      borderRadius: {
-        sm: '.5rem',
-        DEFAULT: '.75rem',
       },
     },
   },

@@ -15,7 +15,7 @@ const NavItem = ({ path, currentPath, label, icon }: NavItemProps): JSX.Element 
       <Link href={path}>
         <a
           aria-current={currentPath === path ? 'page' : 'false'}
-          className={`with-icon p-md no-underline ${disabledClass}`}>
+          className={`flex items-center gap-2.5 p-5 no-underline ${disabledClass}`}>
           {icon}
           {label}
         </a>

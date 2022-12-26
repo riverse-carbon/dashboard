@@ -10,7 +10,7 @@ function FiltersPicker({ filters, setCurrentFilter, groupName, defaultValue = 0,
           <div key={filter.value} className={styles['filter-label-wrapper']}>
             <input
               id={`${groupName}-${filter.value}`}
-              className='visually-hidden'
+              className='sr-only'
               data-label={filter.label}
               type='radio'
               name={groupName}

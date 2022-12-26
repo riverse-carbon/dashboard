@@ -31,4 +31,10 @@ export type Project = {
   sectors: string[];
   solution: string;
   issue: string;
+  years?: string[];
+};
+
+export type ProjectWithId = {
+  id: string;
+  fields: Project;
 };

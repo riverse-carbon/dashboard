@@ -177,11 +177,11 @@ const BuyCreditsWidget = ({ project }) => {
                 <div className={styles['controls-wrapper']}>
                   <button className={styles['plus-button']} onClick={handleButtonClick} value='1'>
                     <span aria-hidden='true'>+</span>
-                    <span className='visually-hidden'>Add 1 credit</span>
+                    <span className='sr-only'>Add 1 credit</span>
                   </button>
                   <button className={styles['minus-button']} onClick={handleButtonClick} value='-1'>
                     <span aria-hidden='true'>-</span>
-                    <span className='visually-hidden'>Remove 1 credit</span>
+                    <span className='sr-only'>Remove 1 credit</span>
                   </button>
                   <input
                     className={`${styles['cc-input']} ${styles['text-normal']}`}
@@ -259,10 +259,10 @@ const RadioFieldSet = ({ updateInput, sequestration, avoidance }) => {
 
   return (
     <fieldset name='credit-type' className={styles['tabs-wrapper']}>
-      <legend className='visually-hidden'>CO2 credit type</legend>
+      <legend className='sr-only'>CO2 credit type</legend>
       <div className={styles['radio-label-wrapper']}>
         <input
-          className='visually-hidden'
+          className='sr-only'
           type='radio'
           id={sequestration.name}
           value={sequestration.name}
@@ -275,7 +275,7 @@ const RadioFieldSet = ({ updateInput, sequestration, avoidance }) => {
       </div>
       <div className={styles['radio-label-wrapper']}>
         <input
-          className='visually-hidden'
+          className='sr-only'
           type='radio'
           id={avoidance.name}
           value={avoidance.name}

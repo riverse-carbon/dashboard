@@ -33,7 +33,7 @@ function ProjectNode({ data }) {
               <span>
                 Details<span aria-hidden='true'> &gt;</span>
               </span>
-              <span className='visually-hidden'> on {name} project</span>
+              <span className='sr-only'> on {name} project</span>
             </a>
           </Link>
         </div>

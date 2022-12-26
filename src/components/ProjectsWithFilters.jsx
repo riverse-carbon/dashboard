@@ -55,7 +55,7 @@ function ProjectsWithFilters({ limit = 100, appliedFilters }) {
   if (!data)
     return (
       <h2>
-        Loading <span className='visually-hidden'>all projects</span>...
+        Loading <span className='sr-only'>all projects</span>...
       </h2>
     );
 

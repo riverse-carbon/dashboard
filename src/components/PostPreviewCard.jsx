@@ -10,7 +10,7 @@ const PostPreviewCard = ({ data }) => {
       <p>{data.previewText}</p>
       <a href={data.link} target='_blank' className={`${styles['more-link']} button`} rel='noreferrer'>
         Read more
-        <span className='visually-hidden'>about {data.title}</span>
+        <span className='sr-only'>about {data.title}</span>
       </a>
       {/* <div className={styles['author-date-wrapper']}>
         <p>By {data.author}</p>
