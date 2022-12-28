@@ -26,7 +26,8 @@ const Banner = (): JSX.Element => {
             onClick={() => {
               reset();
               logout({ returnTo: 'http://localhost:3000' });
-            }} />
+            }}
+          />
         </>
       ) : (
         <Button label='Login' onClick={() => loginWithRedirect()} additionalStyles='ml-auto' />

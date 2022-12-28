@@ -19,7 +19,7 @@ const Projects = ({ limit = 100 }) => {
       </h2>
     );
   }
-  const projects = data?.slice(0, limit).map(project => <ProjectNode key={project.id} data={project.fields} />);
+  const projects = data?.slice(0, limit).map(project => <ProjectNode key={project.id} project={project} />);
 
   return (
     <>

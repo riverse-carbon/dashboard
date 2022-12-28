@@ -16,32 +16,27 @@ const fakeData = {
   contribution: 345.3,
 };
 
-function ProjectNode({ data }) {
-  // try {
-  const { name, sectors, tagline, sdgs, uid, cover } = data;
-  // img or logo if img doesn't exist (file type is not an image)
-  const img = data?.cover.length !== 0 ? data.cover[0].url : data.logo[0].url;
+function ProjectNode({ project }) {
   const { total, contribution } = fakeData;
 
   return (
-    <Link href={`/projects/${uid}`}>
+    <Link href={`/projects/${project.id}`}>
       <li className={styles['project-wrapper']}>
         <div className={styles['image-wrapper']}>
-          <Image src={img} alt='' fill={true} sizes='10rem' />
-          <Link href={`/projects/${uid}`}>
+          <Image src={project.cover_picture} alt='' fill={true} sizes='10rem' />
+          <Link href={`/projects/${project.id}`}>
             <a className={styles['details-link']}>
               <span>
                 Details<span aria-hidden='true'> &gt;</span>
               </span>
-              <span className='sr-only'> on {name} project</span>
+              {/* <span className='visually-hidden'> on {name} project</span> */}
             </a>
           </Link>
         </div>
         <div className={`${styles['info-wrapper']} border-radius`}>
           <div className={styles['name-wrapper']}>
             {/* <h4>{name}</h4> */}
-            <h4 className={styles['tagline']}>{tagline}</h4>
-            <p className={styles['sectors'] + ' text-bold'}>Sectors: {sectors.join(', ')}</p>
+            <h4 className={styles['tagline']}>{project.tagline}</h4>
           </div>
           <div className={styles['contribution-total-wrapper']}>
             <p className={`${styles['contribution']} flex flex-column flex-block-center`}>

@@ -12,11 +12,8 @@ import type { Project } from 'components/types/project.d';
 // 8. main max-width ?
 // 9. Why undefined type on images and cover? Added optional chaining and fallback value as an empty string for Image source
 
-const SeparateProject = ({ project, id }: { project: Project; id: string }) => {
-  // use id for transactions
-  console.log(id);
+const SeparateProject = ({ project }: { project: Project }) => {
   const modalId = useContext(ModalId);
-  const cover = project.cover[0];
   const { images } = project;
 
   const sdgs =
@@ -71,7 +68,7 @@ const SeparateProject = ({ project, id }: { project: Project; id: string }) => {
       <div className='p-5 shadow-medium rounded-xl relative min-h-[max(10rem,25vh)]'>
         <Image
           className='object-cover rounded-xl'
-          src={cover?.url || ''}
+          src={project.cover_picture || ''}
           alt=''
           fill={true}
           sizes='70vw'
@@ -82,7 +79,7 @@ const SeparateProject = ({ project, id }: { project: Project; id: string }) => {
         <section className='space-y-2.5 mb-24 text-xl font-medium'>
           <h1 className='text-3xl pb-3.5'>{project.tagline}</h1>
           <p>Developer: {project.name}</p>
-          <p className='opacity-80'>Sector: {project.sectors.join(', ')}</p>
+          {/* <p className='opacity-80'>Sector: {project.sectors.join(', ')}</p> */}
         </section>
         <section className='space-y-5 p-5 shadow-medium rounded-xl'>
           <div className='space-y-5'>

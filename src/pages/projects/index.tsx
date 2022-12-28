@@ -53,7 +53,7 @@ export default function Home({ filtersData }: PagePropsType): JSX.Element {
 export async function getStaticProps() {
   const filtersArray = ['sectors', 'mechanism', 'country'];
 
-  const data = await getFilters(process.env.API_KEY, process.env.DB_VIEW, filtersArray);
+  const data = await getFilters(process.env.AIRTABLE_API_KEY, process.env.AIRTABLE_PROJECTS_VIEW, filtersArray);
 
   const staticFilters = [
     {

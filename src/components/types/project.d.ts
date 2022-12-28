@@ -21,7 +21,7 @@ type KeyImpact = {
 };
 
 export type Project = {
-  cover: Img[];
+  cover_picture: string;
   sdgsArray: Sdg[];
   images: Img[];
   cccp: Cccp[];

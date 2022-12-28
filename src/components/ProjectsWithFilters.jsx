@@ -1,6 +1,6 @@
 import { useProjects } from 'components/hooks/api/projects';
 
-import ProjectNode from './ProjectWithFiltersNode';
+import ProjectNode from './ProjectNode';
 import styles from '../styles/Projects.module.css';
 
 // TODO:
@@ -21,7 +21,7 @@ function ProjectsWithFilters({ limit = 100, appliedFilters }) {
       </h2>
     );
   }
-  const projects = data?.slice(0, limit).map(project => <ProjectNode key={project.id} data={project.fields} />);
+  const projects = data?.slice(0, limit).map(project => <ProjectNode key={project.id} project={project} />);
   const filtered_projects = projects.filter(project => {
     const { data } = project.props;
 
