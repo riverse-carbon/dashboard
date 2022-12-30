@@ -20,7 +20,7 @@ const AuthGuard = ({ children }) => {
       access_token: user.access_token,
       access_token_updated_at: user.access_token_updated_at,
       setUser: user.setUser,
-      setAccessToken: user.setAccessToken
+      setAccessToken: user.setAccessToken,
     }),
     shallow
   );
@@ -34,15 +34,15 @@ const AuthGuard = ({ children }) => {
         id: 1,
         first_name: user.given_name,
         last_name: user.family_name,
-        email: user.email
+        email: user.email,
       });
     }
   }, [isAuthenticated, user_id, user, setUser]);
 
   useEffect(() => {
-    async function retrieveAccessToken () {
+    async function retrieveAccessToken() {
       const accessToken = await getAccessTokenSilently({
-        audience: registry_api_url
+        audience: registry_api_url,
       });
 
       setAccessToken(accessToken);

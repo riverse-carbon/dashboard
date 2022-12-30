@@ -15,9 +15,11 @@ export const useProjects = () =>
     return res.projects;
   });
 
-export const useProjectById = (project_id: number) =>
+export const useProjectById = (project_id: number, enabled?: boolean) =>
   useQuery(projects_keys.getProjectById(project_id), async () => {
     const res = await getProjectById(project_id);
 
     return res.project;
+  }, {
+    enabled,
   });

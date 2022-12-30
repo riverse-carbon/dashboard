@@ -16,13 +16,13 @@ import type { Project, ProjectRaw } from 'components/types/project';
 
 // 8 columns 2 rows
 const gridTemplateAreas = {
-  all: '"pr pr pr pr pr pr creds creds"'
+  all: '"pr pr pr pr pr pr creds creds"',
 };
 
 const ProjectPage = (): JSX.Element => {
   const router = useRouter();
   const { id } = router.query;
-  const { data: rawProject, isError, isLoading } = useProjectById(parseInt(id as string));
+  const { data: rawProject, isError, isLoading } = useProjectById(parseInt(id as string), !!id);
   const modalId = 'buy-credits-modal';
 
   if (isError) {
@@ -104,10 +104,10 @@ const rawProjectTransform = (projectRaw: ProjectRaw): Project => {
     { name: 'Permanence', value: projectRaw['cccp-permanence'] },
     {
       name: 'Measurability & reality',
-      value: projectRaw['cccp-measurability']
+      value: projectRaw['cccp-measurability'],
     },
     { name: 'Additionality', value: projectRaw['cccp-additionality'] },
-    { name: 'Rebound effects', value: projectRaw['cccp-rebound-effects'] }
+    { name: 'Rebound effects', value: projectRaw['cccp-rebound-effects'] },
   ];
   return project;
 };
