@@ -16,10 +16,14 @@ export const useProjects = () =>
   });
 
 export const useProjectById = (project_id: number, enabled?: boolean) =>
-  useQuery(projects_keys.getProjectById(project_id), async () => {
-    const res = await getProjectById(project_id);
+  useQuery(
+    projects_keys.getProjectById(project_id),
+    async () => {
+      const res = await getProjectById(project_id);
 
-    return res.project;
-  }, {
-    enabled,
-  });
+      return res.project;
+    },
+    {
+      enabled,
+    }
+  );

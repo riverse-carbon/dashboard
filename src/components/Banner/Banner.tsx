@@ -1,11 +1,11 @@
 import { useAuth0 } from '@auth0/auth0-react';
+import getConfig from 'next/config';
 
 import { CartSVG, PhotoPlaceHolderSVG } from 'components/icons';
 import Button from 'components/Button';
 import { useUserStore } from 'components/hooks/stores/user';
 
-// TODO:
-// 1. Add photo if present
+const { webapp_url } = getConfig().publicRuntimeConfig;
 
 const Banner = (): JSX.Element => {
   const { loginWithRedirect, user, logout } = useAuth0();
@@ -25,7 +25,7 @@ const Banner = (): JSX.Element => {
             label='Logout'
             onClick={() => {
               reset();
-              logout({ returnTo: 'http://localhost:3000' });
+              logout({ returnTo: webapp_url });
             }}
           />
         </>
