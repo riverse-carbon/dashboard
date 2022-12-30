@@ -54,7 +54,7 @@ const SeparateProject = ({ project }: { project: Project }) => {
         alt=''
         className='h-16 w-auto'
       />
-      <span className='font-serif font-bold text-xl text-green tracking-[0.04em]'>{impact.figure}</span>
+      <span className='font-serif text-xl text-green tracking-[0.04em]'>{impact.figure}</span>
       <span>{impact.desc}</span>
     </li>
   ));
@@ -68,7 +68,7 @@ const SeparateProject = ({ project }: { project: Project }) => {
       <div className='p-5 shadow-medium rounded-xl relative min-h-[max(10rem,25vh)]'>
         <Image
           className='object-cover rounded-xl'
-          src={project.cover_picture || ''}
+          src={project.cover_picture}
           alt=''
           fill={true}
           sizes='70vw'
@@ -79,7 +79,7 @@ const SeparateProject = ({ project }: { project: Project }) => {
         <section className='space-y-2.5 mb-24 text-xl font-medium'>
           <h1 className='text-3xl pb-3.5'>{project.tagline}</h1>
           <p>Developer: {project.name}</p>
-          {/* <p className='opacity-80'>Sector: {project.sectors.join(', ')}</p> */}
+          <p className='opacity-80'>Sector: {project.sectors.join(', ')}</p>
         </section>
         <section className='space-y-5 p-5 shadow-medium rounded-xl'>
           <div className='space-y-5'>
