@@ -1,3 +1,4 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import classNames from 'classnames';
 
 type MainProps = {
@@ -6,11 +7,11 @@ type MainProps = {
 };
 
 const Main = ({ additionalStyles, children }: MainProps): JSX.Element => {
+  const { isAuthenticated } = useAuth0();
   return (
     // <main className={`main-container ${pageStyles.projects}`}>
     <main
       className={classNames(
-        '[grid-area:main]',
         'w-full',
         'max-h-[calc(100vh_-_5rem)]',
         'mx-auto',
@@ -18,7 +19,11 @@ const Main = ({ additionalStyles, children }: MainProps): JSX.Element => {
         'py-16',
         'overflow-auto',
         '2xl:px-[2.5vw]',
-        additionalStyles
+        additionalStyles,
+        {
+          '[grid-area:main]': isAuthenticated,
+          'col-span-2': !isAuthenticated,
+        }
       )}>
       {children}
     </main>

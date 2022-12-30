@@ -24,7 +24,6 @@ export const CartProvider = ({ children }) => {
     }
     setCartItems(currentCart);
   };
-  console.log(cartItems);
   const updateCartItem = transaction => {
     // TODO
   };

@@ -60,47 +60,6 @@ const RangeSlider = ({ filterObject, setFilterValues }) => {
   );
 };
 
-// const RangeFilter = ({ filterObject }) => {
-//   const { label, name, values } = filterObject
-//   const [currentValue, setCurrentValue] = useState(values[1])
-//   const valuesSign = filterObject.valuesSign || ''
-//   const step = filterObject.step || 1
-
-//   const handleValueChange = e => {
-//     setCurrentValue(e.target.value)
-//   }
-//   return (
-//     <fieldset
-//       tabIndex={0}
-//       name={name}
-//       className={`${styles['filter-fieldset']} ${styles['fieldset--range']}`}
-//     >
-//       <legend>{label}:</legend>
-//       <div className={styles['values-wrapper']}>
-//         <div className={styles.labels}>
-//           <span>
-//             {values[0]}
-//             {valuesSign}
-//           </span>
-//           <span>
-//             {currentValue}
-//             {valuesSign}
-//           </span>
-//         </div>
-//         <input
-//           type='range'
-//           name={name}
-//           min={values[0]}
-//           value={currentValue}
-//           onChange={handleValueChange}
-//           max={values[1]}
-//           step={step}
-//         />
-//       </div>
-//     </fieldset>
-//   )
-// }
-
 const MultiselectFilter = ({ filterObject, setFilterValues, appliedFilters = [] }) => {
   const { label, name, values } = filterObject;
 
@@ -137,14 +96,6 @@ const Filters = ({ setFilters, appliedFilters, data }) => {
 
   const [filtersComponents, setFiltersComponents] = useState([]);
 
-  // const handleFiltersToggle = e => {
-  //   const expanded = e.target.getAttribute('aria-expanded')
-  //   if (expanded === 'true') {
-  //     e.target.setAttribute('aria-expanded', 'false')
-  //   } else {
-  //     e.target.setAttribute('aria-expanded', 'true')
-  //   }
-  // }
   useEffect(() => {
     const handleFilterChange = (filter, values) => {
       setFilters({ ...appliedFilters, [filter]: values });

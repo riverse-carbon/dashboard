@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 
 import SeparateProject from 'components/widgets/SeparateProject';
 import TotalCredits from 'components/TotalCredits.SeparateProject.widget';
@@ -10,54 +9,35 @@ import BuyCreditsNew from 'components/BuyCreditsNew.widget';
 import { CartProvider } from 'components/forms/cart';
 import { useProjectById } from 'components/hooks/api/projects';
 import WidgetsGrid from 'components/WidgetsGrid';
+import type { Project, ProjectRaw } from 'components/types/project';
+// import Breadcrumb from 'components/Breadcrumb';
+
+// TODO: add name as field in project response
 
 // 8 columns 2 rows
 const gridTemplateAreas = {
-  all: '"pr pr pr pr pr pr creds creds"',
+  all: '"pr pr pr pr pr pr creds creds"'
 };
 
-const ProjectPage = () => {
+const ProjectPage = (): JSX.Element => {
   const router = useRouter();
   const { id } = router.query;
-  const { data: project, isError, isLoading } = useProjectById(parseInt(id));
+  const { data: rawProject, isError, isLoading } = useProjectById(parseInt(id as string));
   const modalId = 'buy-credits-modal';
-  const currentPath = useRouter().asPath;
 
   if (isError) {
     return <>An error has occurred. Contact us if the problem persists</>;
   }
 
-  if (isLoading && !project) {
+  if (isLoading && !rawProject) {
     return (
       <main className={`main-container`}>
         <h1>Loading...</h1>
       </main>
     );
   }
-  const { 'sdgs-description': descriptions, 'sdgs-icons': icons, impactDesc, impactFigures, impactIcons } = project;
 
-  project.sdgsArray = descriptions.map((desc, i) => {
-    const { url, width, height } = icons[i];
-
-    return { icon: { url, width, height }, desc };
-  });
-
-  project.keyImpact = impactDesc.map((desc, i) => ({
-    desc,
-    figure: impactFigures[i],
-    icon: impactIcons[i],
-  }));
-
-  project.cccp = [
-    { name: 'Unicity', value: project['cccp-unicity'] },
-    { name: 'Permanence', value: project['cccp-permanence'] },
-    {
-      name: 'Measurability & reality',
-      value: project['cccp-measurability'],
-    },
-    { name: 'Additionality', value: project['cccp-additionality'] },
-    { name: 'Rebound effects', value: project['cccp-rebound-effects'] },
-  ];
+  const project = rawProjectTransform(rawProject);
 
   return (
     <CartProvider>
@@ -67,18 +47,7 @@ const ProjectPage = () => {
         <meta name='description' content='' />
       </Head>
       <ModalId.Provider value={modalId}>
-        <nav aria-label='Breadcrumb'>
-          <ol role='list' className='text-base flex gap-10 mt-[-1.5em] mb-2.5'>
-            <li className='relative after:absolute after:w-px after:ml-5 after:left-full after:top-[.125em] after:bottom-[.125em] after:border-r-2 after:rotate-[25deg] after:border-primary'>
-              <Link href='/projects'>Projects</Link>
-            </li>{' '}
-            <li>
-              <Link href={currentPath}>
-                <a aria-current='page'>{project.tagline}</a>
-              </Link>
-            </li>{' '}
-          </ol>
-        </nav>
+        {/* <Breadcrumb /> */}
         <WidgetsGrid gridTemplateAreas={gridTemplateAreas}>
           <>
             <WidgetWrapper areaName='pr' variant='transparent' additionalStyles='p-0'>
@@ -92,7 +61,7 @@ const ProjectPage = () => {
       </ModalId.Provider>
       {project.years ? (
         <ModalDialog modalId={modalId}>
-          <BuyCreditsNew project={project} id={project.id} />
+          <BuyCreditsNew project={project} id={id} />
         </ModalDialog>
       ) : null}
     </CartProvider>
@@ -100,3 +69,45 @@ const ProjectPage = () => {
 };
 
 export default ProjectPage;
+
+const rawProjectTransform = (projectRaw: ProjectRaw): Project => {
+  // const { cover_picture, images, tagline, sectors, solution, issue} = projectRaw;
+  const name = projectRaw.organisation.name || '';
+  const cover_picture = projectRaw.cover_picture || '';
+  const images = projectRaw.images || [];
+  const tagline = projectRaw.tagline || '';
+  const sectors = projectRaw.sectors || [];
+  const solution = projectRaw.solution || '';
+  const issue = projectRaw.issue || '';
+  const years = projectRaw.years || [];
+  const project = { cover_picture, images, tagline, sectors, solution, issue, name } as Project;
+  if (years.length !== 0) {
+    project.years = years;
+  }
+  const { 'sdgs-description': descriptions, 'sdgs-icons': icons, impactDesc, impactFigures, impactIcons } = projectRaw;
+
+  project.sdgsArray = descriptions.map((desc, i) => {
+    const url = icons[i]?.url || '';
+    const width = icons[i]?.width || 0;
+    const height = icons[i]?.height || 0;
+    return { icon: { url, width, height }, desc };
+  });
+
+  project.keyImpact = impactDesc.map((desc, i) => {
+    const figure = impactFigures[i] || '';
+    const icon = impactIcons[i] || { url: '', width: 0, height: 0 };
+    return { desc, figure, icon };
+  });
+
+  project.cccp = [
+    { name: 'Unicity', value: projectRaw['cccp-unicity'] },
+    { name: 'Permanence', value: projectRaw['cccp-permanence'] },
+    {
+      name: 'Measurability & reality',
+      value: projectRaw['cccp-measurability']
+    },
+    { name: 'Additionality', value: projectRaw['cccp-additionality'] },
+    { name: 'Rebound effects', value: projectRaw['cccp-rebound-effects'] }
+  ];
+  return project;
+};

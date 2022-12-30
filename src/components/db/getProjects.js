@@ -24,9 +24,7 @@ const getAllProjects = async (view = 'Projects list (for web & app)', formula, m
       });
       fetchNextPage();
     })
-    .then(res => {
-      console.log(res);
-    })
+    .then(res => null)
     .catch(err => {
       throw err;
     });

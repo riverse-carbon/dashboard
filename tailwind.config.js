@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     fontFamily: {
       main: ['"DM Sans"', 'sans-serif'],
-      serif: ['"Noto Serif"', 'serif'],
+      serif: ['"DM Serif Display"', 'serif'],
     },
     extend: {
       colors: {
