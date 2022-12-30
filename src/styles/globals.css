@@ -52,11 +52,11 @@
 
 @media (min-width: 90em) {
   :root {
-    --fs-300: 1rem;
+    /* --fs-300: 1rem;
     --fs-400: 1.125rem;
     --fs-500: 1.5rem;
     --fs-600: 2rem;
-    --fs-700: 3rem;
+    --fs-700: 3rem; */
   }
 
   h1,
@@ -91,6 +91,10 @@
   .button * {
     @apply pointer-events-none;
   }
+
+  a {
+    @apply underline;
+  }
 }
 
 /* ADDITIONAL RESET */
@@ -121,12 +125,6 @@ select {
 input:hover,
 select:hover {
   border-color: hsl(var(--clr-main--500));
-}
-
-a {
-  text-decoration: underline;
-
-  transition: color var(--transition-duration--quick) linear;
 }
 
 svg {

@@ -11,6 +11,7 @@ type DefaultProps = {
 type ButtonProps = DefaultProps & {
   disabled?: boolean;
   onClick?: React.MouseEventHandler;
+  controls?: string;
 };
 
 type AnchorProps = DefaultProps & {
@@ -19,10 +20,6 @@ type AnchorProps = DefaultProps & {
   type?: 'internal' | 'external';
   target?: '_blank' | '_self';
 };
-
-function isPropsForAnchorElement(props: ButtonProps | AnchorProps): props is AnchorProps {
-  return 'href' in props;
-}
 
 const Button = (props: AnchorProps | ButtonProps): JSX.Element => {
   const { label, icon, children, additionalStyles } = props;
@@ -47,7 +44,7 @@ const Button = (props: AnchorProps | ButtonProps): JSX.Element => {
     { 'flex items-center gap-2.5': icon !== undefined },
     additionalStyles
   );
-  if (isPropsForAnchorElement(props)) {
+  if ('href' in props) {
     const { href, type, target } = props;
     if (type === 'external') {
       return (
@@ -69,7 +66,7 @@ const Button = (props: AnchorProps | ButtonProps): JSX.Element => {
     );
   }
   return (
-    <button className={styles} disabled={props.disabled} onClick={props.onClick}>
+    <button className={styles} aria-controls={props.controls} disabled={props.disabled} onClick={props.onClick}>
       {icon}
       {label}
       {children}

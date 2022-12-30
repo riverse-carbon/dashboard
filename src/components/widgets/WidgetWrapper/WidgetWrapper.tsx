@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 type WidgetWrapperProps = {
   children: React.ReactElement;
-  position?: 'static' | 'absolute' | 'sticky';
+  position?: 'static' | 'absolute' | 'sticky' | 'relative';
   inset?: string;
   additionalStyles?: string;
   variant?: 'primary' | 'inverted' | 'transparent';
@@ -35,9 +35,9 @@ const WidgetWrapper = ({
   const cssVariables = { '--widget-area': areaName } as React.CSSProperties;
 
   return (
-    <div className={styles} style={cssVariables}>
+    <section className={styles} style={cssVariables}>
       {children}
-    </div>
+    </section>
   );
 };
 

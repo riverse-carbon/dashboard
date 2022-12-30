@@ -18,7 +18,7 @@ const Banner = (): JSX.Element => {
         <>
           <Button href='/projects' additionalStyles='ml-auto' icon={<CartSVG />} label='Buy carbon credits' />
           <p className='flex items-center gap-2.5'>
-            {`${user.given_name} ${user.family_name}`}
+            {`${user.given_name || ''} ${user.family_name || ''}`}
             <PhotoPlaceHolderSVG />
           </p>
           <Button
@@ -30,7 +30,7 @@ const Banner = (): JSX.Element => {
           />
         </>
       ) : (
-        <Button label='Login' onClick={() => loginWithRedirect()} additionalStyles='ml-auto' />
+        <Button label='Login' onClick={() => void loginWithRedirect()} additionalStyles='ml-auto' />
       )}
     </div>
   );

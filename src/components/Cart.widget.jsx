@@ -51,7 +51,6 @@ const Cart = ({}) => {
 
   const nodes = cartItems.map(node => <CartProjectNode key={node.projectId} project={node} />);
 
-  console.log(cartItems);
   const handleDeleteAll = () => {
     emptyCart();
   };
@@ -103,7 +102,6 @@ const Cart = ({}) => {
   //     </h2>
   //   )
   // }
-  // console.log(data)
 
   return (
     <>

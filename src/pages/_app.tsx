@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import getConfig from 'next/config';
 
 import '@fontsource/dm-sans';
-import '@fontsource/noto-serif';
+import '@fontsource/dm-serif-display';
 import 'styles/globals.css';
 
 import Nav from 'components/Nav';

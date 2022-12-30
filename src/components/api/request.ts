@@ -13,7 +13,7 @@ type RequestOptions = AxiosRequestConfig & {
 export async function request(options: RequestOptions) {
   try {
     if (!options.no_auth) {
-      const access_token = useUserStore.getState().access_token;
+      const access_token = useUserStore.getState().access_token || '';
 
       options.headers = {
         ...options.headers,
