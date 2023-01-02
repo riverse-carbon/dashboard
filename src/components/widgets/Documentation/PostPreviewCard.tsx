@@ -11,7 +11,7 @@ const PostPreviewCard = ({ data }: { data: Post }): JSX.Element => {
       <Image className='shadow-low h-52 object-cover rounded-xl' src={data.thumbnail} alt='' sizes='20rem' />
       <h4 className='text-base leading-tight font-normal'>{data.title}</h4>
       <p>{data.previewText}</p>
-      <Button href={data.link} type='external' label='Read more' additionalStyles='w-fill mx-auto mt-auto'>
+      <Button href={data.link} type='external' label='Read more' additionalStyles='mx-auto mt-auto'>
         <span className='sr-only'>about {data.title}</span>
       </Button>
     </li>

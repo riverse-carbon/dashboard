@@ -7,10 +7,10 @@ const Projects = ({ limit = 100 }) => {
   const { data, isError, isLoading } = useProjects();
 
   if (isError) {
-    return <>An error has occurred. Contact us if the problem persists</>;
+    return <p>An error has occurred. Contact us if the problem persists</p>;
   }
 
-  if (isLoading && !data) {
+  if (isLoading) {
     return (
       <h2>
         Contributed projects

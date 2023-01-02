@@ -15,25 +15,27 @@ import { CartProvider } from 'components/forms/cart';
 const queryClient = new QueryClient();
 const { auth0_domain, auth0_client_id, registry_api_url, webapp_url } = getConfig().publicRuntimeConfig;
 
-const MyApp: AppType = ({ Component, pageProps }) => (
-  <QueryClientProvider client={queryClient}>
-    <Auth0Provider
-      domain={auth0_domain}
-      clientId={auth0_client_id}
-      redirectUri={webapp_url}
-      audience={registry_api_url}
-      cacheLocation='localstorage'>
-      <CartProvider>
-        <div className='relative grid [grid-template-areas:"header_banner"_"header_main"] grid-cols-[fit-content(12rem)_1fr] grid-rows-[5rem_1fr]'>
-          <Nav />
-          <Banner />
-          <AuthGuard>
-            <Component {...pageProps} />
-          </AuthGuard>
-        </div>
-      </CartProvider>
-    </Auth0Provider>
-  </QueryClientProvider>
-);
+const MyApp: AppType = ({ Component, pageProps }) => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Auth0Provider
+        domain={auth0_domain}
+        clientId={auth0_client_id}
+        redirectUri={webapp_url}
+        audience={registry_api_url}
+        cacheLocation='localstorage'>
+        <CartProvider>
+          <div className='relative grid [grid-template-areas:"header_banner"_"header_main"] grid-cols-[fit-content(12rem)_1fr] grid-rows-[5rem_1fr]'>
+            <Nav />
+            <Banner />
+            <AuthGuard>
+              <Component {...pageProps} />
+            </AuthGuard>
+          </div>
+        </CartProvider>
+      </Auth0Provider>
+    </QueryClientProvider>
+  );
+};
 
 export default MyApp;

@@ -7,12 +7,15 @@ import getConfig from 'next/config';
 import { useUserStore } from 'components/hooks/stores/user';
 import Main from './Main';
 import { useRouter } from 'next/router';
-
-// TODO: ask William about unauthenticated user access
+import Button from './Button';
 
 const { registry_api_url } = getConfig().publicRuntimeConfig;
 
-const AuthGuard = ({ children }) => {
+type AuthGuardProps = {
+  children: JSX.Element;
+};
+
+const AuthGuard = ({ children }: AuthGuardProps): JSX.Element => {
   const { getAccessTokenSilently, loginWithRedirect, isAuthenticated, isLoading, error, user } = useAuth0();
   const { user_id, access_token, access_token_updated_at, setUser, setAccessToken } = useUserStore(
     user => ({
@@ -20,7 +23,7 @@ const AuthGuard = ({ children }) => {
       access_token: user.access_token,
       access_token_updated_at: user.access_token_updated_at,
       setUser: user.setUser,
-      setAccessToken: user.setAccessToken
+      setAccessToken: user.setAccessToken,
     }),
     shallow
   );
@@ -32,24 +35,25 @@ const AuthGuard = ({ children }) => {
       // TODO: plug me to server and fix the ID
       setUser({
         id: 1,
-        first_name: user.given_name,
-        last_name: user.family_name,
-        email: user.email
+        first_name: user!.given_name!,
+        last_name: user!.family_name!,
+        email: user!.email!,
+        role: 'ADMIN',
       });
     }
   }, [isAuthenticated, user_id, user, setUser]);
 
   useEffect(() => {
-    async function retrieveAccessToken () {
+    async function retrieveAccessToken() {
       const accessToken = await getAccessTokenSilently({
-        audience: registry_api_url
+        audience: registry_api_url,
       });
 
       setAccessToken(accessToken);
     }
 
     if (isAuthenticated && (!access_token_updated_at || dayjs().diff(dayjs(access_token_updated_at), 'minute') > 60)) {
-      retrieveAccessToken();
+      void retrieveAccessToken();
     }
   }, [isAuthenticated, access_token_updated_at, getAccessTokenSilently, setAccessToken]);
 
@@ -74,15 +78,13 @@ const AuthGuard = ({ children }) => {
       {isAuthenticated || currentPath === '/' ? (
         children
       ) : (
-        <>
+        <div className='text-xl text-center space-y-5'>
           <h2>Welcome!</h2>
-          <p>You have to login to see information</p>
+          <p>You have to log in to see information</p>
           <div>
-            <button className='link-block button-style' onClick={() => loginWithRedirect()}>
-              Login
-            </button>
+            <Button label='Log in' variant='centered' onClick={() => void loginWithRedirect()} />
           </div>
-        </>
+        </div>
       )}
     </Main>
   );
