@@ -16,11 +16,14 @@
   /* colors */
   --clr-primary--100: hsl(0 0% 100%);
   --clr-primary--200: hsl(224 100% 96%);
-  --clr-primary--300: hsl(224 43% 92%);
   --clr-primary--400: hsl(224 43% 82%);
   --clr-primary--700: hsl(224 43% 44%);
   --clr-primary--800: hsl(224 43% 19%);
   --clr-primary--900: hsl(0 0% 0%);
+
+  --clr-bg-secondary: hsl(224 43% 92%);
+
+  --clr-text--secondary: hsl(0 0% 30%);
 
   --clr-green--400: hsl(178 20% 58%);
   --clr-green--700: hsl(178 20% 48%);
@@ -231,18 +234,6 @@ select {
 
 .spacer-xl > * + * {
   --flow-spacer: var(--block-spacer-xl, 3rem);
-}
-
-.block {
-  display: block;
-}
-
-.flex {
-  display: flex;
-}
-
-.grid {
-  display: grid;
 }
 
 .gap {

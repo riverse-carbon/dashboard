@@ -12,6 +12,7 @@ import {
   DocumentationSVG,
   AdminSVG,
   CartSVG,
+  TransferSVG,
 } from 'components/icons';
 import Button from 'components/Button';
 
@@ -37,7 +38,7 @@ function Nav(): JSX.Element {
         })}>
         <ul role='list' className='h-full flex flex-col'>
           <li className='grid h-[5rem] items-center'>
-            <Link href='/'>
+            <Link href={isAuthenticated ? '/dashboard' : '/'}>
               <a className='block py-2.5 px-5'>
                 <LogoSVG clrMonochrome={false} className='h-[1.25rem] w-full' />
               </a>
@@ -49,11 +50,12 @@ function Nav(): JSX.Element {
                 <ul role='list'>
                   <NavItem path='/dashboard' currentPath={currentPath} label='Dashboard' icon={<DashboardSVG />} />
                   <NavItem path='/projects' currentPath={currentPath} label='Projects' icon={<ProjectsSVG />} />
+                  <NavItem path='#' currentPath={currentPath} label='Contribution' icon={<ContributionSVG />} />
                   <NavItem
-                    path='/contribution'
+                    path='/transactions'
                     currentPath={currentPath}
-                    label='Contribution'
-                    icon={<ContributionSVG />}
+                    label='Public registry'
+                    icon={<TransferSVG />}
                   />
                   <NavItem path='/cart' currentPath={currentPath} label='Cart' icon={<CartSVG />} />
                 </ul>

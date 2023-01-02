@@ -1,3 +1,5 @@
+import Head from 'next/head';
+
 import { useTransactions } from 'components/hooks/api/transactions';
 import { getFakeTransactions } from 'components/allTransactionsPage/fakeData';
 import Hero from 'components/allTransactionsPage/Hero';
@@ -5,7 +7,6 @@ import TransactionsWidget from 'components/allTransactionsPage/TransactionsWidge
 import type { Transaction, TransactionsSortedByMonth } from 'components/types/transactions';
 import Documentation from 'components/widgets/Documentation';
 import WidgetWrapper from 'components/widgets/WidgetWrapper';
-import Head from 'next/head';
 
 type PagePropsType = {
   data: TransactionsSortedByMonth[];
