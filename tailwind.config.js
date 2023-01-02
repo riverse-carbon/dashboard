@@ -11,11 +11,18 @@ module.exports = {
         primary: {
           100: 'var(--clr-primary--100)',
           200: 'var(--clr-primary--200)',
-          300: 'var(--clr-primary--300)',
           400: 'var(--clr-primary--400)',
           700: 'var(--clr-primary--700)',
           DEFAULT: 'var(--clr-primary--800)',
           900: 'var(--clr-primary--900)',
+        },
+        bg: {
+          DEFAULT: 'var(--clr-primary--100)',
+          secondary: 'var(--clr-bg-secondary)',
+        },
+        text: {
+          DEFAULT: 'var(--clr-primary--800)',
+          secondary: 'var(--clr-text--secondary)',
         },
         green: {
           400: 'var(--clr-green--400)',

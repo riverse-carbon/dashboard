@@ -25,7 +25,7 @@ const FAKE_DATA: Transaction[] = [
       name: 'Be Energy',
       sectors: ['Waste', 'Industry'],
       contribution: 209,
-      uid: 'RIV-22-29-MAN',
+      id: '1',
       creditsAvailable: 100,
     },
   },
@@ -43,7 +43,7 @@ const FAKE_DATA: Transaction[] = [
       name: 'Be Energy',
       sectors: ['Waste', 'Industry'],
       contribution: 209,
-      uid: 'RIV-22-29-MAN',
+      id: '2',
       creditsAvailable: 100,
     },
   },
@@ -61,7 +61,7 @@ const FAKE_DATA: Transaction[] = [
       name: 'Weturn',
       sectors: ['Waste', 'Industry'],
       contribution: 1209,
-      uid: 'RIV-22-28-WET',
+      id: '3',
       creditsAvailable: 100,
     },
   },
@@ -79,7 +79,7 @@ const FAKE_DATA: Transaction[] = [
       name: 'Weturn',
       sectors: ['Waste', 'Industry'],
       contribution: 1209,
-      uid: 'RIV-22-28-WET',
+      id: '4',
       creditsAvailable: 100,
     },
   },
@@ -97,7 +97,7 @@ const FAKE_DATA: Transaction[] = [
       name: 'Be Energy',
       sectors: ['Waste', 'Industry'],
       contribution: 209,
-      uid: 'RIV-22-29-MAN',
+      id: '5',
       creditsAvailable: 100,
     },
   },
@@ -115,14 +115,16 @@ const FAKE_DATA: Transaction[] = [
       name: 'Be Energy',
       sectors: ['Waste', 'Industry'],
       contribution: 209,
-      uid: 'RIV-22-29-MAN',
+      id: '6',
       creditsAvailable: 100,
     },
   },
 ];
 
-const getFakeTransactions = () => {
+export const getFakeTransactions = () => {
   return { data: FAKE_DATA };
 };
-
-export default getFakeTransactions;
+export const getFakeTransactionById = (id: string) => {
+  const transaction = FAKE_DATA.find(transaction => transaction.id === id);
+  return { data: transaction };
+};

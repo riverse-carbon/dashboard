@@ -32,7 +32,7 @@ const SeparateProject = ({ project }: { project: Project }) => {
 
   const cccp = project.cccp.map((principle, i) => (
     <li className=' grid grid-cols-[4rem_1fr] gap-5 items-start' key={i}>
-      <span className='font-serif text-2xl text-center font-medium p-2.5 border-2 border-primary-300 rounded-xl-xl'>
+      <span className='font-serif text-2xl text-center font-medium p-2.5 border-2 border-bg-secondary rounded-xl-xl'>
         0{i + 1}
       </span>
       <div className='space-y-2.5'>

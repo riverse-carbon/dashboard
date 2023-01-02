@@ -6,6 +6,7 @@ type DefaultProps = {
   icon?: JSX.Element | undefined;
   children?: JSX.Element;
   additionalStyles?: string;
+  variant?: 'centered';
 };
 
 type ButtonProps = DefaultProps & {
@@ -22,7 +23,7 @@ type AnchorProps = DefaultProps & {
 };
 
 const Button = (props: AnchorProps | ButtonProps): JSX.Element => {
-  const { label, icon, children, additionalStyles } = props;
+  const { label, icon, children, additionalStyles, variant } = props;
   const styles = classNames(
     'border-[.125em]',
     'border-primary',
@@ -40,8 +41,9 @@ const Button = (props: AnchorProps | ButtonProps): JSX.Element => {
     'transition',
     'hover:text-primary',
     'hover:bg-primary-100',
-    'disabled:sepia',
-    { 'flex items-center gap-2.5': icon !== undefined },
+    'disabled:text-text-secondary',
+    'disabled:bg-text-secondary',
+    { 'flex items-center gap-2.5': icon !== undefined, 'block max-w-max mx-auto': variant === 'centered' },
     additionalStyles
   );
   if ('href' in props) {

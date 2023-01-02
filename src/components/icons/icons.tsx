@@ -320,3 +320,83 @@ export const GlobeSVG = ({ width = 16, height = 16, ...props }: Props) => {
     </svg>
   );
 };
+export const CalendarSVG = ({ width = 18, height = 18, ...props }: Props) => {
+  return (
+    <svg
+      aria-hidden='true'
+      {...props}
+      xmlns='http://www.w3.org/2000/svg'
+      height={height}
+      viewBox='0 0 24 24'
+      width={width}
+      fill='currentColor'>
+      <g>
+        <path d='M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z' />
+      </g>
+    </svg>
+  );
+};
+export const CalendarApprovedSVG = ({ width = 18, height = 18, ...props }: Props) => {
+  return (
+    <svg
+      aria-hidden='true'
+      {...props}
+      xmlns='http://www.w3.org/2000/svg'
+      height={height}
+      viewBox='0 0 24 24'
+      width={width}
+      fill='currentColor'>
+      <g>
+        <path d='M16.53 11.06L15.47 10l-4.88 4.88-2.12-2.12-1.06 1.06L10.59 17l5.94-5.94zM19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z' />
+      </g>
+    </svg>
+  );
+};
+export const CloudSVG = ({ width = 18, height = 18, ...props }: Props) => {
+  return (
+    <svg
+      aria-hidden='true'
+      {...props}
+      xmlns='http://www.w3.org/2000/svg'
+      height={height}
+      viewBox='0 0 24 24'
+      width={width}
+      fill='currentColor'>
+      <g>
+        <path d='M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z' />
+      </g>
+    </svg>
+  );
+};
+export const ApartmentSVG = ({ width = 18, height = 18, ...props }: Props) => {
+  return (
+    <svg
+      aria-hidden='true'
+      {...props}
+      xmlns='http://www.w3.org/2000/svg'
+      height={height}
+      viewBox='0 0 24 24'
+      width={width}
+      fill='currentColor'>
+      <g>
+        <path d='M17,11V3H7v4H3v14h8v-4h2v4h8V11H17z M7,19H5v-2h2V19z M7,15H5v-2h2V15z M7,11H5V9h2V11z M11,15H9v-2h2V15z M11,11H9V9h2 V11z M11,7H9V5h2V7z M15,15h-2v-2h2V15z M15,11h-2V9h2V11z M15,7h-2V5h2V7z M19,19h-2v-2h2V19z M19,15h-2v-2h2V15z' />
+      </g>
+    </svg>
+  );
+};
+export const HubSVG = ({ width = 18, height = 18, ...props }: Props) => {
+  return (
+    <svg
+      aria-hidden='true'
+      {...props}
+      xmlns='http://www.w3.org/2000/svg'
+      height={height}
+      viewBox='0 0 24 24'
+      width={width}
+      fill='currentColor'>
+      <g>
+        <path d='M8.4,18.2C8.78,18.7,9,19.32,9,20c0,1.66-1.34,3-3,3s-3-1.34-3-3s1.34-3,3-3c0.44,0,0.85,0.09,1.23,0.26l1.41-1.77 c-0.92-1.03-1.29-2.39-1.09-3.69l-2.03-0.68C4.98,11.95,4.06,12.5,3,12.5c-1.66,0-3-1.34-3-3s1.34-3,3-3s3,1.34,3,3 c0,0.07,0,0.14-0.01,0.21l2.03,0.68c0.64-1.21,1.82-2.09,3.22-2.32l0-2.16C9.96,5.57,9,4.4,9,3c0-1.66,1.34-3,3-3s3,1.34,3,3 c0,1.4-0.96,2.57-2.25,2.91v2.16c1.4,0.23,2.58,1.11,3.22,2.32l2.03-0.68C18,9.64,18,9.57,18,9.5c0-1.66,1.34-3,3-3s3,1.34,3,3 s-1.34,3-3,3c-1.06,0-1.98-0.55-2.52-1.37l-2.03,0.68c0.2,1.29-0.16,2.65-1.09,3.69l1.41,1.77C17.15,17.09,17.56,17,18,17 c1.66,0,3,1.34,3,3s-1.34,3-3,3s-3-1.34-3-3c0-0.68,0.22-1.3,0.6-1.8l-1.41-1.77c-1.35,0.75-3.01,0.76-4.37,0L8.4,18.2z' />
+      </g>
+    </svg>
+  );
+};

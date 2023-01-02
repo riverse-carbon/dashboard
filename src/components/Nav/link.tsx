@@ -8,10 +8,12 @@ type NavItemProps = {
 };
 
 const NavItem = ({ path, currentPath, label, icon }: NavItemProps): JSX.Element => {
-  const currentClass = currentPath.startsWith(path) ? 'bg-primary-200' : '';
+  // if path is index => check for string equality, if not => check if path starts with current path
+  const isCurrent = path === '/' ? currentPath === path : currentPath.startsWith(path);
+  const currentClass = isCurrent ? 'bg-primary-200' : '';
   const disabledClass = path === '#' ? 'opacity-75' : '';
   return (
-    <li className={`hover:bg-primary-300 motion-safe:transition-colors ${currentClass} ${disabledClass}`}>
+    <li className={`hover:bg-bg-secondary motion-safe:transition-colors ${currentClass} ${disabledClass}`}>
       <Link href={path}>
         <a
           aria-current={currentPath === path ? 'page' : 'false'}
