@@ -13,9 +13,13 @@ const { registry_api_url } = getConfig().publicRuntimeConfig;
 
 type AuthGuardProps = {
   children: JSX.Element;
+  publicDirectories?: {
+    directories?: string[];
+    exactPaths?: string[];
+  };
 };
 
-const AuthGuard = ({ children }: AuthGuardProps): JSX.Element => {
+const AuthGuard = ({ children, publicDirectories = {} }: AuthGuardProps): JSX.Element => {
   const { getAccessTokenSilently, loginWithRedirect, isAuthenticated, isLoading, error, user } = useAuth0();
   const { user_id, access_token, access_token_updated_at, setUser, setAccessToken } = useUserStore(
     user => ({
@@ -23,12 +27,22 @@ const AuthGuard = ({ children }: AuthGuardProps): JSX.Element => {
       access_token: user.access_token,
       access_token_updated_at: user.access_token_updated_at,
       setUser: user.setUser,
-      setAccessToken: user.setAccessToken,
+      setAccessToken: user.setAccessToken
     }),
     shallow
   );
 
   const currentPath = useRouter().asPath;
+  const isPublic = () => {
+    if (publicDirectories.directories?.some(publicPath => currentPath.startsWith(publicPath))) {
+      return true;
+    }
+    if (publicDirectories.exactPaths?.some(exactPath => exactPath === currentPath)) {
+      return true;
+    }
+
+    return false;
+  };
 
   useEffect(() => {
     if (isAuthenticated && user_id === 0) {
@@ -38,15 +52,15 @@ const AuthGuard = ({ children }: AuthGuardProps): JSX.Element => {
         first_name: user!.given_name!,
         last_name: user!.family_name!,
         email: user!.email!,
-        role: 'ADMIN',
+        role: 'ADMIN'
       });
     }
   }, [isAuthenticated, user_id, user, setUser]);
 
   useEffect(() => {
-    async function retrieveAccessToken() {
+    async function retrieveAccessToken () {
       const accessToken = await getAccessTokenSilently({
-        audience: registry_api_url,
+        audience: registry_api_url
       });
 
       setAccessToken(accessToken);
@@ -75,7 +89,7 @@ const AuthGuard = ({ children }: AuthGuardProps): JSX.Element => {
 
   return (
     <Main>
-      {isAuthenticated || currentPath === '/' ? (
+      {isAuthenticated || isPublic() ? (
         children
       ) : (
         <div className='text-xl text-center space-y-5'>
