@@ -158,51 +158,6 @@ svg {
   transform: translate(-50%, 0%);
 }
 
-/* UTILITY CLASSES */
-
-/* button,
-.button-style,
-input,
-select {
-  border: 0.125em solid hsl(var(--clr-main--700));
-  border-radius: var(--br);
-  box-shadow: var(--shadow-elevation-low);
-}
-
-button,
-.button-style {
-  font-size: var(--fs-400);
-  font-weight: var(--fw-bold);
-
-  padding: var(--button-padding--block) var(--button-padding--inline);
-}
-
-button,
-.button-style {
-  color: hsl(var(--clr-main--100));
-  background-color: hsl(var(--clr-main--700));
-  text-decoration: none;
-
-  cursor: pointer;
-
-  transition: all var(--transition-duration--quick) linear;
-}
-
-button:disabled,
-input:disabled {
-  filter: sepia(0.75);
-}
-
-button:not(:disabled):hover,
-.button-style:hover {
-  color: hsl(var(--clr-main--700));
-  background-color: hsl(var(--clr-main--100));
-}
-
-button * {
-  pointer-events: none;
-} */
-
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;

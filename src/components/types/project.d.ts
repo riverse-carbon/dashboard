@@ -23,6 +23,8 @@ type KeyImpact = {
 };
 
 export type Project = {
+  id: string;
+  location: string;
   cover_picture: string;
   sdgsArray: Sdg[];
   images: Img[];

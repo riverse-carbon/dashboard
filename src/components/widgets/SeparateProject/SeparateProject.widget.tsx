@@ -75,7 +75,7 @@ const SeparateProject = ({ project }: { project: Project }) => {
           priority={true}
         />
       </div>
-      <section className='space-y-5 bg-primary-100 rounded-xl p-5 shadow-medium'>
+      <section className='space-y-5 bg-primary-100 rounded-xl p-5 shadow-medium text-base'>
         <section className='space-y-2.5 mb-24 text-xl font-medium'>
           <h1 className='text-3xl pb-3.5'>{project.tagline}</h1>
           <p>Developer: {project.name}</p>

@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import WidgetWrapper from '../components/widgets/WidgetWrapper/WidgetWrapper';
+import WidgetWrapper from '../components/widgets/WidgetWrapper';
 import Organization from '../components/Organization.widget';
 import BillingInformation from '../components/BillingInformation.widget';
 import useSWR, { mutate } from 'swr';

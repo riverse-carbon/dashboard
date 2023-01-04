@@ -1,24 +1,20 @@
 import Head from 'next/head';
+import { useState } from 'react';
 
 import getFilters from 'components/db/getFilters';
-
-import { useState } from 'react';
-import ProjectsWithFilters from 'components/ProjectsWithFilters';
 import WidgetWrapper from 'components/widgets/WidgetWrapper';
-import Filters from 'components/Filters.widget';
+import Filters from 'components/widgets/Filters';
 import WidgetsGrid from 'components/WidgetsGrid';
+import Projects from 'components/widgets/Projects';
+
+import type { AppliedFilters, Filter } from 'components/types/filters';
 
 // TODO:
-// 1. get filters!!!
-
-type FilterType = {
-  name: string;
-  label: string;
-  values: string[] | number[];
-};
+// 1. get new filters
+// 2. get data corresponding to filters
 
 type PagePropsType = {
-  filtersData: FilterType[];
+  filtersData: Filter[];
 };
 
 // 8 columns 2 rows
@@ -27,7 +23,7 @@ const gridTemplateAreas = {
 };
 
 export default function Home({ filtersData }: PagePropsType): JSX.Element {
-  const [appliedFilters, setAppliedFilters] = useState({});
+  const [appliedFilters, setAppliedFilters] = useState({} as AppliedFilters);
 
   return (
     <>
@@ -39,7 +35,7 @@ export default function Home({ filtersData }: PagePropsType): JSX.Element {
       <WidgetsGrid gridTemplateAreas={gridTemplateAreas}>
         <>
           <WidgetWrapper areaName='pr'>
-            <ProjectsWithFilters appliedFilters={appliedFilters} />
+            <Projects withFilters={true} appliedFilters={appliedFilters} />
           </WidgetWrapper>
           <WidgetWrapper areaName='fltr'>
             <Filters data={filtersData} setFilters={setAppliedFilters} appliedFilters={appliedFilters} />
