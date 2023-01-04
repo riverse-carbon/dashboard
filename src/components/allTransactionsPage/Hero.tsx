@@ -19,7 +19,7 @@ const Hero = ({ total }: HeroProps): JSX.Element => {
         <Image
           src={heroImg}
           fill
-          sizes='(max-width: 1100px) 1000px, 95vw'
+          sizes='(min-width: 1100px) 1000px, 95vw'
           alt=''
           priority
           className='object-cover rounded-xl shadow-medium'

@@ -7,5 +7,5 @@ export type Organisation = {
   vat_number?: string;
   description?: string;
   website_url?: string;
-  type: 'DEVELOPER' | 'BUYER'
+  type: 'DEVELOPER' | 'BUYER';
 };

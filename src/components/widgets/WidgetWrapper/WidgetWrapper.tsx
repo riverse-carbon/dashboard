@@ -4,6 +4,7 @@ type WidgetWrapperProps = {
   children: React.ReactElement;
   position?: 'static' | 'absolute' | 'sticky' | 'relative';
   inset?: string;
+  /** Should not interfere with existing styles */
   additionalStyles?: string;
   variant?: 'primary' | 'inverted' | 'transparent';
   areaName?: string;
@@ -15,7 +16,7 @@ const WidgetWrapper = ({
   position = 'static',
   inset = '0 auto auto auto',
   variant = 'primary',
-  areaName = '',
+  areaName = ''
 }: WidgetWrapperProps): JSX.Element => {
   const styles = classNames(
     'p-5',
@@ -26,7 +27,7 @@ const WidgetWrapper = ({
     {
       'text-primary bg-primary-100 shadow-medium': variant === 'primary',
       'text-primary-100 bg-primary shadow-medium': variant === 'inverted',
-      [inset]: position !== 'static',
+      [inset]: position !== 'static'
     },
     additionalStyles
   );

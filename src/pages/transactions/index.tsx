@@ -45,7 +45,7 @@ const Page = ({ data, total }: PagePropsType): JSX.Element => {
 
 export default Page;
 
-export function getStaticProps() {
+export function getStaticProps () {
   // replace by intial data when routes done
   const res = getFakeTransactions();
 

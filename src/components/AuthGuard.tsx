@@ -41,14 +41,14 @@ const AuthGuard = ({ children, publicDirectories = {} }: AuthGuardProps): JSX.El
     onSuccess: data => {
       const user = {
         ...data.user,
-        organisation: undefined
+        organisation: undefined,
       };
       const organisation = data.user.organisation;
 
       delete user.organisation;
       setUser(user);
       setOrganisation(organisation);
-    }
+    },
   });
 
   const currentPath = useRouter().asPath;

@@ -17,7 +17,7 @@ const TransactionNode = ({ data }: TransactionNodeProps): JSX.Element => {
     <Link href={`/transactions/${id}`}>
       <a className='no-underline p-2.5 sm:p-0 grid sm:grid-cols-[60px_1fr_max-content] gap-2.5 bg-bg-secondary rounded-lg'>
         <span className='relative overflow-hidden rounded-l-lg hidden sm:block'>
-          <Image src={cover} alt='' fill sizes='60px' className='object-cover' />
+          <Image src={cover} alt='' fill sizes='120px' className='object-cover' />
         </span>
         <span className='sm:py-2.5'>
           <span className='block font-medium text-base mb-1'>{tagline}</span>
@@ -27,7 +27,9 @@ const TransactionNode = ({ data }: TransactionNodeProps): JSX.Element => {
         </span>
         <span className='flex sm:max-md:flex-col items-center sm:max-md:justify-center pr-2.5'>
           CO2 contributed
-          <span className='py-0.5 px-4 bg-primary-100 rounded-lg md:ml-4 text-base'>{carbonAmount} t CO2</span>
+          <span className='py-0.5 px-4 bg-primary-100 rounded-lg ml-4 sm:max-md:ml-0 text-base'>
+            {carbonAmount} t CO2
+          </span>
         </span>
       </a>
     </Link>

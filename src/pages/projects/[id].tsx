@@ -9,14 +9,15 @@ import BuyCreditsNew from 'components/BuyCreditsNew.widget';
 import { CartProvider } from 'components/forms/cart';
 import { useProjectById } from 'components/hooks/api/projects';
 import WidgetsGrid from 'components/WidgetsGrid';
+import Breadcrumb from 'components/Breadcrumb';
+
 import type { Project, ProjectRaw } from 'components/types/project';
-// import Breadcrumb from 'components/Breadcrumb';
 
 // TODO: add name as field in project response
 
 // 8 columns 2 rows
 const gridTemplateAreas = {
-  all: '"pr pr pr pr pr pr creds creds"',
+  all: '"pr pr pr pr pr pr creds creds"'
 };
 
 const ProjectPage = (): JSX.Element => {
@@ -47,7 +48,7 @@ const ProjectPage = (): JSX.Element => {
         <meta name='description' content='' />
       </Head>
       <ModalId.Provider value={modalId}>
-        {/* <Breadcrumb /> */}
+        <Breadcrumb labels={['Projects', project.tagline]} />
         <WidgetsGrid gridTemplateAreas={gridTemplateAreas}>
           <>
             <WidgetWrapper areaName='pr' variant='transparent' additionalStyles='p-0'>
@@ -104,10 +105,10 @@ const rawProjectTransform = (projectRaw: ProjectRaw): Project => {
     { name: 'Permanence', value: projectRaw['cccp-permanence'] },
     {
       name: 'Measurability & reality',
-      value: projectRaw['cccp-measurability'],
+      value: projectRaw['cccp-measurability']
     },
     { name: 'Additionality', value: projectRaw['cccp-additionality'] },
-    { name: 'Rebound effects', value: projectRaw['cccp-rebound-effects'] },
+    { name: 'Rebound effects', value: projectRaw['cccp-rebound-effects'] }
   ];
   return project;
 };

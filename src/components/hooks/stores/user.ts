@@ -10,7 +10,7 @@ const default_user: Omit<User, 'organisation'> = {
   email: '',
   role: 'VIEWER',
   access_token: undefined,
-  fk_organisation_id: 0
+  fk_organisation_id: 0,
 };
 
 type StoreUser = Omit<User, 'organisation'> & {

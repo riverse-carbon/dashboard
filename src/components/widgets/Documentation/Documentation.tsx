@@ -3,7 +3,7 @@ import PostPreviewCard from './PostPreviewCard';
 
 // TODO: use static generation and dynamic data for posts
 
-function Documentation (): JSX.Element {
+function Documentation(): JSX.Element {
   const postsList = DOC_POSTS.map((post, i) => <PostPreviewCard key={i} data={post} />);
 
   return (

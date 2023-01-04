@@ -76,7 +76,7 @@
 
 @layer base {
   body {
-    @apply m-0 p-0 text-primary bg-primary-200 font-main text-sm [-webkit-font-smoothing:antialiased] [-moz-font-smoothing:antialiased] [height:-webkit-fill-available];
+    @apply overflow-y-hidden m-0 p-0 text-primary bg-primary-200 font-main text-sm [-webkit-font-smoothing:antialiased] [-moz-font-smoothing:antialiased] [height:-webkit-fill-available];
   }
 
   h1,

@@ -12,13 +12,13 @@ import {
   DocumentationSVG,
   AdminSVG,
   CartSVG,
-  TransferSVG,
+  TransferSVG
 } from 'components/icons';
 import Button from 'components/Button';
 
 import NavItem from './link';
 
-function Nav(): JSX.Element {
+function Nav (): JSX.Element {
   const { isAuthenticated } = useAuth0();
   const currentPath = useRouter().asPath;
 
@@ -26,15 +26,15 @@ function Nav(): JSX.Element {
     /* eslint-disable */
     <header
       className={classNames('relative text-base z-10 bg-primary-100 shadow-high', {
-        '[grid-area:header]': isAuthenticated,
+        '[grid-area:header]': isAuthenticated
       })}>
       <p id='nav_label' className='sr-only'>
         Main
       </p>
       <nav
         aria-labelledby='nav_label'
-        className={classNames('sticky', 'left-0', 'top-0', 'w-full', {
-          'h-screen bottom-0 pb-5': isAuthenticated,
+        className={classNames('sticky', 'left-0', 'top-0', 'w-full overflow-y-auto', {
+          'h-screen bottom-0 pb-5': isAuthenticated
         })}>
         <ul role='list' className='h-full flex flex-col'>
           <li className='grid h-[5rem] items-center'>

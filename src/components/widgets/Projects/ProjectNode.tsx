@@ -11,14 +11,14 @@ import type { Project } from 'components/types/project';
 
 const fakeData = {
   total: 432,
-  contribution: 345.3,
+  contribution: 345.3
 };
 
 type ProjectNodeProps = {
   project: Project;
 };
 
-function ProjectNode({ project }: ProjectNodeProps): JSX.Element {
+function ProjectNode ({ project }: ProjectNodeProps): JSX.Element {
   const { cover_picture, name, tagline, location, id } = project;
   const { total, contribution } = fakeData;
 
@@ -32,7 +32,7 @@ function ProjectNode({ project }: ProjectNodeProps): JSX.Element {
                 src={cover_picture}
                 alt=''
                 fill
-                sizes='4.75rem'
+                sizes='8rem'
                 className='object-cover group-focus/link:opacity-0 group-hover:opacity-0 motion-safe:transition-all rounded-xl'
               />
               Details<span aria-hidden='true'>&gt;</span>

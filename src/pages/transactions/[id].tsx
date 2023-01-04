@@ -1,15 +1,18 @@
+import { GetStaticPaths, GetStaticProps } from 'next';
+
 import Breadcrumb from 'components/Breadcrumb';
 import Button from 'components/Button';
 import { getFakeTransactionById } from 'components/allTransactionsPage/fakeData';
 import ProjectDetails from 'components/individualTransactionPage/ProjectDetails';
 import TransactionDetails from 'components/individualTransactionPage/TransactionDetails';
-import type { Transaction } from 'components/types/transactions';
 import WidgetsGrid from 'components/WidgetsGrid';
 import WidgetWrapper from 'components/widgets/WidgetWrapper';
-import { GetStaticPaths, GetStaticProps } from 'next';
+
+import type { Transaction } from 'components/types/transactions';
 
 const gridTemplateAreas = {
-  all: '"pr pr pr pr tr tr tr tr" ". . more more more more . ."',
+  all: '"tr tr tr tr tr tr tr tr" "pr pr pr pr pr pr pr pr" "more more more more more more more more"',
+  tablet: '"tr tr tr tr pr pr pr pr" ". more more more more more more ."'
 };
 
 type TransactionPageProps = {
@@ -25,20 +28,20 @@ const TransactionPage = ({ data }: TransactionPageProps): JSX.Element => {
   const { project, ...transaction } = data.data;
 
   return (
-    <>
-      {/* <Breadcrumb /> */}
+    <section className='max-w-screen-lg mx-auto'>
+      <Breadcrumb labels={['Transactions', transaction.id]} />
       <WidgetsGrid
         gridTemplateAreas={gridTemplateAreas}
-        gap='gap-10'
-        additionalStyles='items-stretch max-w-screen-lg mx-auto text-base'>
+        gap='gap-5 md:gap-10'
+        additionalStyles='items-stretch justify-items-center  text-base'>
         <>
-          <WidgetWrapper areaName='pr' additionalStyles=''>
-            <ProjectDetails data={project} />
-          </WidgetWrapper>
-          <WidgetWrapper areaName='tr'>
+          <WidgetWrapper areaName='tr' additionalStyles='max-w-lg w-full'>
             <TransactionDetails data={transaction} />
           </WidgetWrapper>
-          <WidgetWrapper areaName='more'>
+          <WidgetWrapper areaName='pr' additionalStyles='max-w-lg w-full'>
+            <ProjectDetails data={project} />
+          </WidgetWrapper>
+          <WidgetWrapper areaName='more' additionalStyles='max-w-lg w-full'>
             <>
               <h2 className='text-xl text-center'>Discover more about the project</h2>
               <Button variant='centered' label='' href={`/projects/${project.id}`}>
@@ -50,7 +53,7 @@ const TransactionPage = ({ data }: TransactionPageProps): JSX.Element => {
           </WidgetWrapper>
         </>
       </WidgetsGrid>
-    </>
+    </section>
   );
 };
 
@@ -59,7 +62,7 @@ export default TransactionPage;
 export const getStaticPaths: GetStaticPaths = () => {
   return {
     paths: [],
-    fallback: 'blocking',
+    fallback: 'blocking'
   };
 };
 

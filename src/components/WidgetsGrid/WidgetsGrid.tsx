@@ -9,6 +9,7 @@ type GridTemplateAreas = {
 };
 
 type WidgetsGridProps = {
+  /** default: gap-5 */
   gap?: string;
   gridTemplateAreas: GridTemplateAreas;
   children: JSX.Element;
@@ -19,10 +20,14 @@ const WidgetsGrid = ({
   children,
   gridTemplateAreas,
   additionalStyles = '',
-  gap = '',
+  gap = ''
 }: WidgetsGridProps): JSX.Element => {
   // add variable with grid-areas
-  const cssVariables = { '--widgets-grid': gridTemplateAreas.all } as React.CSSProperties;
+  const cssVariables = {
+    '--widgets-grid': gridTemplateAreas.all,
+    '--widgets-grid--tablet': gridTemplateAreas.tablet || gridTemplateAreas.all,
+    '--widgets-grid--desktop': gridTemplateAreas.desktop || gridTemplateAreas.tablet || gridTemplateAreas.all
+  } as React.CSSProperties;
 
   return (
     <div
@@ -32,9 +37,11 @@ const WidgetsGrid = ({
         'grid-cols-8',
         'grid-rows-[min-content,_1fr]',
         '[grid-template-areas:var(--widgets-grid)]',
+        'sm:[grid-template-areas:var(--widgets-grid--desktop)]',
+        'lg:[grid-template-areas:var(--widgets-grid--desktop)]',
         {
           [`${gap}`]: gap,
-          'gap-5': !gap,
+          'gap-5': !gap
         },
         additionalStyles
       )}

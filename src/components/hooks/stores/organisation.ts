@@ -7,7 +7,7 @@ const default_organisation: Organisation = {
   id: 0,
   name: '',
   logo: '',
-  type: 'DEVELOPER'
+  type: 'DEVELOPER',
 };
 
 type StoreOrganisation = Organisation & {

@@ -6,46 +6,45 @@ type BreadcrumbProps = {
 };
 
 const Breadcrumb = ({ labels }: BreadcrumbProps) => {
-  const pathsWithoutLast = [];
-  const labelsWithoutLast = [];
-  const lastElement = { path: '', label: '' };
   const currentPath = useRouter().asPath;
-  // if (typeof labels === 'string') {
-  //   const splitPath = currentPath.split('/');
-  //   // populate last element object
-  //   lastElement.label = labels
-  //   lastElement.path = splitPath.pop() || ''
 
-  //   // do not add the first element which is an empty string
-  //   splitPath.forEach((path,i) => {
-  //     if (i === 0) {
-  //       return
-  //     }
-  //     pathsWithoutLast.push(path);
-  //     labelsWithoutLast.push(path.charAt(0)+path.slice(1))
-  //   })
-  // }
+  // match parts of the string between slashes (so the last bit of current path is not included in the match)
+  const splitPath: string[] = currentPath.match(/\/.+?(?=\/)/g) || [];
 
-  const splitPath = currentPath.split('/');
+  // compose whole path for every element in the array
+  const breadcrumbWithoutLast = splitPath.reduce((arr, curr) => {
+    const lastItem = arr[arr.length - 1] || '';
+    arr.push(lastItem + curr);
+    return arr;
+  }, [] as string[]);
 
-  // const lastElement: LinkNode = links.pop();
-  // const elementsBeforeLastElement = paths.map(element => (
-  //   <li
-  //     key={element}
-  //     className='relative after:absolute after:w-px after:ml-5 after:left-full after:top-[.125em] after:bottom-[.125em] after:border-r-2 after:rotate-[25deg] after:border-primary'>
-  //     <Link href={`/${element}`}>{`${link.label} `}</Link>
-  //   </li>
-  // ));
+  if (breadcrumbWithoutLast.length + 1 !== labels.length) {
+    return <p className='text-xl'>LABELS LIST DOES NOT CORRESPOND TO BREADCRUMB LIST. Check labels quantity!</p>;
+  }
+
+  const elementsWithoutLast = breadcrumbWithoutLast.map((element, i) => (
+    <li
+      key={element}
+      className='relative after:absolute after:w-px after:ml-5 after:left-full after:top-[.125em] after:bottom-[.125em] after:border-r-2 after:rotate-[25deg] after:border-primary'>
+      <Link href={`${element}`}>
+        <a>{`${labels[i]!} `}</a>
+      </Link>
+    </li>
+  ));
+
+  const lastElement = (
+    <li>
+      <Link href={currentPath}>
+        <a aria-current='page'>{labels[labels.length - 1]}</a>
+      </Link>
+    </li>
+  );
 
   return (
     <nav aria-label='Breadcrumb'>
       <ol role='list' className='text-base flex gap-10 mt-[-1.5em] mb-2.5'>
-        {/* {elementsBeforeLastElement}
-        <li>
-          <Link href={lastElement.relativePath}>
-            <a aria-current='page'>{lastElement.label}</a>
-          </Link>
-        </li>{' '} */}
+        {elementsWithoutLast}
+        {lastElement}
       </ol>
     </nav>
   );
