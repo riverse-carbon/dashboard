@@ -2,6 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import Button from 'components/Button';
 import dayjs from 'dayjs';
 import Image from 'next/future/image';
+import Balancer from 'react-wrap-balancer';
 import heroImg from '../../../public/home-hero.jpg';
 
 type HeroProps = {
@@ -14,7 +15,7 @@ const Hero = ({ total }: HeroProps): JSX.Element => {
   const today = dayjs().format('D MMMM YYYY');
   return (
     <>
-      <section className='relative max-h-screen min-h-[max(27rem,40vh)] p-5 grid grid-rows-3 gap-5 '>
+      <section className='relative md:min-h-[max(27rem,40vh)] flex flex-col p-2.5 md:p-5 md:grid md:grid-rows-3 gap-5'>
         <Image
           src={heroImg}
           fill
@@ -23,22 +24,24 @@ const Hero = ({ total }: HeroProps): JSX.Element => {
           priority
           className='object-cover rounded-xl shadow-medium'
         />
-        <div className='py-7 px-8 relative max-w-xl row-start-2 justify-self-center'>
+        <div className='py-7 my-10 md:my-0 px-2.5 md:px-8 relative max-w-xl w-full mx-auto row-start-2'>
           <div className='absolute bg-primary-100 inset-0 opacity-90 rounded-xl'></div>
-          <p className='flex gap-10 relative'>
-            <span className='text-right'>
-              <span className='text-3xl font-serif block mb-2'>Total tons of carbon dioxide removed</span>
+          <p className='flex flex-col-reverse md:flex-row gap-2.5 md:gap-10 relative'>
+            <span className='text-center md:text-right'>
+              <span className='text-3xl font-serif block mb-2'>
+                <Balancer>Total tons of carbon dioxide removed</Balancer>
+              </span>
               <span className='uppercase font-medium'>Data for {today}</span>
             </span>
             <span className='min-h-full w-0 border-l-2 border-primary'></span>
-            <span className='self-center'>
+            <span className='self-center text-center md:text-left'>
               <span className='text-6xl block font-serif'>{total}</span>
               <span className='text-xl'>tons CO2</span>
             </span>
           </p>
         </div>
         {isAuthenticated ? null : (
-          <div className='relative row-start-3 ml-auto rounded-xl bg-primary-700 text-primary-100 p-5 self-end'>
+          <div className='relative row-start-3 mx-auto md:mr-0 rounded-xl bg-primary-700 text-primary-100 px-2.5 py-5 md:px-5 md:self-end'>
             <p className='grid grid-rows-[fit-content_1fr] grid-cols-[fit-content_1fr] gap-y-2.5 gap-x-5'>
               <>
                 <span className='text-xl col-span-2 text-center font-medium'>Welcome!</span>

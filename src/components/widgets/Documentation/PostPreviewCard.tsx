@@ -8,7 +8,7 @@ import Button from 'components/Button';
 const PostPreviewCard = ({ data }: { data: Post }): JSX.Element => {
   return (
     <li className='flex flex-col gap-2'>
-      <Image className='shadow-low h-52 object-cover rounded-xl' src={data.thumbnail} alt='' sizes='20rem' />
+      <Image className='shadow-low h-52 object-cover rounded-xl' src={data.thumbnail} alt='' sizes='25rem' />
       <h4 className='text-base leading-tight font-normal'>{data.title}</h4>
       <p>{data.previewText}</p>
       <Button href={data.link} type='external' label='' variant='centered' additionalStyles='mt-auto'>
