@@ -3,18 +3,19 @@ import { persist } from 'zustand/middleware';
 
 import { type User } from 'components/types/user';
 
-const default_user: User = {
+const default_user: Omit<User, 'organisation'> = {
   id: 0,
   first_name: '',
   last_name: '',
   email: '',
   role: 'VIEWER',
   access_token: undefined,
+  fk_organisation_id: 0
 };
 
-type StoreUser = User & {
+type StoreUser = Omit<User, 'organisation'> & {
   access_token_updated_at?: number;
-  setUser: (user: User) => void;
+  setUser: (user: Omit<User, 'organisation'>) => void;
   setAccessToken: (access_token: string) => void;
   reset: () => void;
 };

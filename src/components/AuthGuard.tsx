@@ -3,10 +3,14 @@ import { useAuth0 } from '@auth0/auth0-react';
 import dayjs from 'dayjs';
 import shallow from 'zustand/shallow';
 import getConfig from 'next/config';
+import { useMutation } from '@tanstack/react-query';
+import { useRouter } from 'next/router';
 
 import { useUserStore } from 'components/hooks/stores/user';
+import { getUser } from 'components/api/users';
+import { useOrganisationStore } from 'components/hooks/stores/organisation';
+
 import Main from './Main';
-import { useRouter } from 'next/router';
 import Button from './Button';
 
 const { registry_api_url } = getConfig().publicRuntimeConfig;
@@ -20,7 +24,7 @@ type AuthGuardProps = {
 };
 
 const AuthGuard = ({ children, publicDirectories = {} }: AuthGuardProps): JSX.Element => {
-  const { getAccessTokenSilently, loginWithRedirect, isAuthenticated, isLoading, error, user } = useAuth0();
+  const { getAccessTokenSilently, loginWithRedirect, isAuthenticated, isLoading, error } = useAuth0();
   const { user_id, access_token, access_token_updated_at, setUser, setAccessToken } = useUserStore(
     user => ({
       user_id: user.id,
@@ -31,6 +35,21 @@ const AuthGuard = ({ children, publicDirectories = {} }: AuthGuardProps): JSX.El
     }),
     shallow
   );
+  const setOrganisation = useOrganisationStore(orga => orga.setOrganisation);
+
+  const get_user_mutation = useMutation(getUser, {
+    onSuccess: data => {
+      const user = {
+        ...data.user,
+        organisation: undefined
+      };
+      const organisation = data.user.organisation;
+
+      delete user.organisation;
+      setUser(user);
+      setOrganisation(organisation);
+    }
+  });
 
   const currentPath = useRouter().asPath;
   const isPublicPath = () => {
@@ -45,19 +64,6 @@ const AuthGuard = ({ children, publicDirectories = {} }: AuthGuardProps): JSX.El
   };
 
   useEffect(() => {
-    if (isAuthenticated && user_id === 0) {
-      // TODO: plug me to server and fix the ID
-      setUser({
-        id: 1,
-        first_name: user!.given_name!,
-        last_name: user!.family_name!,
-        email: user!.email!,
-        role: 'ADMIN',
-      });
-    }
-  }, [isAuthenticated, user_id, user, setUser]);
-
-  useEffect(() => {
     async function retrieveAccessToken() {
       const accessToken = await getAccessTokenSilently({
         audience: registry_api_url,
@@ -70,6 +76,12 @@ const AuthGuard = ({ children, publicDirectories = {} }: AuthGuardProps): JSX.El
       void retrieveAccessToken();
     }
   }, [isAuthenticated, access_token_updated_at, getAccessTokenSilently, setAccessToken]);
+
+  useEffect(() => {
+    if (isAuthenticated && user_id === 0 && get_user_mutation.isIdle && access_token) {
+      void get_user_mutation.mutate();
+    }
+  }, [isAuthenticated, user_id, get_user_mutation, access_token]);
 
   if (isLoading || (isAuthenticated && !access_token)) {
     return (

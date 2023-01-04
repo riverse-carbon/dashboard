@@ -1,3 +1,5 @@
+import { Organisation } from './organisation';
+
 export type User = {
   id: number;
   first_name: string;
@@ -5,4 +7,7 @@ export type User = {
   email: string;
   role: 'ADMIN' | 'VALIDATOR' | 'BUYER' | 'VIEWER';
   access_token?: string;
+  auth0_id?: string;
+  fk_organisation_id: number;
+  organisation: Organisation;
 };

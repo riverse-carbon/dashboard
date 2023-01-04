@@ -4,12 +4,14 @@ import getConfig from 'next/config';
 import { CartSVG, GlobeSVG, PhotoPlaceHolderSVG } from 'components/icons';
 import Button from 'components/Button';
 import { useUserStore } from 'components/hooks/stores/user';
+import { useOrganisationStore } from 'components/hooks/stores/organisation';
 
 const { webapp_url } = getConfig().publicRuntimeConfig;
 
 const Banner = (): JSX.Element => {
   const { loginWithRedirect, user, logout } = useAuth0();
-  const reset = useUserStore(user => user.reset);
+  const reset_user = useUserStore(user => user.reset);
+  const reset_orga = useOrganisationStore(orga => orga.reset);
 
   return (
     <div className='[grid-area:banner] sticky top-0 z-20 px-5 bg-primary-100 flex items-center gap-10 text-base shadow-high'>
@@ -24,7 +26,8 @@ const Banner = (): JSX.Element => {
           <Button
             label='Logout'
             onClick={() => {
-              reset();
+              reset_user();
+              reset_orga();
               logout({ returnTo: webapp_url });
             }}
           />
