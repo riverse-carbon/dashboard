@@ -15,8 +15,6 @@ import { CartProvider } from 'components/forms/cart';
 const queryClient = new QueryClient();
 const { auth0_domain, auth0_client_id, registry_api_url, webapp_url } = getConfig().publicRuntimeConfig;
 
-const publicDirectories = { directories: ['/transactions/'], exactPaths: ['/'] };
-
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <QueryClientProvider client={queryClient}>
@@ -30,7 +28,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           <div className='relative grid [grid-template-areas:"header_banner"_"header_main"] grid-cols-[fit-content(12rem)_1fr] grid-rows-[5rem_1fr]'>
             <Nav />
             <Banner />
-            <AuthGuard publicDirectories={publicDirectories}>
+            <AuthGuard>
               <Component {...pageProps} />
             </AuthGuard>
           </div>

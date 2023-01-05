@@ -13,8 +13,6 @@ type PagePropsType = {
   total: number;
 };
 
-// TODO: ask William about staleTime on transactions
-
 const Page = ({ data, total }: PagePropsType): JSX.Element => {
   // use initial data from getStaticProps and fetch all transactions data if clicked on 'more' button
   const { data: transactions, isError } = useTransactions(data);
@@ -45,7 +43,7 @@ const Page = ({ data, total }: PagePropsType): JSX.Element => {
 
 export default Page;
 
-export function getStaticProps () {
+export function getStaticProps() {
   // replace by intial data when routes done
   const res = getFakeTransactions();
 

@@ -29,6 +29,7 @@ const nextConfig = {
     auth0_client_id: process.env.AUTH0_CLIENT_ID,
     registry_api_url: process.env.REGISTRY_API_URL,
     webapp_url: process.env.WEBAPP_URL,
+    webapp_log_out_url: process.env.WEBAPP_LOG_OUT_URL,
   },
 };
 

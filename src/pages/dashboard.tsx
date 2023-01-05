@@ -9,7 +9,7 @@ import WidgetsGrid from 'components/WidgetsGrid';
 
 // 8 columns 2 rows
 const gridTemplateAreas = {
-  all: '"pr pr pr pr pr pr contr contr" "pr pr pr pr pr pr creds creds" "docs docs docs docs docs docs . ."'
+  all: '"pr pr pr pr pr pr contr contr" "pr pr pr pr pr pr creds creds" "docs docs docs docs docs docs . ."',
   // all: '"pr pr pr pr . . contr contr" "pr pr pr pr . . creds creds" "docs docs docs docs docs docs . ."'
 };
 

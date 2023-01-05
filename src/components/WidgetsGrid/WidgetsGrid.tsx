@@ -20,13 +20,13 @@ const WidgetsGrid = ({
   children,
   gridTemplateAreas,
   additionalStyles = '',
-  gap = ''
+  gap = '',
 }: WidgetsGridProps): JSX.Element => {
   // add variable with grid-areas
   const cssVariables = {
     '--widgets-grid': gridTemplateAreas.all,
     '--widgets-grid--tablet': gridTemplateAreas.tablet || gridTemplateAreas.all,
-    '--widgets-grid--desktop': gridTemplateAreas.desktop || gridTemplateAreas.tablet || gridTemplateAreas.all
+    '--widgets-grid--desktop': gridTemplateAreas.desktop || gridTemplateAreas.tablet || gridTemplateAreas.all,
   } as React.CSSProperties;
 
   return (
@@ -41,7 +41,7 @@ const WidgetsGrid = ({
         'lg:[grid-template-areas:var(--widgets-grid--desktop)]',
         {
           [`${gap}`]: gap,
-          'gap-5': !gap
+          'gap-5': !gap,
         },
         additionalStyles
       )}

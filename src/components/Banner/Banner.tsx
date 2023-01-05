@@ -6,7 +6,7 @@ import Button from 'components/Button';
 import { useUserStore } from 'components/hooks/stores/user';
 import { useOrganisationStore } from 'components/hooks/stores/organisation';
 
-const { webapp_url } = getConfig().publicRuntimeConfig;
+const { webapp_log_out_url } = getConfig().publicRuntimeConfig;
 
 const Banner = (): JSX.Element => {
   const { loginWithRedirect, user, logout } = useAuth0();
@@ -28,7 +28,7 @@ const Banner = (): JSX.Element => {
             onClick={() => {
               reset_user();
               reset_orga();
-              logout({ returnTo: webapp_url });
+              logout({ returnTo: webapp_log_out_url });
             }}
           />
         </>

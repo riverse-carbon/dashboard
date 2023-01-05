@@ -11,14 +11,14 @@ import type { Project } from 'components/types/project';
 
 const fakeData = {
   total: 432,
-  contribution: 345.3
+  contribution: 345.3,
 };
 
 type ProjectNodeProps = {
   project: Project;
 };
 
-function ProjectNode ({ project }: ProjectNodeProps): JSX.Element {
+function ProjectNode({ project }: ProjectNodeProps): JSX.Element {
   const { cover_picture, name, tagline, location, id } = project;
   const { total, contribution } = fakeData;
 

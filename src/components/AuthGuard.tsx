@@ -4,11 +4,11 @@ import dayjs from 'dayjs';
 import shallow from 'zustand/shallow';
 import getConfig from 'next/config';
 import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/router';
 
 import { useUserStore } from 'components/hooks/stores/user';
 import { getUser } from 'components/api/users';
 import { useOrganisationStore } from 'components/hooks/stores/organisation';
+import useRedirectRules from 'components/hooks/routes/useRedirectRoules';
 
 import Main from './Main';
 import Button from './Button';
@@ -17,21 +17,18 @@ const { registry_api_url } = getConfig().publicRuntimeConfig;
 
 type AuthGuardProps = {
   children: JSX.Element;
-  publicDirectories?: {
-    directories?: string[];
-    exactPaths?: string[];
-  };
 };
 
-const AuthGuard = ({ children, publicDirectories = {} }: AuthGuardProps): JSX.Element => {
+const AuthGuard = ({ children }: AuthGuardProps): JSX.Element => {
   const { getAccessTokenSilently, loginWithRedirect, isAuthenticated, isLoading, error } = useAuth0();
+  const { shouldRedirect, isPublicPath } = useRedirectRules();
   const { user_id, access_token, access_token_updated_at, setUser, setAccessToken } = useUserStore(
     user => ({
       user_id: user.id,
       access_token: user.access_token,
       access_token_updated_at: user.access_token_updated_at,
       setUser: user.setUser,
-      setAccessToken: user.setAccessToken,
+      setAccessToken: user.setAccessToken
     }),
     shallow
   );
@@ -41,32 +38,20 @@ const AuthGuard = ({ children, publicDirectories = {} }: AuthGuardProps): JSX.El
     onSuccess: data => {
       const user = {
         ...data.user,
-        organisation: undefined,
+        organisation: undefined
       };
       const organisation = data.user.organisation;
 
       delete user.organisation;
       setUser(user);
       setOrganisation(organisation);
-    },
+    }
   });
 
-  const currentPath = useRouter().asPath;
-  const isPublicPath = () => {
-    if (publicDirectories.directories?.some(publicPath => currentPath.startsWith(publicPath))) {
-      return true;
-    }
-    if (publicDirectories.exactPaths?.some(exactPath => exactPath === currentPath)) {
-      return true;
-    }
-
-    return false;
-  };
-
   useEffect(() => {
-    async function retrieveAccessToken() {
+    async function retrieveAccessToken () {
       const accessToken = await getAccessTokenSilently({
-        audience: registry_api_url,
+        audience: registry_api_url
       });
 
       setAccessToken(accessToken);
@@ -83,7 +68,7 @@ const AuthGuard = ({ children, publicDirectories = {} }: AuthGuardProps): JSX.El
     }
   }, [isAuthenticated, user_id, get_user_mutation, access_token]);
 
-  if (isLoading || (isAuthenticated && !access_token)) {
+  if (isLoading || (isAuthenticated && !access_token) || shouldRedirect()) {
     return (
       <Main>
         <h1>Loading info...</h1>

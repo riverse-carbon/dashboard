@@ -12,7 +12,7 @@ import type { Transaction } from 'components/types/transactions';
 
 const gridTemplateAreas = {
   all: '"tr tr tr tr tr tr tr tr" "pr pr pr pr pr pr pr pr" "more more more more more more more more"',
-  tablet: '"tr tr tr tr pr pr pr pr" ". more more more more more more ."'
+  tablet: '"tr tr tr tr pr pr pr pr" ". more more more more more more ."',
 };
 
 type TransactionPageProps = {
@@ -62,7 +62,7 @@ export default TransactionPage;
 export const getStaticPaths: GetStaticPaths = () => {
   return {
     paths: [],
-    fallback: 'blocking'
+    fallback: 'blocking',
   };
 };
 

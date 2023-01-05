@@ -11,9 +11,9 @@ const MarkdownComponent = ({ text, className }: Props): JSX.Element | null => {
     rehypeReactOptions: {
       components: {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        p: (props: any) => <p className={className} {...props} />
-      }
-    }
+        p: (props: any) => <p className={className} {...props} />,
+      },
+    },
   });
 
   useEffect(() => {
